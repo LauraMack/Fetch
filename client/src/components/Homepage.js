@@ -3,13 +3,30 @@ import styled from "styled-components";
 import Searchbar from "./Searchbar";
 import Categories from "./Categories";
 import User from "./User";
+import { useState, useEffect } from "react";
 
 const Homepage = () => {
+  const [allUsers, setAllUsers] = useState("");
+  const [moreUsers, setMoreUsers] = useState([]);
+
+  useEffect(() => {
+    fetch("/users")
+      .then((res) => res.json())
+      .then((data) => {
+        setAllUsers(data.data);
+        //slice the original array for pagination purposes
+        const sliced = data.data.slice(0, 4);
+        setMoreUsers(sliced);
+        console.log(sliced, "sliced");
+      });
+  }, []);
+
+  console.log(allUsers);
+
   return (
     <>
       <Div>
         Homepage
-        <img src="http://res.cloudinary.com/dnbqibbaq/image/upload/c_scale,w_400/v1638652775/profile-picture12_uvyqb1.jpg" />
         <Searchdiv>
           <Searchbar />
         </Searchdiv>
@@ -17,7 +34,13 @@ const Homepage = () => {
           <Categories />
         </CategoryDiv>
         <UserDiv>
-          <User />
+          {moreUsers.map((user) => {
+            const image = user.avatar;
+            const name = user.name;
+            const rating = user.rating;
+
+            return <User image={image} rating={rating} name={name} />;
+          })}
         </UserDiv>
       </Div>
     </>
@@ -28,7 +51,7 @@ export default Homepage;
 
 const Div = styled.div`
   font-family: "Raleway";
-  height: 100vh;
+  height: max-content;
   width: 100vw;
 `;
 const Searchdiv = styled.div`

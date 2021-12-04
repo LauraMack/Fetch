@@ -1,15 +1,25 @@
+"use strict";
+const { getAllUsers } = require("./handlers");
+
+// import the needed node_modules.
 const path = require("path");
 const express = require("express");
+const morgan = require("morgan");
 
 const PORT = 8000;
 
 express()
+  // log more info to the console.
+  .use(morgan("tiny"))
   .use(express.json())
 
-  //endpoints
-  .get("/hello", (req, res) => {
-    res.status(200).json({ hi: "hi" });
-  })
+  // Any requests for static files will go into the public folder
+  .use(express.static("public"))
+
+  // endpoints are added below
+  .get("/users", getAllUsers)
+
+  // endpoints are added above
 
   .listen(PORT, function () {
     console.info("🌍 Listening on port " + PORT);

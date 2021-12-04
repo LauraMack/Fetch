@@ -20,8 +20,6 @@ const batchImport = async () => {
 
   await db.collection("users").insertMany(users);
 
-  await db.collection("reviews").insertMany(reviews);
-
   client.close();
   console.log("disconnected");
 };

@@ -47,6 +47,6 @@ const Main = styled.div`
   display: flex;
   background-color: #e5ebea;
   height: 100vh;
-  width: 100vw;
+  width: max-content;
   margin-left: -8px;
 `;
