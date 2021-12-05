@@ -1,14 +1,12 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import styled from "styled-components";
-import NavBar from "./components/NavBar";
 import Homepage from "./components/Homepage";
 import MyAds from "./components/MyAds";
 import PostAd from "./components/PostAd";
 import Profile from "./components/Profile";
 import Signin from "./components/Signin";
 import Signup from "./components/Signup";
-import User from "./components/User";
 import Header from "./components/Header";
 
 const App = () => {
@@ -46,7 +44,6 @@ export default App;
 const Main = styled.div`
   display: flex;
   background-color: #e5ebea;
-  height: 100vh;
+  height: 200vh;
   width: max-content;
-  margin-left: -8px;
 `;

@@ -3,29 +3,15 @@ import styled from "styled-components";
 import Searchbar from "./Searchbar";
 import Categories from "./Categories";
 import User from "./User";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { UsersContext } from "./UsersContext";
 
 const Homepage = () => {
-  const [allUsers, setAllUsers] = useState("");
-  const [moreUsers, setMoreUsers] = useState([]);
-
-  useEffect(() => {
-    fetch("/users")
-      .then((res) => res.json())
-      .then((data) => {
-        setAllUsers(data.data);
-        //slice the original array for pagination purposes
-        const sliced = data.data.slice(0, 4);
-        setMoreUsers(sliced);
-        console.log(sliced, "sliced");
-      });
-  }, []);
-
-  console.log(allUsers);
+  const { moreUsers } = useContext(UsersContext);
 
   return (
     <>
-      <Div>
+      <Wrapper>
         Homepage
         <Searchdiv>
           <Searchbar />
@@ -35,21 +21,20 @@ const Homepage = () => {
         </CategoryDiv>
         <UserDiv>
           {moreUsers.map((user) => {
-            const image = user.avatar;
-            const name = user.name;
-            const rating = user.rating;
-
-            return <User image={image} rating={rating} name={name} />;
+            const profileId = user._id;
+            return (
+              <User moreUsers={moreUsers} user={user} profileId={profileId} />
+            );
           })}
         </UserDiv>
-      </Div>
+      </Wrapper>
     </>
   );
 };
 
 export default Homepage;
 
-const Div = styled.div`
+const Wrapper = styled.div`
   font-family: "Raleway";
   height: max-content;
   width: 100vw;
@@ -73,8 +58,8 @@ const CategoryDiv = styled.div`
 `;
 
 const UserDiv = styled.div`
-  height: 50px;
-  width: 600px;
+  height: 100px;
+  width: 1000px;
   display: flex;
   flex-direction: row wrap;
   margin: 0 auto;
