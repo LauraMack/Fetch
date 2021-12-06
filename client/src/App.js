@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import GlobalStyles from "./components/GlobalStyles";
 import styled from "styled-components";
 import Homepage from "./components/Homepage";
 import MyAds from "./components/MyAds";
@@ -12,6 +13,7 @@ import Header from "./components/Header";
 const App = () => {
   return (
     <Router>
+      <GlobalStyles />
       <Header />
       <Main>
         <Switch>
@@ -43,7 +45,8 @@ export default App;
 
 const Main = styled.div`
   display: flex;
-  background-color: #e5ebea;
+  background-color: rgb(237, 238, 255);
   height: 200vh;
   width: max-content;
+  margin: 0px;
 `;

@@ -33,6 +33,7 @@ const Button = styled.button`
   border-radius: 4px;
   font-family: "Raleway";
   cursor: pointer;
+  background-color: transparent;
 `;
 
 const Title = styled.p`

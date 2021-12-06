@@ -1,10 +1,9 @@
 import React from "react";
-import { UsersContext } from "./UsersContext";
 import styled from "styled-components";
 import { IoStarOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
 
-const User = ({ moreUsers, user, profileId }) => {
+const User = ({ user, profileId }) => {
   return (
     <Div>
       <UserLink to={`/profile/${profileId}`}>
@@ -21,6 +20,7 @@ const User = ({ moreUsers, user, profileId }) => {
             <IoStarOutline />
           </Rating>
           <ForteContainer>
+            <ForteIntro>Fortes:</ForteIntro>
             {user.forte?.length > 0 &&
               user.forte?.slice(0, 3).map((skill) => {
                 return <Forte key={`id-${skill}`}>{skill}</Forte>;
@@ -35,19 +35,18 @@ const User = ({ moreUsers, user, profileId }) => {
 export default User;
 
 const Div = styled.div`
-  width: 300px;
-  padding: 15px;
   border-radius: 15px;
   cursor: pointer;
 `;
 
 const Wrapper = styled.div`
+  margin: 30px;
   background-color: white;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  height: 315px;
+  height: 325px;
   padding: 15px;
   border-radius: 15px;
   transition: 0.5s ease-in-out;
@@ -96,4 +95,10 @@ const Forte = styled.li`
   padding: 5px;
   text-align: center;
   color: #e5ebea;
+`;
+
+const ForteIntro = styled.div`
+  font-size: 14px;
+  text-align: center;
+  color: grey;
 `;

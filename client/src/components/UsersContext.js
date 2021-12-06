@@ -4,6 +4,8 @@ export const UsersContext = createContext();
 
 export const UsersProvider = ({ children }) => {
   const [allUsers, setAllUsers] = useState("");
+  const [profile, setProfile] = useState("");
+  const [currentUser, setCurrentUser] = useState("");
   const [moreUsers, setMoreUsers] = useState([]);
 
   useEffect(() => {
@@ -12,7 +14,7 @@ export const UsersProvider = ({ children }) => {
       .then((data) => {
         setAllUsers(data.data);
         //slice the original array for pagination purposes
-        const sliced = data.data.slice(0, 4);
+        const sliced = data.data.slice(0, 3);
         setMoreUsers(sliced);
         console.log(sliced, "sliced");
       });
@@ -20,7 +22,14 @@ export const UsersProvider = ({ children }) => {
 
   return (
     <UsersContext.Provider
-      value={{ allUsers, setAllUsers, moreUsers, setMoreUsers }}
+      value={{
+        allUsers,
+        setAllUsers,
+        moreUsers,
+        setMoreUsers,
+        profile,
+        setProfile,
+      }}
     >
       {children}
     </UsersContext.Provider>

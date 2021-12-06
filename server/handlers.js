@@ -31,4 +31,20 @@ const getAllUsers = async (req, res) => {
   client.close();
 };
 
-module.exports = { getAllUsers };
+const getUserById = async (req, res) => {
+  const client = new MongoClient(MONGO_URI, options);
+  await client.connect();
+  const db = client.db("final-project");
+  const _id = req.params._id;
+  const result = await db.collection("users").findOne({ _id });
+  console.log(result);
+  if (result) {
+    res.status(200).json({ status: 200, message: "Ok", data: result });
+  } else {
+    res.status(404).json({ status: 404, message: "Error", data: result });
+  }
+
+  client.close();
+};
+
+module.exports = { getAllUsers, getUserById };

@@ -6,7 +6,9 @@ const Header = () => {
   return (
     //sign in / sign up if user is not signed in, profile / ads, if user is signed in
     <Div>
-      <Title>Header</Title>
+      <HomeLink to={"/"}>
+        <Title>Header</Title>
+      </HomeLink>
       <Nav>
         <SigninLink to={"/signin"}>
           <Signin>sign in</Signin>
@@ -41,13 +43,13 @@ const Nav = styled.div`
 
 const Title = styled.h1`
   margin-left: 30px;
-  color: #e5ebea;
+  color: rgb(237, 238, 255);
   font-family: "Raleway";
   font-size: 40px;
 `;
 
 const Signin = styled.p`
-  color: #e5ebea;
+  color: rgb(237, 238, 255);
   font-family: "Raleway";
   padding: 5px 10px;
   &:hover {
@@ -59,7 +61,7 @@ const SigninLink = styled(Link)`
 `;
 
 const Signup = styled.p`
-  color: #e5ebea;
+  color: rgb(237, 238, 255);
   font-family: "Raleway";
   background-color: #558b6e;
   padding: 5px 10px;
@@ -73,18 +75,22 @@ const SignupLink = styled(Link)`
   text-decoration: none;
 `;
 
-const Ads = styled.p`
-  color: #e5ebea;
-  font-family: "Raleway";
-  &:hover {
-    color: #6d326d;
-  }
+const HomeLink = styled(Link)`
+  text-decoration: none;
 `;
 
-const Profile = styled.p`
-  color: #e5ebea;
-  font-family: "Raleway";
-  &:hover {
-    color: #6d326d;
-  }
-`;
+// const Ads = styled.p`
+//   color: #e5ebea;
+//   font-family: "Raleway";
+//   &:hover {
+//     color: #6d326d;
+//   }
+// `;
+
+// const Profile = styled.p`
+//   color: #e5ebea;
+//   font-family: "Raleway";
+//   &:hover {
+//     color: #6d326d;
+//   }
+// `;

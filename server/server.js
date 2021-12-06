@@ -1,5 +1,5 @@
 "use strict";
-const { getAllUsers } = require("./handlers");
+const { getAllUsers, getUserById } = require("./handlers");
 
 // import the needed node_modules.
 const path = require("path");
@@ -18,6 +18,7 @@ express()
 
   // endpoints are added below
   .get("/users", getAllUsers)
+  .get("/profile/:_id", getUserById)
 
   // endpoints are added above
 
