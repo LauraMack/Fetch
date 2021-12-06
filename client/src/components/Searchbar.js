@@ -8,10 +8,7 @@ const Searchbar = () => {
     <Searchdiv>
       <form>
         <FiSearch />
-        <Input
-          type="text"
-          placeholder="search by postal code, name or forte"
-        ></Input>
+        <Input type="text" placeholder="search by name or category"></Input>
         <button aria-label="search">
           <IoPawSharp />
         </button>

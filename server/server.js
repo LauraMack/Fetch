@@ -1,11 +1,10 @@
 "use strict";
-const { getAllUsers, getUserById } = require("./handlers");
+const { getAllUsers, getUserById, addUser } = require("./handlers");
 
 // import the needed node_modules.
 const path = require("path");
 const express = require("express");
 const morgan = require("morgan");
-
 const PORT = 8000;
 
 express()
@@ -19,7 +18,7 @@ express()
   // endpoints are added below
   .get("/users", getAllUsers)
   .get("/profile/:_id", getUserById)
-
+  .post("/users", addUser)
   // endpoints are added above
 
   .listen(PORT, function () {

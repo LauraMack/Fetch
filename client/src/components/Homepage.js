@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import Searchbar from "./Searchbar";
 import Categories from "./Categories";
@@ -7,14 +7,63 @@ import { useContext, useState } from "react";
 import { UsersContext } from "./UsersContext";
 
 const Homepage = () => {
-  const { allUsers, moreUsers, setMoreUsers } = useContext(UsersContext);
-  const [currentLongitude, setCurrentLongitude] = useState(null);
-  const [currentLatitude, setCurrentLatitude] = useState(null);
+  const {
+    allUsers,
+    moreUsers,
+    setMoreUsers,
+    allLocations,
+    setAllLocations,
+    currentLatitude,
+    currentLongitude,
+    setCurrentLatitude,
+    setCurrentLongitude,
+    currentUserLocation,
+    setCurrentUserLocation,
+  } = useContext(UsersContext);
+
+  const myKey = "AIzaSyBft8FWhwXXS0kLnJMavURnBWQPfC_xa6U";
+
+  const location = [{ lat: 45.52984, lng: -73.62733 }];
+
+  const deg2rad = (deg) => {
+    return deg * (Math.PI / 180);
+  };
+
+  const getDistanceFromLatLonInKm = (userId, lat1, lon1, lat2, lon2) => {
+    var R = 6371; // Radius of the earth in km
+    var dLat = deg2rad(lat2 - lat1); // deg2rad below
+    var dLon = deg2rad(lon2 - lon1);
+    var a =
+      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.cos(deg2rad(lat1)) *
+        Math.cos(deg2rad(lat2)) *
+        Math.sin(dLon / 2) *
+        Math.sin(dLon / 2);
+    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    var d = R * c; // Distance in km
+    return { distance: d, userId: userId };
+  };
+
+  useEffect(() => {
+    if (allUsers.data) {
+      let locations = allUsers.data.map((i) => {
+        return getDistanceFromLatLonInKm(
+          i._id,
+          Number(currentLatitude),
+          Number(currentLongitude),
+          Number(i.lat),
+          Number(i.long)
+        );
+      });
+      setAllLocations(locations);
+      console.log(locations);
+    }
+  }, [currentLatitude, currentLongitude]);
 
   const handleLoadMore = () => {
     let currentProfiles = moreUsers.length;
     let newProfilesNumber = currentProfiles + 3;
-    let newSlice = allUsers.slice(0, newProfilesNumber);
+    let newSlice = allUsers.data.slice(0, newProfilesNumber);
     setMoreUsers(newSlice);
   };
 
@@ -29,9 +78,13 @@ const Homepage = () => {
   const success = (position) => {
     setCurrentLatitude(position.coords.latitude);
     setCurrentLongitude(position.coords.longitude);
-    console.log(currentLatitude, "lat");
-    console.log(currentLongitude, "long");
+    // setCurrentUserLocation({
+    //   lat: position.coords.latitude,
+    //   long: position.coords.longitude,
+    // });
   };
+
+  console.log(currentLatitude, currentLongitude, "currentUserLocation");
   const error = () => {
     console.log("An error occured. Please try again!");
   };
