@@ -21,8 +21,6 @@ const Homepage = () => {
     setCurrentUserLocation,
   } = useContext(UsersContext);
 
-  const myKey = "AIzaSyBft8FWhwXXS0kLnJMavURnBWQPfC_xa6U";
-
   const location = [{ lat: 45.52984, lng: -73.62733 }];
 
   const deg2rad = (deg) => {
