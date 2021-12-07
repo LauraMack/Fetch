@@ -4,6 +4,9 @@ import { IoStarOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
 
 const User = ({ user, profileId }) => {
+  const starRating = {
+    star: IoStarOutline,
+  };
   return (
     <Div>
       <UserLink to={`/profile/${profileId}`}>
@@ -13,11 +16,10 @@ const User = ({ user, profileId }) => {
           </div>
           <Name>{user.name}</Name>
           <Rating>
-            <IoStarOutline />
-            <IoStarOutline />
-            <IoStarOutline />
-            <IoStarOutline />
-            <IoStarOutline />
+            {user.rating.map((i) => {
+              const icon = starRating[i];
+              return <Star>{icon ? icon() : null}</Star>;
+            })}
           </Rating>
           <ForteContainer>
             <ForteIntro>Fortes:</ForteIntro>
@@ -79,8 +81,11 @@ const Name = styled.div`
 const Rating = styled.div`
   padding: 10px;
   color: black;
+  display: flex;
 `;
-
+const Star = styled.p`
+  margin: 0;
+`;
 const ForteContainer = styled.div`
   height: 200px;
 `;

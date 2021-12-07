@@ -17,8 +17,6 @@ const Homepage = () => {
     currentLongitude,
     setCurrentLatitude,
     setCurrentLongitude,
-    currentUserLocation,
-    setCurrentUserLocation,
   } = useContext(UsersContext);
 
   const location = [{ lat: 45.52984, lng: -73.62733 }];
@@ -76,13 +74,14 @@ const Homepage = () => {
   const success = (position) => {
     setCurrentLatitude(position.coords.latitude);
     setCurrentLongitude(position.coords.longitude);
-    // setCurrentUserLocation({
-    //   lat: position.coords.latitude,
-    //   long: position.coords.longitude,
-    // });
   };
 
   console.log(currentLatitude, currentLongitude, "currentUserLocation");
+
+  if (allLocations) {
+    console.log(allLocations);
+  }
+
   const error = () => {
     console.log("An error occured. Please try again!");
   };

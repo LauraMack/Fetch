@@ -23,9 +23,6 @@ export const UsersProvider = ({ children }) => {
       });
   }, []);
 
-  console.log(allUsers, "allusers");
-  console.log(allLocations, "allLocations");
-
   return (
     <UsersContext.Provider
       value={{
