@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Searchbar from "./Searchbar";
 import Categories from "./Categories";
 import User from "./User";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { UsersContext } from "./UsersContext";
 
 const Homepage = () => {
@@ -11,20 +11,19 @@ const Homepage = () => {
     allUsers,
     moreUsers,
     setMoreUsers,
-    allLocations,
-    setAllLocations,
     currentLatitude,
     currentLongitude,
     setCurrentLatitude,
     setCurrentLongitude,
+    orderedUsers,
+    setOrderedUsers,
   } = useContext(UsersContext);
-
-  const location = [{ lat: 45.52984, lng: -73.62733 }];
 
   const deg2rad = (deg) => {
     return deg * (Math.PI / 180);
   };
 
+  // get distance of users from current users
   const getDistanceFromLatLonInKm = (userId, lat1, lon1, lat2, lon2) => {
     var R = 6371; // Radius of the earth in km
     var dLat = deg2rad(lat2 - lat1); // deg2rad below
@@ -51,18 +50,49 @@ const Homepage = () => {
           Number(i.long)
         );
       });
-      setAllLocations(locations);
-      console.log(locations);
+      // returns an array of userIds and the distance in KM from current user
+      let locationsByDistance = locations.sort((a, b) => {
+        return a.distance - b.distance;
+      });
+      // new array of just the userIds, ordered by distance
+      let newArray = locationsByDistance.map(({ userId }) => userId);
+      console.log(newArray);
+
+      // function for ordering all the users by the distance from current user
+      let mapOrder = (array, order, key) => {
+        array.sort((a, b) => {
+          let A = a[key];
+          let B = b[key];
+          if (order.indexOf(A) > order.indexOf(B)) {
+            return 1;
+          } else {
+            return -1;
+          }
+        });
+        return array;
+      };
+      let orderedUsersArray = mapOrder(allUsers.data, newArray, "_id");
+      setOrderedUsers(orderedUsersArray);
     }
   }, [currentLatitude, currentLongitude]);
 
+  //load more users
   const handleLoadMore = () => {
-    let currentProfiles = moreUsers.length;
-    let newProfilesNumber = currentProfiles + 3;
-    let newSlice = allUsers.data.slice(0, newProfilesNumber);
-    setMoreUsers(newSlice);
+    // load the order of users based on the current user's location
+    if (orderedUsers !== null) {
+      let currentProfiles = moreUsers.length;
+      let newProfilesNumber = currentProfiles + 3;
+      let newSlice = orderedUsers.slice(0, newProfilesNumber);
+      setMoreUsers(newSlice);
+    } else {
+      let currentProfiles = moreUsers.length;
+      let newProfilesNumber = currentProfiles + 3;
+      let newSlice = allUsers.data.slice(0, newProfilesNumber);
+      setMoreUsers(newSlice);
+    }
   };
 
+  //on click for getting the lat and long of the current user
   const handleLocationSet = () => {
     if (!navigator.geolocation) {
       console.log("Sorry, Geolocation is not supposed by your browser.");
@@ -71,17 +101,16 @@ const Homepage = () => {
     }
   };
 
+  //callback function for geolocation API
   const success = (position) => {
     setCurrentLatitude(position.coords.latitude);
     setCurrentLongitude(position.coords.longitude);
   };
 
   console.log(currentLatitude, currentLongitude, "currentUserLocation");
+  console.log(orderedUsers, "orderedUsers");
 
-  if (allLocations) {
-    console.log(allLocations);
-  }
-
+  //callback function for geolocation API
   const error = () => {
     console.log("An error occured. Please try again!");
   };
@@ -100,17 +129,31 @@ const Homepage = () => {
       <CategoryDiv>
         <Categories />
       </CategoryDiv>
-      <UserHeader>Recent Users:</UserHeader>
+      {orderedUsers !== null ? (
+        <UserHeader>Users near you:</UserHeader>
+      ) : (
+        <UserHeader>Recent Users:</UserHeader>
+      )}
       <UserDiv>
         {moreUsers.map((user) => {
           const profileId = user._id;
           return (
-            <User moreUsers={moreUsers} user={user} profileId={profileId} />
+            <User
+              key={`id-${profileId}`}
+              moreUsers={moreUsers}
+              user={user}
+              profileId={profileId}
+            />
           );
         })}
       </UserDiv>
       <LoadMoreDiv>
-        <LoadMore onClick={handleLoadMore}>Load More</LoadMore>
+        <LoadMore
+          disabled={moreUsers.length === moreUsers.length - 1}
+          onClick={handleLoadMore}
+        >
+          Load More
+        </LoadMore>
       </LoadMoreDiv>
     </Wrapper>
   );
@@ -183,10 +226,11 @@ const LoadMore = styled.button`
   font-size: 18px;
   font-weight: bold;
   cursor: pointer;
-  &:hover {
+  opacity: ${(props) => (props.disabled ? "0.4" : "1")};
+  /* &:hover {
     background-color: #558b6e;
     color: white;
-  }
+  } */
 `;
 
 const LocationDiv = styled.div`

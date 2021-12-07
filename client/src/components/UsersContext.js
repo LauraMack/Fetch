@@ -4,12 +4,12 @@ export const UsersContext = createContext();
 
 export const UsersProvider = ({ children }) => {
   const [allUsers, setAllUsers] = useState("");
-  const [allLocations, setAllLocations] = useState({});
   const [profile, setProfile] = useState("");
   const [currentUser, setCurrentUser] = useState("");
   const [moreUsers, setMoreUsers] = useState([]);
   const [currentLatitude, setCurrentLatitude] = useState("");
   const [currentLongitude, setCurrentLongitude] = useState("");
+  const [orderedUsers, setOrderedUsers] = useState(null);
 
   useEffect(() => {
     fetch("/users")
@@ -17,11 +17,17 @@ export const UsersProvider = ({ children }) => {
       .then((data) => {
         setAllUsers(data);
         //slice the original array for pagination purposes
-        const sliced = data.data.slice(0, 3);
-        setMoreUsers(sliced);
-        console.log(sliced, "sliced");
+        if (orderedUsers === null) {
+          const sliced = data.data.slice(0, 3);
+          setMoreUsers(sliced);
+          console.log(sliced, "sliced");
+        } else {
+          const sliced = orderedUsers.slice(0, 3);
+          setMoreUsers(sliced);
+          console.log(sliced, "ordered slice");
+        }
       });
-  }, []);
+  }, [orderedUsers]);
 
   return (
     <UsersContext.Provider
@@ -36,8 +42,8 @@ export const UsersProvider = ({ children }) => {
         setCurrentLatitude,
         currentLongitude,
         setCurrentLongitude,
-        allLocations,
-        setAllLocations,
+        orderedUsers,
+        setOrderedUsers,
       }}
     >
       {children}

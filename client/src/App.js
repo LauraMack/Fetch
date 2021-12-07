@@ -9,6 +9,7 @@ import Profile from "./components/Profile";
 import Signin from "./components/Signin";
 import Signup from "./components/Signup";
 import Header from "./components/Header";
+import SearchResults from "./components/SearchResults";
 
 const App = () => {
   return (
@@ -34,6 +35,9 @@ const App = () => {
           </Route>
           <Route exact path="/profile/:profileId">
             <Profile />
+          </Route>
+          <Route exact path="/search/:searchResult">
+            <SearchResults />
           </Route>
         </Switch>
       </Main>

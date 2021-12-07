@@ -85,6 +85,7 @@ const Rating = styled.div`
 `;
 const Star = styled.p`
   margin: 0;
+  color: #edb230;
 `;
 const ForteContainer = styled.div`
   height: 200px;
