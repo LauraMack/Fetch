@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { useState } from "react";
 import GlobalStyles from "./components/GlobalStyles";
 import styled from "styled-components";
 import Homepage from "./components/Homepage";
@@ -10,8 +11,10 @@ import Signin from "./components/Signin";
 import Signup from "./components/Signup";
 import Header from "./components/Header";
 import SearchResults from "./components/SearchResults";
+import CategoryPage from "./components/CategoryPage";
 
 const App = () => {
+  const [result, setResult] = useState("");
   return (
     <Router>
       <GlobalStyles />
@@ -19,7 +22,7 @@ const App = () => {
       <Main>
         <Switch>
           <Route exact path="/">
-            <Homepage />
+            <Homepage result={result} setResult={setResult} />
           </Route>
           <Route exact path="/my-ads">
             <MyAds />
@@ -37,7 +40,10 @@ const App = () => {
             <Profile />
           </Route>
           <Route exact path="/search/:searchResult">
-            <SearchResults />
+            <SearchResults result={result} setResult={setResult} />
+          </Route>
+          <Route exact path="/category/:categoryQuery">
+            <CategoryPage result={result} setResult={setResult} />
           </Route>
         </Switch>
       </Main>

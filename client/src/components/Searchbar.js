@@ -2,14 +2,31 @@ import React from "react";
 import styled from "styled-components";
 import { FiSearch } from "react-icons/fi";
 import { IoPawSharp } from "react-icons/io5";
+import { useState } from "react";
+import { useHistory } from "react-router";
 
-const Searchbar = () => {
+const Searchbar = ({ result, setResult }) => {
+  let history = useHistory();
+
+  const handleSearch = (ev) => {
+    ev.preventDefault();
+    if (result) {
+      history.push(`/search/${result}`);
+    }
+  };
+
+  console.log(result);
+
   return (
     <Searchdiv>
       <form>
         <FiSearch />
-        <Input type="text" placeholder="search by name or category"></Input>
-        <button aria-label="search">
+        <Input
+          type="text"
+          placeholder="search a user by name or forte"
+          onChange={(ev) => setResult(ev.target.value)}
+        ></Input>
+        <button aria-label="search" onClick={(ev) => handleSearch(ev)}>
           <IoPawSharp />
         </button>
       </form>

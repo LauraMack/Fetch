@@ -8,7 +8,7 @@ const User = ({ user, profileId }) => {
     star: IoStarOutline,
   };
   return (
-    <Div>
+    <Div key={`id-${profileId}`}>
       <UserLink to={`/profile/${profileId}`}>
         <Wrapper>
           <div>
@@ -18,14 +18,22 @@ const User = ({ user, profileId }) => {
           <Rating>
             {user.rating.map((i) => {
               const icon = starRating[i];
-              return <Star>{icon ? icon() : null}</Star>;
+              return (
+                <Star key={Math.floor(Math.random() * 1000000000000000)}>
+                  {icon ? icon() : null}
+                </Star>
+              );
             })}
           </Rating>
           <ForteContainer>
             <ForteIntro>Fortes:</ForteIntro>
             {user.forte?.length > 0 &&
               user.forte?.slice(0, 3).map((skill) => {
-                return <Forte key={`id-${skill}`}>{skill}</Forte>;
+                return (
+                  <Forte key={Math.floor(Math.random() * 1000000000000000)}>
+                    {skill}
+                  </Forte>
+                );
               })}
           </ForteContainer>
         </Wrapper>

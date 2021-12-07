@@ -6,7 +6,7 @@ import User from "./User";
 import { useContext } from "react";
 import { UsersContext } from "./UsersContext";
 
-const Homepage = () => {
+const Homepage = ({ result, setResult }) => {
   const {
     allUsers,
     moreUsers,
@@ -124,10 +124,10 @@ const Homepage = () => {
         </LocationButton>
       </LocationDiv>
       <Searchdiv>
-        <Searchbar />
+        <Searchbar result={result} setResult={setResult} />
       </Searchdiv>
       <CategoryDiv>
-        <Categories />
+        <Categories result={result} setResult={setResult} />
       </CategoryDiv>
       {orderedUsers !== null ? (
         <UserHeader>Users near you:</UserHeader>

@@ -7,10 +7,10 @@ import { Link } from "react-router-dom";
 import { IoStarOutline } from "react-icons/io5";
 import User from "./User";
 
-const SearchResults = ({ result, setResult, profileId }) => {
+const CategoryPage = ({ result, setResult }) => {
   const { allUsers } = useContext(UsersContext);
-  let { searchResult } = useParams();
-  const [matchingResults, setMatchingResults] = useState(null);
+  let { categoryQuery } = useParams();
+  const [matchingCategory, setMatchingCategory] = useState(null);
 
   const starRating = {
     star: IoStarOutline,
@@ -19,45 +19,34 @@ const SearchResults = ({ result, setResult, profileId }) => {
   console.log(allUsers.data);
 
   useEffect(() => {
-    setResult(searchResult);
+    setResult(categoryQuery);
     let matchesArray = [];
     if (allUsers.data) {
       allUsers.data.forEach((i) => {
-        console.log(i.name);
         i.forte.forEach((forte) => {
           if (forte.toLowerCase().includes(result.toLowerCase())) {
             matchesArray.push(i);
           }
         });
-
-        if (
-          i.name.toLowerCase().includes(result.toLowerCase()) &&
-          !matchesArray.includes(i)
-        ) {
-          matchesArray.push(i);
-        }
       });
-      setMatchingResults(matchesArray);
+      setMatchingCategory(matchesArray);
     }
   }, [result]);
 
-  console.log(matchingResults, "matching results");
-
   return (
-    matchingResults && (
+    matchingCategory && (
       <Main>
-        <SearchDiv>Search results for "{searchResult}"</SearchDiv>
+        <SearchDiv>Category: {categoryQuery}</SearchDiv>
         <UserDiv>
-          {matchingResults.map((user) => {
-            return <User user={user} profileId={profileId} />;
+          {matchingCategory.map((user) => {
+            return <User user={user} />;
           })}
         </UserDiv>
       </Main>
     )
   );
 };
-
-export default SearchResults;
+export default CategoryPage;
 
 const Main = styled.div`
   margin: 0 auto;
