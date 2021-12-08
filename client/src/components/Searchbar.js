@@ -24,7 +24,9 @@ const Searchbar = ({ result, setResult }) => {
         <Input
           type="text"
           placeholder="search a user by name or forte"
-          onChange={(ev) => setResult(ev.target.value)}
+          onChange={(ev) => {
+            setResult(ev.target.value);
+          }}
         ></Input>
         <button aria-label="search" onClick={(ev) => handleSearch(ev)}>
           <IoPawSharp />

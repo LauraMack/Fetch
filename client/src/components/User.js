@@ -2,8 +2,10 @@ import React from "react";
 import styled from "styled-components";
 import { IoStarOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
+import { useHistory } from "react-router";
 
 const User = ({ user, profileId }) => {
+  let history = useHistory();
   const starRating = {
     star: IoStarOutline,
   };
@@ -27,14 +29,19 @@ const User = ({ user, profileId }) => {
           </Rating>
           <ForteContainer>
             <ForteIntro>Fortes:</ForteIntro>
-            {user.forte?.length > 0 &&
-              user.forte?.slice(0, 3).map((skill) => {
-                return (
-                  <Forte key={Math.floor(Math.random() * 1000000000000000)}>
-                    {skill}
-                  </Forte>
-                );
-              })}
+            {user.forte?.slice(0, 3).map((skill) => {
+              return (
+                <Forte
+                  onClick={(ev) => {
+                    ev.preventDefault();
+                    history.push(`/category/${skill}`);
+                  }}
+                  key={Math.floor(Math.random() * 1000000000000000)}
+                >
+                  {skill}
+                </Forte>
+              );
+            })}
           </ForteContainer>
         </Wrapper>
       </UserLink>
@@ -56,14 +63,15 @@ const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  height: 325px;
+  height: 340px;
   padding: 15px;
   border-radius: 15px;
   transition: 0.5s ease-in-out;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
   &:hover {
-    /* background-color: #f9f9f9; */
-    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
-      rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    box-shadow: rgba(60, 64, 67, 0.3) 1px 2px 3px 1px,
+      rgba(60, 64, 67, 0.15) 1px 3px 6px 3px;
   }
 `;
 

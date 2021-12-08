@@ -40,6 +40,11 @@ const Homepage = ({ result, setResult }) => {
   };
 
   useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+      transition: "all 0.5s ease 0s",
+    });
     if (allUsers.data) {
       let locations = allUsers.data.map((i) => {
         return getDistanceFromLatLonInKm(
@@ -180,6 +185,7 @@ const CategoryDiv = styled.div`
   width: 600px;
   display: flex;
   flex-direction: row wrap;
+  justify-content: center;
   margin: 0 auto;
   margin-top: 30px;
 `;
@@ -188,7 +194,7 @@ const UserDiv = styled.div`
   display: flex;
   width: 1000px;
   margin: 0 auto;
-  margin-top: -50px;
+  margin-top: -80px;
   flex-wrap: wrap;
 `;
 
@@ -197,7 +203,7 @@ const UserHeader = styled.div`
   width: 1000px;
   text-align: center;
   margin: 0 auto;
-  margin-top: 210px;
+  margin-top: 230px;
 `;
 
 const LoadMoreDiv = styled.div`

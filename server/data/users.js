@@ -56,7 +56,7 @@ const users = [
     lat: "45.493005",
     long: "-73.595504",
     bio: "Your dog's new BFF. Ready with a car for easy transportation to the city's best dog park.",
-    forte: ["Dog Walking", "Drop-in Visits", "Emergency Vet Transportation"],
+    forte: ["Dog Walking", "Drop-in Visits", "Last Minute Transport"],
     rating: ["star", "star", "star", "star", "star"],
     openToTrading: false,
     ads: [
@@ -137,11 +137,7 @@ const users = [
     lat: "45.536473",
     long: "-73.590568",
     bio: "Caring for pets since 1990!",
-    forte: [
-      "Emergency Vet Transportation",
-      "Overnight Boarding",
-      "Drop-in Visits",
-    ],
+    forte: ["Last Minute Transport", "Overnight Boarding", "Drop-in Visits"],
     rating: ["star", "star", "star", "star", "star"],
     openToTrading: false,
     ads: [],
@@ -416,7 +412,7 @@ const users = [
     lat: "45.543611",
     long: "-73.653275",
     bio: "Dependable animal lover through and through :-)!",
-    forte: ["Emergency Vet Transportation", "Dog Walking", "Drop-in Visits"],
+    forte: ["Last Minute Transport", "Dog Walking", "Drop-in Visits"],
     rating: ["star", "star", "star", "star", "star"],
     openToTrading: true,
     ads: [

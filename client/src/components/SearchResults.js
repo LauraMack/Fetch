@@ -19,6 +19,11 @@ const SearchResults = ({ result, setResult, profileId }) => {
   console.log(allUsers.data);
 
   useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+      transition: "all 0.5s ease 0s",
+    });
     setResult(searchResult);
     let matchesArray = [];
     if (allUsers.data) {
@@ -39,7 +44,7 @@ const SearchResults = ({ result, setResult, profileId }) => {
       });
       setMatchingResults(matchesArray);
     }
-  }, [result]);
+  }, [searchResult]);
 
   console.log(matchingResults, "matching results");
 

@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import { IoStarOutline } from "react-icons/io5";
 import User from "./User";
 
-const CategoryPage = ({ result, setResult }) => {
+const CategoryPage = ({ setResult }) => {
   const { allUsers } = useContext(UsersContext);
   let { categoryQuery } = useParams();
   const [matchingCategory, setMatchingCategory] = useState(null);
@@ -19,19 +19,25 @@ const CategoryPage = ({ result, setResult }) => {
   console.log(allUsers.data);
 
   useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+      transition: "all 0.5s ease 0s",
+    });
+    console.log("running category page");
     setResult(categoryQuery);
     let matchesArray = [];
     if (allUsers.data) {
       allUsers.data.forEach((i) => {
         i.forte.forEach((forte) => {
-          if (forte.toLowerCase().includes(result.toLowerCase())) {
+          if (forte.toLowerCase().includes(categoryQuery.toLowerCase())) {
             matchesArray.push(i);
           }
         });
       });
       setMatchingCategory(matchesArray);
     }
-  }, [result]);
+  }, [categoryQuery]);
 
   return (
     matchingCategory && (

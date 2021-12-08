@@ -14,6 +14,11 @@ const Profile = () => {
   };
 
   useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+      transition: "all 0.5s ease 0s",
+    });
     fetch(`/profile/${profileId}`)
       .then((res) => res.json())
       .then((data) => {
@@ -27,8 +32,6 @@ const Profile = () => {
     profile && (
       <Wrapper>
         <Div>
-          <CoverContainer></CoverContainer>
-          <WhiteSpace></WhiteSpace>
           <Image src={profile.avatar} />
           <Info>
             <Name>{profile.name}</Name>
@@ -51,14 +54,15 @@ const Profile = () => {
           </ForteContainer>
           <PetDiv>
             <span>My Pets</span>
-            {profile.myPets.map((i) => {
-              return (
-                <div>
-                  <PetImage src={i.imageSrc} />
-                  {i.name}
-                </div>
-              );
-            })}
+            {profile.myPets &&
+              profile.myPets.map((i) => {
+                return (
+                  <div>
+                    <PetImage src={i.imageSrc} />
+                    {i.name}
+                  </div>
+                );
+              })}
           </PetDiv>
         </Div>
       </Wrapper>
@@ -75,27 +79,15 @@ const Wrapper = styled.div`
   width: 100vw;
 `;
 
-const CoverContainer = styled.div`
-  height: 200px;
-  background-color: #5c65eb;
-  position: relative;
-  border-radius: 20px;
-`;
-
-const WhiteSpace = styled.div`
-  height: 40px;
-  background-color: white;
-  position: relative;
-  top: -40px;
-`;
-
 const Div = styled.div`
   background-color: white;
   height: 800px;
   width: 1000px;
   margin: 0 auto;
   margin-top: 100px;
-  border-radius: 20px;
+  border-radius: 80px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 `;
 
 const Image = styled.img`
