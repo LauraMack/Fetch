@@ -46,7 +46,7 @@ const Searchdiv = styled.div`
 `;
 
 const Input = styled.input`
-  width: 350px;
+  width: 325px;
   height: 25px;
   font-family: "Raleway";
 `;

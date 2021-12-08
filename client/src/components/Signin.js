@@ -1,8 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import SignInBtn from "./auth0/SignInBtn";
+import { useAuth0 } from "@auth0/auth0-react";
+import { CurrentUserContext } from "./CurrentUserContext";
+import { v4 as uuidv4 } from "uuid";
 
 const Signin = () => {
+  const { user, isAuthenticated, isLoading } = useAuth0();
+  const { currentUser, setCurrentUser, signedIn, setSignedIn } =
+    useContext(CurrentUserContext);
+
   return (
     <Wrapper>
       <Div>
@@ -14,7 +22,7 @@ const Signin = () => {
           <Input type="text" placeholder="password"></Input>
           <Button>Sign in</Button>
           <Or>or</Or>
-          <GoogleButton>Continue with Google</GoogleButton>
+          <SignInBtn />
           <Member>
             Not yet a member? <Link to={"/signup"}>Sign up for Fetch</Link>
           </Member>

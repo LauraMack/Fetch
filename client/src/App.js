@@ -1,6 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { useState } from "react";
 import GlobalStyles from "./components/GlobalStyles";
 import styled from "styled-components";
 import Homepage from "./components/Homepage";

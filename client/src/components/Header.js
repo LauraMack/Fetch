@@ -1,23 +1,48 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
+import SignOutBtn from "./auth0/SignOutBtn";
+import { CurrentUserContext } from "./CurrentUserContext";
 
 const Header = () => {
+  const { user, isAuthenticated, isLoading } = useAuth0();
+  const { currentUser, setCurrentUser, signedIn, setSignedIn } =
+    useContext(CurrentUserContext);
+
   return (
-    //sign in / sign up if user is not signed in, profile / ads, if user is signed in
-    <Div>
-      <HomeLink to={"/"}>
-        <Title>Header</Title>
-      </HomeLink>
-      <Nav>
-        <SigninLink to={"/signin"}>
-          <Signin>sign in</Signin>
-        </SigninLink>
-        <SignupLink to={"/signup"}>
-          <Signup>sign up</Signup>
-        </SignupLink>
-      </Nav>
-    </Div>
+    <div>
+      {!currentUser || !user ? (
+        <Div>
+          <HomeLink to={"/"}>
+            <Title>Header</Title>
+          </HomeLink>
+          <Nav>
+            <SigninLink to={"/signin"}>
+              <Signin>sign in</Signin>
+            </SigninLink>
+            <SignupLink to={"/signup"}>
+              <Signup>sign up</Signup>
+            </SignupLink>
+          </Nav>
+        </Div>
+      ) : (
+        <Div>
+          <HomeLink to={"/"}>
+            <Title>Header</Title>
+          </HomeLink>
+          <Nav>
+            <AdsLink to={"//my-ads"}>
+              <Ads>My Ads</Ads>
+            </AdsLink>
+            <ProfileLink to={"/profile/:profileId"}>
+              <Profile>My Profile</Profile>
+            </ProfileLink>
+            <SignOutBtn />
+          </Nav>
+        </Div>
+      )}
+    </div>
   );
 };
 
@@ -79,18 +104,26 @@ const HomeLink = styled(Link)`
   text-decoration: none;
 `;
 
-// const Ads = styled.p`
-//   color: #e5ebea;
-//   font-family: "Raleway";
-//   &:hover {
-//     color: #6d326d;
-//   }
-// `;
+const Ads = styled.p`
+  color: #e5ebea;
+  font-family: "Raleway";
+  &:hover {
+    color: #6d326d;
+  }
+`;
 
-// const Profile = styled.p`
-//   color: #e5ebea;
-//   font-family: "Raleway";
-//   &:hover {
-//     color: #6d326d;
-//   }
-// `;
+const Profile = styled.p`
+  color: #e5ebea;
+  font-family: "Raleway";
+  &:hover {
+    color: #6d326d;
+  }
+`;
+
+const AdsLink = styled(Link)`
+  text-decoration: none;
+`;
+
+const ProfileLink = styled(Link)`
+  text-decoration: none;
+`;
