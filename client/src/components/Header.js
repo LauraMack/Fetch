@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
-import SignOutBtn from "./auth0/SignOutBtn";
 import { CurrentUserContext } from "./CurrentUserContext";
 import { useHistory } from "react-router";
 
@@ -17,15 +16,17 @@ const Header = () => {
     setMyProfile,
   } = useContext(CurrentUserContext);
 
+  console.log(currentUser);
+
   let history = useHistory();
 
   // isAuthenticated, isLoading
 
-  const handleSignout = (ev) => {
+  const handleSignOut = (ev) => {
     setCurrentUser(null);
     setSignedIn(false);
     setMyProfile(null);
-    window.localStorage.clear();
+    window.sessionStorage.clear();
     history.push("/");
     window.scrollTo({
       top: 0,
@@ -62,15 +63,13 @@ const Header = () => {
             <ProfileLink
               to={
                 myProfile
-                  ? `/my-profile/${currentUser.result._id}`
-                  : `/edit-profile/${currentUser.result._id}`
+                  ? `/my-profile/${currentUser.data._id}`
+                  : `/edit-profile/${currentUser.data._id}`
               }
             >
               <Profile>My Profile</Profile>
             </ProfileLink>
-            <div onClick={handleSignout}>
-              <SignOutBtn />
-            </div>
+            <Signout onClick={handleSignOut}>Sign out</Signout>
           </Nav>
         </Div>
       )}
@@ -158,4 +157,15 @@ const AdsLink = styled(Link)`
 
 const ProfileLink = styled(Link)`
   text-decoration: none;
+`;
+
+const Signout = styled.button`
+  color: rgb(237, 238, 255);
+  background-color: transparent;
+  border-style: none;
+  font-family: "Raleway";
+  padding: 5px 10px;
+  &:hover {
+    color: #6d326d;
+  }
 `;

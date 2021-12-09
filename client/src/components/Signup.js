@@ -13,6 +13,7 @@ const Signup = () => {
     setSignedIn,
     email,
     setEmail,
+    password,
     setPassword,
     error,
     setError,
@@ -38,6 +39,7 @@ const Signup = () => {
       body: JSON.stringify({
         _id: newId,
         email,
+        password,
       }),
       headers: {
         Accept: "application/json",
@@ -49,14 +51,15 @@ const Signup = () => {
         if (data.message === "ok") {
           setCurrentUser(data);
           setSignedIn(true);
-          window.localStorage.setItem("currentUser", JSON.stringify(data));
-          history.push(`/edit-profile/${data.result._id}`);
+          window.sessionStorage.setItem("currentUser", JSON.stringify(data));
+          history.push(`/edit-profile/${data.data._id}`);
         }
         if (data.message === "email already in use") {
           setError(`Oops! ${email} is already in use. Please sign in.`);
         }
       });
   };
+  console.log(error);
 
   return (
     <Wrapper>

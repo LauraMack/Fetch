@@ -1,15 +1,75 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import SignInBtn from "./auth0/SignInBtn";
-// import { useAuth0 } from "@auth0/auth0-react";
-// import { CurrentUserContext } from "./CurrentUserContext";
-// import { v4 as uuidv4 } from "uuid";
+import { CurrentUserContext } from "./CurrentUserContext";
+import { useHistory } from "react-router";
 
 const Signin = () => {
   // const { user, isAuthenticated, isLoading } = useAuth0();
-  // const { currentUser, setCurrentUser, signedIn, setSignedIn } =
-  //   useContext(CurrentUserContext);
+  const {
+    currentUser,
+    setCurrentUser,
+    signedIn,
+    setSignedIn,
+    myProfile,
+    setMyProfile,
+    email,
+    setEmail,
+    password,
+    setPassword,
+    error,
+    setError,
+  } = useContext(CurrentUserContext);
+
+  let history = useHistory();
+
+  const handleEmail = (ev) => {
+    setEmail(ev.target.value);
+    setError("");
+  };
+
+  const handlePassword = (ev) => {
+    setPassword(ev.target.value);
+    setError("");
+  };
+
+  console.log(password);
+
+  const handleSignIn = (ev) => {
+    ev.preventDefault();
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+      transition: "all 0.5s ease 0s",
+    });
+    fetch(`/users/${email}`, {
+      method: "POST",
+      body: JSON.stringify({ email: email, password: password }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.message === "ok") {
+          setCurrentUser(data);
+          setMyProfile(data);
+          setSignedIn(true);
+          window.sessionStorage.setItem("currentUser", JSON.stringify(data));
+          history.push("/");
+        } else if (data.message === "incorrect password") {
+          setError(
+            `Oops! Looks like your password is incorrect. Please try again.`
+          );
+        } else {
+          setError(
+            `We're not seeing an account associated with that email. Please sign up instead.`
+          );
+        }
+      });
+  };
+  console.log(error);
 
   return (
     <Wrapper>
@@ -17,15 +77,24 @@ const Signin = () => {
         <SignUpDiv>
           <Title>Sign in</Title>
           <Label>Email</Label>
-          <Input type="text" placeholder="email@email.com"></Input>
+          <Input
+            onChange={handleEmail}
+            type="email"
+            placeholder="email@email.com"
+          ></Input>
           <Label>Password</Label>
-          <Input type="text" placeholder="password"></Input>
-          <Button>Sign in</Button>
+          <Input
+            onChange={handlePassword}
+            type="password"
+            placeholder="password"
+          ></Input>
+          <Button onClick={handleSignIn}>Sign in</Button>
           <Or>or</Or>
           <SignInBtn />
           <Member>
             Not yet a member? <Link to={"/signup"}>Sign up for Fetch</Link>
           </Member>
+          {error !== "" && <ErrorMessage>{error}</ErrorMessage>}
         </SignUpDiv>
       </Div>
     </Wrapper>
@@ -108,4 +177,12 @@ const Member = styled.p`
   width: 300px;
   text-align: center;
   margin-top: 20px;
+`;
+
+const ErrorMessage = styled.p`
+  color: red;
+  font-size: 12px;
+  width: 300px;
+  text-align: center;
+  margin-top: 2px;
 `;

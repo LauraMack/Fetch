@@ -4,11 +4,11 @@ export const CurrentUserContext = createContext();
 
 export const CurrentUserProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(() => {
-    const persistParam = window.localStorage.getItem("currentUser");
+    const persistParam = window.sessionStorage.getItem("currentUser");
     return persistParam !== null ? JSON.parse(persistParam) : null;
   });
   const [myProfile, setMyProfile] = useState(() => {
-    const param = window.localStorage.getItem("currentUser");
+    const param = window.sessionStorage.getItem("currentUser");
     return param !== null ? JSON.parse(param) : null;
   });
 

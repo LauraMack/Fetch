@@ -12,24 +12,24 @@ const MyProfile = () => {
   const { currentUser, myProfile } = useContext(CurrentUserContext);
   const { id } = useParams();
 
-  console.log(myProfile.result.name);
+  console.log(myProfile.data.name);
 
   return (
     <Wrapper>
       <Div>
-        <Link to={`/edit-profile/${currentUser.result._id}`}>
+        <Link to={`/edit-profile/${currentUser.data._id}`}>
           <Skip>edit profile</Skip>
         </Link>
         <Image src={placeholder} />
         <UploadLink to={"#"}>
           <Upload>Upload a photo</Upload>
         </UploadLink>
-        <Name>{myProfile.result.name}</Name>
-        <Bio>{myProfile.result.bio}</Bio>
+        <Name>{myProfile.data.name}</Name>
+        <Bio>{myProfile.data.bio}</Bio>
         <Underline></Underline>
         <Forte>Fortes:</Forte>
-        {myProfile.result.forte?.length > 0 &&
-          myProfile.result.forte?.slice(0, 3).map((skill) => {
+        {myProfile.data.forte?.length > 0 &&
+          myProfile.data.forte?.slice(0, 3).map((skill) => {
             return <Forte key={`id-${skill}`}>{skill}</Forte>;
           })}
       </Div>

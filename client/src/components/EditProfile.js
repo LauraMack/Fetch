@@ -45,13 +45,13 @@ const EditProfile = () => {
   const handleProfileSubmit = (ev) => {
     console.log("hello");
     ev.preventDefault();
-    fetch(`/users/${currentUser.result._id}`, {
+    fetch(`/users/${currentUser.data._id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        _id: currentUser.result._id,
+        _id: currentUser.data._id,
         name,
         bio,
         forte,
@@ -61,8 +61,8 @@ const EditProfile = () => {
       .then((data) => {
         if (data.message === "ok") {
           setMyProfile(data);
-          window.localStorage.setItem("currentUser", JSON.stringify(data));
-          history.push(`/my-profile/${currentUser.result._id}`);
+          window.sessionStorage.setItem("currentUser", JSON.stringify(data));
+          history.push(`/my-profile/${currentUser.data._id}`);
         }
       });
   };

@@ -47,8 +47,32 @@ const getUserById = async (req, res) => {
   client.close();
 };
 
-// add user to the DB when they sign in or sign up
-const addUser = async (req, res) => {
+// get user when they sign in
+
+const getExistingUser = async (req, res) => {
+  const client = new MongoClient(MONGO_URI, options);
+  await client.connect();
+  const db = client.db("final-project");
+  const { email } = req.body;
+  const { password } = req.body;
+  const result = await db.collection("users").findOne({ email: email });
+  if (result) {
+    if (result.password === password) {
+      res.status(200).json({ status: 200, message: "ok", data: result });
+    }
+    if (result.password !== password) {
+      res.status(401).json({ status: 401, message: "incorrect password" });
+    }
+  } else {
+    res
+      .status(404)
+      .json({ status: 404, message: "no account associated", data: result });
+  }
+  client.close();
+};
+
+// add user to the DB when they sign up
+const addNewUser = async (req, res) => {
   const client = new MongoClient(MONGO_URI, options);
   await client.connect();
   const db = client.db("final-project");
@@ -65,13 +89,12 @@ const addUser = async (req, res) => {
     const result = await db.collection("users").insertOne({
       _id: req.body._id,
       email: email,
+      password: req.body.password,
     });
 
     result
-      ? res.status(200).json({ status: 200, message: "ok", result: req.body })
-      : res
-          .status(404)
-          .json({ status: 404, message: "error", result: req.body });
+      ? res.status(200).json({ status: 200, message: "ok", data: req.body })
+      : res.status(404).json({ status: 404, message: "error", data: req.body });
   }
 
   client.close();
@@ -95,11 +118,17 @@ const updateUser = async (req, res) => {
   );
 
   if (result) {
-    res.status(200).json({ status: 200, message: "ok", result: req.body });
+    res.status(200).json({ status: 200, message: "ok", data: req.body });
   } else {
-    res.status(404).json({ status: 404, message: "error", result: req.body });
+    res.status(404).json({ status: 404, message: "error", data: req.body });
   }
   client.close();
 };
 
-module.exports = { getAllUsers, getUserById, addUser, updateUser };
+module.exports = {
+  getAllUsers,
+  getUserById,
+  addNewUser,
+  updateUser,
+  getExistingUser,
+};

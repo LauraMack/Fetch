@@ -1,8 +1,6 @@
-import React, { useContext } from "react";
+import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import styled from "styled-components";
-import { v4 as uuidv4 } from "uuid";
-import { CurrentUserContext } from "../CurrentUserContext";
 
 const SignInBtn = () => {
   const { loginWithRedirect } = useAuth0();
