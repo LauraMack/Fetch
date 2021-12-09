@@ -9,26 +9,25 @@ import { v4 as uuidv4 } from "uuid";
 const Signup = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
   const {
-    currentUser,
     setCurrentUser,
-    signedIn,
     setSignedIn,
     email,
     setEmail,
-    password,
     setPassword,
+    error,
+    setError,
   } = useContext(CurrentUserContext);
 
   let history = useHistory();
 
-  console.log(user);
-
   const handleEmail = (ev) => {
     setEmail(ev.target.value);
+    setError("");
   };
 
   const handlePassword = (ev) => {
     setPassword(ev.target.value);
+    setError("");
   };
 
   const handleRegularSignUp = (ev) => {
@@ -52,6 +51,9 @@ const Signup = () => {
           setSignedIn(true);
           window.localStorage.setItem("currentUser", JSON.stringify(data));
           history.push(`/edit-profile/${data.result._id}`);
+        }
+        if (data.message === "email already in use") {
+          setError(`Oops! ${email} is already in use. Please sign in.`);
         }
       });
   };
@@ -83,6 +85,7 @@ const Signup = () => {
           <Member>
             Already a member? <Link to={"/signin"}>Sign in</Link>
           </Member>
+          {error !== "" && <ErrorMessage>{error}</ErrorMessage>}
         </SignUpDiv>
       </Div>
     </Wrapper>
@@ -166,4 +169,12 @@ const Member = styled.p`
   width: 300px;
   text-align: center;
   margin-top: 20px;
+`;
+
+const ErrorMessage = styled.p`
+  color: red;
+  font-size: 12px;
+  width: 300px;
+  text-align: center;
+  margin-top: 10px;
 `;

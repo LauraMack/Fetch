@@ -1,47 +1,147 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import placeholder from "../assets/placeholder-image2.jpeg";
 import placeholderPet from "../assets/placeholder-pet.png";
 import { Link } from "react-router-dom";
+import { CurrentUserContext } from "./CurrentUserContext";
+import { useHistory } from "react-router";
 
 const EditProfile = () => {
+  const {
+    currentUser,
+    myProfile,
+    setMyProfile,
+    name,
+    setName,
+    bio,
+    setBio,
+    forte,
+    setForte,
+  } = useContext(CurrentUserContext);
+  let history = useHistory();
+
+  const handleName = (ev) => {
+    setName(ev.target.value);
+  };
+
+  const handleBio = (ev) => {
+    setBio(ev.target.value);
+  };
+
+  const handleForte = (ev) => {
+    let forteArray = [...forte];
+    if (ev.target.checked && !forteArray.includes(ev.target.value)) {
+      forteArray = [...forte, ev.target.value];
+    } else if (!ev.target.checked && forteArray.includes(ev.target.value)) {
+      forteArray = forteArray.filter((value) => {
+        return value !== ev.target.value;
+      });
+    }
+    setForte(forteArray);
+  };
+
+  console.log(forte);
+
+  const handleProfileSubmit = (ev) => {
+    console.log("hello");
+    ev.preventDefault();
+    fetch(`/users/${currentUser.result._id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        _id: currentUser.result._id,
+        name,
+        bio,
+        forte,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.message === "ok") {
+          setMyProfile(data);
+          window.localStorage.setItem("currentUser", JSON.stringify(data));
+          history.push(`/my-profile/${currentUser.result._id}`);
+        }
+      });
+  };
+
   return (
     <Wrapper>
       <Div>
+        <Link to={"/"}>
+          <Skip>Skip this step for now</Skip>
+        </Link>
         <Edit>Edit Your Profile</Edit>
-        <Image src={placeholder} />
-        <UploadLink to={"#"}>
-          <Upload>Upload a photo</Upload>
-        </UploadLink>
-        <ProfileForm>
-          <Input type="text" placeholder="name"></Input>
-          <Input type="text" placeholder="bio"></Input>
+        <ProfileForm onSubmit={handleProfileSubmit}>
+          <Image src={placeholder} />
+          <UploadLink to={"#"}>
+            <Upload>Upload a photo</Upload>
+          </UploadLink>
+          <Input type="text" placeholder="name" onChange={handleName}></Input>
+          <Input type="text" placeholder="bio" onChange={handleBio}></Input>
           <ForteTitle>What's your forte?</ForteTitle>
           <ForteTitleTwo>Select all that apply</ForteTitleTwo>
           <ForteContainer>
             <ForteDiv>
               <label>
-                <Checkbox type="checkbox"></Checkbox>Dog Walking
+                <Checkbox
+                  onChange={handleForte}
+                  type="checkbox"
+                  value="Dog Walking"
+                ></Checkbox>
+                Dog Walking
               </label>
               <label>
-                <Checkbox type="checkbox"></Checkbox>House Sitting
+                <Checkbox
+                  onChange={handleForte}
+                  type="checkbox"
+                  value="House Sitting"
+                ></Checkbox>
+                House Sitting
               </label>
               <label>
-                <Checkbox type="checkbox"></Checkbox>Overnight Boarding
+                <Checkbox
+                  onChange={handleForte}
+                  type="checkbox"
+                  value="Overnight Boarding"
+                ></Checkbox>
+                Overnight Boarding
               </label>
             </ForteDiv>
             <ForteDiv>
               <label>
-                <Checkbox type="checkbox"></Checkbox>Daycare
+                <Checkbox
+                  onChange={handleForte}
+                  type="checkbox"
+                  value="Daycare"
+                ></Checkbox>
+                Daycare
               </label>
               <label>
-                <Checkbox type="checkbox"></Checkbox>Last Minute Transport
+                <Checkbox
+                  onChange={handleForte}
+                  type="checkbox"
+                  value="Last Minute Transport"
+                ></Checkbox>
+                Last Minute Transport
               </label>
               <label>
-                <Checkbox type="checkbox"></Checkbox>Drop-in Visits
+                <Checkbox
+                  onChange={handleForte}
+                  type="checkbox"
+                  value="Drop-in Visits"
+                ></Checkbox>
+                Drop-in Visits
               </label>
             </ForteDiv>
           </ForteContainer>
+          <ButtonDiv>
+            <Button type="submit" disabled={name === ""}>
+              Save Changes
+            </Button>
+          </ButtonDiv>
         </ProfileForm>
         <Underline></Underline>
       </Div>
@@ -103,9 +203,9 @@ const Image = styled.img`
   height: 250px;
   width: 250px;
   border-radius: 80px;
-  margin-left: 60px;
   position: relative;
-  top: 120px;
+  right: 320px;
+  top: 250px;
 `;
 
 const Add = styled.p`
@@ -155,8 +255,8 @@ const Upload = styled.p`
   position: relative;
   width: 250px;
   text-align: center;
-  margin-left: 60px;
-  top: 120px;
+  top: 260px;
+  right: 317px;
 `;
 
 const UploadLink = styled(Link)`
@@ -213,6 +313,7 @@ const ForteTitleTwo = styled.p`
 
 const Checkbox = styled.input`
   margin-right: 10px;
+  margin-left: 15px;
 `;
 
 const Underline = styled.div`
@@ -220,9 +321,42 @@ const Underline = styled.div`
   border-top: none;
   border-right: none;
   border-left: none;
-  height: 100px;
+  height: 10px;
   position: relative;
-  top: -375px;
+  top: -280px;
   width: 900px;
   margin: 0 auto;
+`;
+
+const ButtonDiv = styled.div`
+  margin-top: 25px;
+  width: 1000px;
+  margin: 0 auto;
+  margin-top: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const Button = styled.button`
+  border-radius: 15px;
+  font-family: "Raleway";
+  cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
+  background-color: #8e94f2;
+  color: rgb(237, 238, 255);
+  font-weight: bold;
+  width: 150px;
+  height: 50px;
+  border-style: none;
+  font-size: 16px;
+  opacity: ${(props) => (props.disabled ? "0.4" : "1")};
+`;
+
+const Skip = styled.p`
+  width: 1000px;
+  text-align: center;
+  position: absolute;
+  top: 120px;
+  text-decoration: underline;
+  color: darkgray;
 `;

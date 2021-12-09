@@ -4,12 +4,35 @@ import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import SignOutBtn from "./auth0/SignOutBtn";
 import { CurrentUserContext } from "./CurrentUserContext";
+import { useHistory } from "react-router";
 
 const Header = () => {
   const { user } = useAuth0();
-  const { currentUser, signedIn } = useContext(CurrentUserContext);
+  const {
+    currentUser,
+    setCurrentUser,
+    signedIn,
+    setSignedIn,
+    myProfile,
+    setMyProfile,
+  } = useContext(CurrentUserContext);
+
+  let history = useHistory();
 
   // isAuthenticated, isLoading
+
+  const handleSignout = (ev) => {
+    setCurrentUser(null);
+    setSignedIn(false);
+    setMyProfile(null);
+    window.localStorage.clear();
+    history.push("/");
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+      transition: "all 0.5s ease 0s",
+    });
+  };
 
   return (
     <div>
@@ -36,10 +59,18 @@ const Header = () => {
             <AdsLink to={"/my-ads"}>
               <Ads>My Ads</Ads>
             </AdsLink>
-            <ProfileLink to={`/my-profile/${currentUser.result._id}`}>
+            <ProfileLink
+              to={
+                myProfile
+                  ? `/my-profile/${currentUser.result._id}`
+                  : `/edit-profile/${currentUser.result._id}`
+              }
+            >
               <Profile>My Profile</Profile>
             </ProfileLink>
-            <SignOutBtn />
+            <div onClick={handleSignout}>
+              <SignOutBtn />
+            </div>
           </Nav>
         </Div>
       )}

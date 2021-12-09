@@ -7,10 +7,18 @@ export const CurrentUserProvider = ({ children }) => {
     const persistParam = window.localStorage.getItem("currentUser");
     return persistParam !== null ? JSON.parse(persistParam) : null;
   });
+  const [myProfile, setMyProfile] = useState(() => {
+    const param = window.localStorage.getItem("currentUser");
+    return param !== null ? JSON.parse(param) : null;
+  });
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [signedIn, setSignedIn] = useState(false);
+  const [name, setName] = useState("");
+  const [bio, setBio] = useState("");
+  const [forte, setForte] = useState([]);
+  const [error, setError] = useState("");
 
   return (
     <CurrentUserContext.Provider
@@ -23,6 +31,16 @@ export const CurrentUserProvider = ({ children }) => {
         setPassword,
         signedIn,
         setSignedIn,
+        myProfile,
+        setMyProfile,
+        name,
+        setName,
+        bio,
+        setBio,
+        forte,
+        setForte,
+        error,
+        setError,
       }}
     >
       {children}

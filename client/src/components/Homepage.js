@@ -128,11 +128,13 @@ const Homepage = ({ result, setResult }) => {
 
   return (
     <Wrapper>
-      <LocationDiv>
-        <LocationButton onClick={handleLocationSet}>
-          Set My location
-        </LocationButton>
-      </LocationDiv>
+      {currentUser && (
+        <LocationDiv>
+          <LocationButton onClick={handleLocationSet}>
+            Set My location
+          </LocationButton>
+        </LocationDiv>
+      )}
       <Searchdiv>
         <Searchbar result={result} setResult={setResult} />
       </Searchdiv>

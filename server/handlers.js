@@ -52,26 +52,38 @@ const addUser = async (req, res) => {
   const client = new MongoClient(MONGO_URI, options);
   await client.connect();
   const db = client.db("final-project");
-  const newId = uuidv4();
-  const result = await db.collection("users").insertOne({
-    _id: newId,
-    email: req.body.email,
-  });
+  const { email } = req.body;
+  const checkExistingUser = await db
+    .collection("users")
+    .findOne({ email: email });
+  if (checkExistingUser) {
+    res.status(401).json({
+      status: 401,
+      message: "email already in use",
+    });
+  } else {
+    const result = await db.collection("users").insertOne({
+      _id: req.body._id,
+      email: email,
+    });
 
-  console.log(result);
-  result
-    ? res.status(200).json({ status: 200, message: "ok", result: req.body })
-    : res.status(404).json({ status: 404, message: "error", result: req.body });
+    result
+      ? res.status(200).json({ status: 200, message: "ok", result: req.body })
+      : res
+          .status(404)
+          .json({ status: 404, message: "error", result: req.body });
+  }
 
   client.close();
 };
 
+// update a user when they edit their profile
 const updateUser = async (req, res) => {
   const client = new MongoClient(MONGO_URI, options);
   await client.connect();
   const db = client.db("final-project");
   const _id = req.params._id;
-  const result = await db.collection("reservations").updateOne(
+  const result = await db.collection("users").updateOne(
     { _id: _id },
     {
       $set: {
@@ -83,9 +95,9 @@ const updateUser = async (req, res) => {
   );
 
   if (result) {
-    res.status(200).json({ status: 200, message: "ok", data: result });
+    res.status(200).json({ status: 200, message: "ok", result: req.body });
   } else {
-    res.status(404).json({ status: 404, message: "error", data: result });
+    res.status(404).json({ status: 404, message: "error", result: req.body });
   }
   client.close();
 };
