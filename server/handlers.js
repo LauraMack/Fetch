@@ -24,9 +24,9 @@ const getAllUsers = async (req, res) => {
   const db = client.db("final-project");
   const result = await db.collection("users").find().toArray();
   if (result[0]) {
-    res.status(200).json({ status: 200, message: "Ok", data: result });
+    res.status(200).json({ status: 200, message: "ok", data: result });
   } else {
-    res.status(404).json({ status: 404, message: "Error", data: result });
+    res.status(404).json({ status: 404, message: "error", data: result });
   }
   client.close();
 };
@@ -38,11 +38,10 @@ const getUserById = async (req, res) => {
   const db = client.db("final-project");
   const _id = req.params._id;
   const result = await db.collection("users").findOne({ _id });
-  console.log(result);
   if (result) {
-    res.status(200).json({ status: 200, message: "Ok", data: result });
+    res.status(200).json({ status: 200, message: "ok", data: result });
   } else {
-    res.status(404).json({ status: 404, message: "Error", data: result });
+    res.status(404).json({ status: 404, message: "error", data: result });
   }
 
   client.close();
@@ -58,10 +57,37 @@ const addUser = async (req, res) => {
     _id: newId,
     email: req.body.email,
   });
+
+  console.log(result);
   result
-    ? res.status(200).json({ status: 200, message: "ok", result })
-    : res.status(404).json({ status: 404, message: "error", result });
+    ? res.status(200).json({ status: 200, message: "ok", result: req.body })
+    : res.status(404).json({ status: 404, message: "error", result: req.body });
+
   client.close();
 };
 
-module.exports = { getAllUsers, getUserById, addUser };
+const updateUser = async (req, res) => {
+  const client = new MongoClient(MONGO_URI, options);
+  await client.connect();
+  const db = client.db("final-project");
+  const _id = req.params._id;
+  const result = await db.collection("reservations").updateOne(
+    { _id: _id },
+    {
+      $set: {
+        name: req.body.name,
+        bio: req.body.bio,
+        forte: req.body.forte,
+      },
+    }
+  );
+
+  if (result) {
+    res.status(200).json({ status: 200, message: "ok", data: result });
+  } else {
+    res.status(404).json({ status: 404, message: "error", data: result });
+  }
+  client.close();
+};
+
+module.exports = { getAllUsers, getUserById, addUser, updateUser };

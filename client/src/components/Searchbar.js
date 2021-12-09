@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import { FiSearch } from "react-icons/fi";
 import { IoPawSharp } from "react-icons/io5";
-import { useState } from "react";
 import { useHistory } from "react-router";
 
 const Searchbar = ({ result, setResult }) => {

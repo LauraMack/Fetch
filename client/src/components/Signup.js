@@ -4,17 +4,56 @@ import { Link } from "react-router-dom";
 import SignInBtn from "./auth0/SignInBtn";
 import { useAuth0 } from "@auth0/auth0-react";
 import { CurrentUserContext } from "./CurrentUserContext";
+import { useHistory } from "react-router";
 import { v4 as uuidv4 } from "uuid";
 const Signup = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
-  const { currentUser, setCurrentUser, signedIn, setSignedIn } =
-    useContext(CurrentUserContext);
+  const {
+    currentUser,
+    setCurrentUser,
+    signedIn,
+    setSignedIn,
+    email,
+    setEmail,
+    password,
+    setPassword,
+  } = useContext(CurrentUserContext);
+
+  let history = useHistory();
 
   console.log(user);
+
+  const handleEmail = (ev) => {
+    setEmail(ev.target.value);
+  };
+
+  const handlePassword = (ev) => {
+    setPassword(ev.target.value);
+  };
 
   const handleRegularSignUp = (ev) => {
     ev.preventDefault();
     const newId = uuidv4();
+    fetch(`/users`, {
+      method: "POST",
+      body: JSON.stringify({
+        _id: newId,
+        email,
+      }),
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.message === "ok") {
+          setCurrentUser(data);
+          setSignedIn(true);
+          window.localStorage.setItem("currentUser", JSON.stringify(data));
+          history.push(`/edit-profile/${data.result._id}`);
+        }
+      });
   };
 
   return (
@@ -22,13 +61,25 @@ const Signup = () => {
       <Div>
         <SignUpDiv>
           <Title>Sign Up for Fetch</Title>
-          <Label>Email</Label>
-          <Input type="text" placeholder="email@email.com"></Input>
-          <Label>Password</Label>
-          <Input type="text" placeholder="password"></Input>
-          <Button>Sign up</Button>
-          <Or>or</Or>
-          <SignInBtn />
+          <form onSubmit={handleRegularSignUp}>
+            <Label>Email</Label>
+            <Input
+              type="email"
+              placeholder="email@email.com"
+              onChange={handleEmail}
+              required
+            ></Input>
+            <Label>Password</Label>
+            <Input
+              type="password"
+              placeholder="password"
+              onChange={handlePassword}
+              required
+            ></Input>
+            <Button>Sign up</Button>
+            <Or>or</Or>
+            <SignInBtn />
+          </form>
           <Member>
             Already a member? <Link to={"/signin"}>Sign in</Link>
           </Member>

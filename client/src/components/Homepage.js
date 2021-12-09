@@ -5,6 +5,7 @@ import Categories from "./Categories";
 import User from "./User";
 import { useContext } from "react";
 import { UsersContext } from "./UsersContext";
+import { CurrentUserContext } from "./CurrentUserContext";
 
 const Homepage = ({ result, setResult }) => {
   const {
@@ -18,6 +19,11 @@ const Homepage = ({ result, setResult }) => {
     orderedUsers,
     setOrderedUsers,
   } = useContext(UsersContext);
+
+  const { currentUser, signedIn } = useContext(CurrentUserContext);
+
+  console.log(currentUser, "CURRENT USER");
+  console.log(signedIn);
 
   const deg2rad = (deg) => {
     return deg * (Math.PI / 180);
@@ -123,7 +129,6 @@ const Homepage = ({ result, setResult }) => {
   return (
     <Wrapper>
       <LocationDiv>
-        Homepage
         <LocationButton onClick={handleLocationSet}>
           Set My location
         </LocationButton>
@@ -241,7 +246,7 @@ const LoadMore = styled.button`
 
 const LocationDiv = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
 `;
 
 const LocationButton = styled.button`

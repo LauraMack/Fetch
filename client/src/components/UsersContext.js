@@ -5,7 +5,6 @@ export const UsersContext = createContext();
 export const UsersProvider = ({ children }) => {
   const [allUsers, setAllUsers] = useState("");
   const [profile, setProfile] = useState("");
-  const [currentUser, setCurrentUser] = useState("");
   const [moreUsers, setMoreUsers] = useState([]);
   const [currentLatitude, setCurrentLatitude] = useState("");
   const [currentLongitude, setCurrentLongitude] = useState("");

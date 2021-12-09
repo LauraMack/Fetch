@@ -5,7 +5,9 @@ import styled from "styled-components";
 import Homepage from "./components/Homepage";
 import MyAds from "./components/MyAds";
 import PostAd from "./components/PostAd";
-import Profile from "./components/Profile";
+import UserProfile from "./components/UserProfile";
+import MyProfile from "./components/MyProfile";
+import EditProfile from "./components/EditProfile";
 import Signin from "./components/Signin";
 import Signup from "./components/Signup";
 import Header from "./components/Header";
@@ -42,7 +44,13 @@ const App = () => {
             <Signup />
           </Route>
           <Route exact path="/profile/:profileId">
-            <Profile />
+            <UserProfile />
+          </Route>
+          <Route exact path="/my-profile/:id">
+            <MyProfile />
+          </Route>
+          <Route exact path="/edit-profile/:id">
+            <EditProfile />
           </Route>
           <Route exact path="/search/:searchResult">
             <SearchResults

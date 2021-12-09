@@ -1,5 +1,5 @@
 "use strict";
-const { getAllUsers, getUserById, addUser } = require("./handlers");
+const { getAllUsers, getUserById, addUser, updateUser } = require("./handlers");
 
 // import the needed node_modules.
 const path = require("path");
@@ -19,6 +19,7 @@ express()
   .get("/users", getAllUsers)
   .get("/profile/:_id", getUserById)
   .post("/users", addUser)
+  .patch("/users/:_id", updateUser)
   // endpoints are added above
 
   .listen(PORT, function () {

@@ -1,15 +1,15 @@
-import React, { useContext } from "react";
+import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import SignInBtn from "./auth0/SignInBtn";
-import { useAuth0 } from "@auth0/auth0-react";
-import { CurrentUserContext } from "./CurrentUserContext";
-import { v4 as uuidv4 } from "uuid";
+// import { useAuth0 } from "@auth0/auth0-react";
+// import { CurrentUserContext } from "./CurrentUserContext";
+// import { v4 as uuidv4 } from "uuid";
 
 const Signin = () => {
-  const { user, isAuthenticated, isLoading } = useAuth0();
-  const { currentUser, setCurrentUser, signedIn, setSignedIn } =
-    useContext(CurrentUserContext);
+  // const { user, isAuthenticated, isLoading } = useAuth0();
+  // const { currentUser, setCurrentUser, signedIn, setSignedIn } =
+  //   useContext(CurrentUserContext);
 
   return (
     <Wrapper>
@@ -87,18 +87,6 @@ const Button = styled.button`
   font-family: "Raleway";
   width: 312px;
   margin-top: 10px;
-  border-radius: 4px;
-  border-style: solid;
-  border-width: 1px;
-  padding: 5px;
-  background-color: #8e94f2;
-  color: white;
-  font-weight: bold;
-`;
-
-const GoogleButton = styled.button`
-  font-family: "Raleway";
-  width: 312px;
   border-radius: 4px;
   border-style: solid;
   border-width: 1px;

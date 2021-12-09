@@ -6,16 +6,17 @@ import SignOutBtn from "./auth0/SignOutBtn";
 import { CurrentUserContext } from "./CurrentUserContext";
 
 const Header = () => {
-  const { user, isAuthenticated, isLoading } = useAuth0();
-  const { currentUser, setCurrentUser, signedIn, setSignedIn } =
-    useContext(CurrentUserContext);
+  const { user } = useAuth0();
+  const { currentUser, signedIn } = useContext(CurrentUserContext);
+
+  // isAuthenticated, isLoading
 
   return (
     <div>
-      {!currentUser || !user ? (
+      {currentUser === null ? (
         <Div>
           <HomeLink to={"/"}>
-            <Title>Header</Title>
+            <Title>Fetch</Title>
           </HomeLink>
           <Nav>
             <SigninLink to={"/signin"}>
@@ -29,13 +30,13 @@ const Header = () => {
       ) : (
         <Div>
           <HomeLink to={"/"}>
-            <Title>Header</Title>
+            <Title>Fetch</Title>
           </HomeLink>
           <Nav>
-            <AdsLink to={"//my-ads"}>
+            <AdsLink to={"/my-ads"}>
               <Ads>My Ads</Ads>
             </AdsLink>
-            <ProfileLink to={"/profile/:profileId"}>
+            <ProfileLink to={`/my-profile/${currentUser.result._id}`}>
               <Profile>My Profile</Profile>
             </ProfileLink>
             <SignOutBtn />

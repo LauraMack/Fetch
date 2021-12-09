@@ -4,9 +4,11 @@ import { useParams } from "react-router-dom";
 import { useEffect, useContext } from "react";
 import { UsersContext } from "./UsersContext";
 import { IoStarOutline } from "react-icons/io5";
+import { CurrentUserContext } from "./CurrentUserContext";
 
-const Profile = () => {
+const UserProfile = () => {
   const { profile, setProfile } = useContext(UsersContext);
+  const { currentUser } = useContext(CurrentUserContext);
   const { profileId } = useParams();
 
   const starRating = {
@@ -70,7 +72,7 @@ const Profile = () => {
   );
 };
 
-export default Profile;
+export default UserProfile;
 
 const Wrapper = styled.div`
   font-family: "Raleway";
@@ -141,15 +143,6 @@ const Name = styled.div`
 const Bio = styled.div`
   margin-top: 20px;
   margin-left: 50px;
-`;
-
-const Map = styled.div`
-  height: 200px;
-  width: 300px;
-  border-style: solid;
-  border-width: 2px;
-  margin-top: -40px;
-  margin-right: 20px;
 `;
 
 const Info = styled.div`
