@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Searchbar from "./Searchbar";
 import Categories from "./Categories";
@@ -6,6 +6,7 @@ import User from "./User";
 import { useContext } from "react";
 import { UsersContext } from "./UsersContext";
 import { CurrentUserContext } from "./CurrentUserContext";
+import Loading from "./Loading";
 
 const Homepage = ({ result, setResult }) => {
   const {
@@ -22,8 +23,7 @@ const Homepage = ({ result, setResult }) => {
 
   const { currentUser, signedIn } = useContext(CurrentUserContext);
 
-  console.log(currentUser, "CURRENT USER");
-  console.log(signedIn);
+  const [locationClicked, setLocationClicked] = useState(false);
 
   const deg2rad = (deg) => {
     return deg * (Math.PI / 180);
@@ -116,6 +116,7 @@ const Homepage = ({ result, setResult }) => {
   const success = (position) => {
     setCurrentLatitude(position.coords.latitude);
     setCurrentLongitude(position.coords.longitude);
+    setLocationClicked(true);
   };
 
   console.log(currentLatitude, currentLongitude, "currentUserLocation");

@@ -15,8 +15,8 @@ import SearchResults from "./components/SearchResults";
 import CategoryPage from "./components/CategoryPage";
 
 const App = () => {
-  const [result, setResult] = useState("");
-  const [reload, setReload] = useState(false);
+  const [result, setResult] = useState(null);
+
   return (
     <Router>
       <GlobalStyles />
@@ -24,12 +24,7 @@ const App = () => {
       <Main>
         <Switch>
           <Route exact path="/">
-            <Homepage
-              result={result}
-              setResult={setResult}
-              reload={reload}
-              setReload={setReload}
-            />
+            <Homepage result={result} setResult={setResult} />
           </Route>
           <Route exact path="/my-ads">
             <MyAds />
@@ -53,20 +48,10 @@ const App = () => {
             <EditProfile />
           </Route>
           <Route exact path="/search/:searchResult">
-            <SearchResults
-              reload={reload}
-              setReload={setReload}
-              result={result}
-              setResult={setResult}
-            />
+            <SearchResults result={result} setResult={setResult} />
           </Route>
           <Route exact path="/category/:categoryQuery">
-            <CategoryPage
-              result={result}
-              setResult={setResult}
-              reload={reload}
-              setReload={setReload}
-            />
+            <CategoryPage result={result} setResult={setResult} />
           </Route>
         </Switch>
       </Main>

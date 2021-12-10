@@ -10,42 +10,46 @@ const User = ({ user, profileId }) => {
     star: IoStarOutline,
   };
   return (
-    <Div key={`id-${profileId}`}>
-      <UserLink to={`/profile/${profileId}`}>
-        <Wrapper>
-          <div>
-            <Image src={user.avatar} />
-          </div>
-          <Name>{user.name}</Name>
-          <Rating>
-            {user.rating.map((i) => {
-              const icon = starRating[i];
-              return (
-                <Star key={Math.floor(Math.random() * 1000000000000000)}>
-                  {icon ? icon() : null}
-                </Star>
-              );
-            })}
-          </Rating>
-          <ForteContainer>
-            <ForteIntro>Fortes:</ForteIntro>
-            {user.forte?.slice(0, 3).map((skill) => {
-              return (
-                <Forte
-                  onClick={(ev) => {
-                    ev.preventDefault();
-                    history.push(`/category/${skill}`);
-                  }}
-                  key={Math.floor(Math.random() * 1000000000000000)}
-                >
-                  {skill}
-                </Forte>
-              );
-            })}
-          </ForteContainer>
-        </Wrapper>
-      </UserLink>
-    </Div>
+    <div>
+      {!user.email && (
+        <Div key={`id-${profileId}`}>
+          <UserLink to={`/profile/${profileId}`}>
+            <Wrapper>
+              <div>
+                <Image src={user.avatar} />
+              </div>
+              <Name>{user.name}</Name>
+              <Rating>
+                {user.rating.map((i) => {
+                  const icon = starRating[i];
+                  return (
+                    <Star key={Math.floor(Math.random() * 1000000000000000)}>
+                      {icon ? icon() : null}
+                    </Star>
+                  );
+                })}
+              </Rating>
+              <ForteContainer>
+                <ForteIntro>Fortes:</ForteIntro>
+                {user.forte?.slice(0, 3).map((skill) => {
+                  return (
+                    <Forte
+                      onClick={(ev) => {
+                        ev.preventDefault();
+                        history.push(`/category/${skill}`);
+                      }}
+                      key={Math.floor(Math.random() * 1000000000000000)}
+                    >
+                      {skill}
+                    </Forte>
+                  );
+                })}
+              </ForteContainer>
+            </Wrapper>
+          </UserLink>
+        </Div>
+      )}
+    </div>
   );
 };
 

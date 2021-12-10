@@ -8,7 +8,10 @@ import User from "./User";
 const SearchResults = ({ result, setResult, profileId }) => {
   const { allUsers } = useContext(UsersContext);
   let { searchResult } = useParams();
-  const [matchingResults, setMatchingResults] = useState(null);
+  const [matchingResults, setMatchingResults] = useState(() => {
+    const persistParam = window.sessionStorage.getItem("matching-results");
+    return persistParam !== null ? JSON.parse(persistParam) : null;
+  });
 
   console.log(allUsers.data);
 
@@ -40,6 +43,10 @@ const SearchResults = ({ result, setResult, profileId }) => {
         }
       });
       setMatchingResults(matchesArray);
+      window.sessionStorage.setItem(
+        "matching-results",
+        JSON.stringify(matchesArray)
+      );
     }
   }, [searchResult]);
 

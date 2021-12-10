@@ -9,7 +9,10 @@ import User from "./User";
 const CategoryPage = ({ setResult, profileId }) => {
   const { allUsers } = useContext(UsersContext);
   let { categoryQuery } = useParams();
-  const [matchingCategory, setMatchingCategory] = useState(null);
+  const [matchingCategory, setMatchingCategory] = useState(() => {
+    const persistParam = window.sessionStorage.getItem("matching-category");
+    return persistParam !== null ? JSON.parse(persistParam) : null;
+  });
 
   console.log(allUsers.data);
 
@@ -33,6 +36,10 @@ const CategoryPage = ({ setResult, profileId }) => {
         }
       });
       setMatchingCategory(matchesArray);
+      window.sessionStorage.setItem(
+        "matching-category",
+        JSON.stringify(matchesArray)
+      );
     }
   }, [categoryQuery]);
 

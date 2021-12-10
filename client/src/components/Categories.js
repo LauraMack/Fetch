@@ -38,8 +38,8 @@ const Categories = ({ setResult }) => {
         <Button
           onClick={(ev) => {
             ev.preventDefault();
-            setResult("emergency%20vet%20transportation");
-            history.push(`/category/emergency%20vet%20transportation`);
+            setResult("last%20minute%20transport");
+            history.push(`/category/last%20minute%20transport`);
           }}
         >
           <Category>Last Minute Transport</Category>
