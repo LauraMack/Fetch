@@ -51,6 +51,7 @@ const Signup = () => {
         if (data.message === "ok") {
           setCurrentUser(data);
           setSignedIn(true);
+          setError("");
           window.sessionStorage.setItem("currentUser", JSON.stringify(data));
           history.push(`/edit-profile/${data.data._id}`);
         }

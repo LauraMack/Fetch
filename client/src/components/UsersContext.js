@@ -6,8 +6,8 @@ export const UsersProvider = ({ children }) => {
   const [allUsers, setAllUsers] = useState("");
   const [profile, setProfile] = useState("");
   const [moreUsers, setMoreUsers] = useState([]);
-  const [currentLatitude, setCurrentLatitude] = useState("");
-  const [currentLongitude, setCurrentLongitude] = useState("");
+  const [currentLatitude, setCurrentLatitude] = useState(null);
+  const [currentLongitude, setCurrentLongitude] = useState(null);
   const [orderedUsers, setOrderedUsers] = useState(null);
 
   useEffect(() => {

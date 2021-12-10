@@ -56,6 +56,7 @@ const Signin = () => {
           setCurrentUser(data);
           setMyProfile(data);
           setSignedIn(true);
+          setError("");
           window.sessionStorage.setItem("currentUser", JSON.stringify(data));
           history.push("/");
         } else if (data.message === "incorrect password") {
