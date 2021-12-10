@@ -13,10 +13,10 @@ import Signup from "./components/Signup";
 import Header from "./components/Header";
 import SearchResults from "./components/SearchResults";
 import CategoryPage from "./components/CategoryPage";
+import Map from "./components/Map";
 
 const App = () => {
   const [result, setResult] = useState(null);
-
   return (
     <Router>
       <GlobalStyles />
@@ -52,6 +52,9 @@ const App = () => {
           </Route>
           <Route exact path="/category/:categoryQuery">
             <CategoryPage result={result} setResult={setResult} />
+          </Route>
+          <Route exact path="/map">
+            <Map />
           </Route>
         </Switch>
       </Main>
