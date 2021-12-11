@@ -1,8 +1,9 @@
 import React from "react";
 import styled from "styled-components";
+import Rating from "./Rating";
 
 const MyAds = () => {
-  return <Div>My ads</Div>;
+  return <Div>my ads</Div>;
 };
 
 export default MyAds;

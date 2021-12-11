@@ -125,10 +125,37 @@ const updateUser = async (req, res) => {
   client.close();
 };
 
+const addReview = async (req, res) => {
+  try {
+    const client = new MongoClient(MONGO_URI, options);
+    await client.connect();
+    const db = client.db("final-project");
+    const _id = req.params._id;
+    const result = await db.collection("users").updateOne(
+      { _id: _id },
+      {
+        $push: {
+          reviews: {
+            _id: req.body._id,
+            from: req.body.from,
+            timestamp: req.body.timestamp,
+            rating: ["star", "star", "star", "star", "star"],
+            body: req.body.body,
+          },
+        },
+      }
+    );
+    res.status(200).json({ status: 200, message: "ok", data: req.body });
+  } catch (error) {
+    res.status(404).json({ status: 404, message: "error", data: req.body });
+  }
+};
+
 module.exports = {
   getAllUsers,
   getUserById,
   addNewUser,
   updateUser,
   getExistingUser,
+  addReview,
 };

@@ -76,6 +76,7 @@ const Button = styled.button`
   font-weight: bold;
   width: 145px;
   border-style: none;
+  border-radius: 5px;
 `;
 
 const Category = styled.p`

@@ -22,7 +22,7 @@ const GlobalStyles = createGlobalStyle`
     padding: 0;
     border: 0;
     box-sizing: border-box;
-    background: #f4f1de; 
+    background: #faf9f0; 
     font-family: "Lora";
   }
 

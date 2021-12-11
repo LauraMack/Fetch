@@ -1,35 +1,76 @@
-import React from "react";
+import React, { useEffect, useContext, useState } from "react";
 import styled from "styled-components";
 import { useParams } from "react-router-dom";
-import { useEffect, useContext } from "react";
 import { UsersContext } from "./UsersContext";
 import { IoStarOutline } from "react-icons/io5";
 import { FiCheckCircle } from "react-icons/fi";
 import { CurrentUserContext } from "./CurrentUserContext";
+import pawPrint from "../assets/paw-print.png";
+import Rating from "./Rating";
+import moment from "moment";
+import { v4 as uuidv4 } from "uuid";
 
 const UserProfile = () => {
   const { profile, setProfile } = useContext(UsersContext);
-  const { currentUser } = useContext(CurrentUserContext);
+  const { currentUser, error, setError } = useContext(CurrentUserContext);
   const { profileId } = useParams();
+  const [newReview, setNewReview] = useState("");
+  const [reviewsUpdated, setReviewsUpdated] = useState(false);
 
-  const starRating = {
-    star: IoStarOutline,
-  };
+  console.log(currentUser.data.name);
 
   useEffect(() => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-      transition: "all 0.5s ease 0s",
-    });
+    // window.scrollTo({
+    //   top: 0,
+    //   behavior: "smooth",
+    //   transition: "all 0.5s ease 0s",
+    // });
     fetch(`/profile/${profileId}`)
       .then((res) => res.json())
       .then((data) => {
         setProfile(data.data);
       });
-  }, [profileId]);
+  }, [profileId, reviewsUpdated]);
 
-  console.log(profile);
+  console.log(profile.reviews);
+
+  const starRating = {
+    star: IoStarOutline,
+  };
+
+  const handleReviewChange = (ev) => {
+    setNewReview(ev.target.value);
+    setError("");
+  };
+
+  const handleReviewSubmit = (ev) => {
+    ev.preventDefault();
+    const newId = uuidv4();
+    fetch(`/profile/${profileId}`, {
+      method: "POST",
+      body: JSON.stringify({
+        _id: newId,
+        from: currentUser.data.name,
+        timestamp: moment(new Date()).format("MMMM DD, YYYY"),
+        rating: ["star", "star", "star", "star", "star"],
+        body: newReview,
+      }),
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.message === "ok") {
+          setNewReview("");
+          setReviewsUpdated(!reviewsUpdated);
+        }
+        if (data.message === "error") {
+          setError("Sorry, your review couldn't be posted. Please try again. ");
+        }
+      });
+  };
 
   return (
     profile && (
@@ -48,14 +89,48 @@ const UserProfile = () => {
           </ContactDiv>
           <Image src={profile.avatar} />
           <Name>{profile.name}</Name>
-          <Rating>
+          <RatingDiv>
             {profile.rating.map((i) => {
               const icon = starRating[i];
               return <Star>{icon ? icon() : null}</Star>;
             })}
-          </Rating>
+          </RatingDiv>
           <Bio>{profile.bio}</Bio>
+          {profile.reviews.map((i) => {
+            return (
+              <HomeFeedDiv>
+                <Info>
+                  <PawPrint src={pawPrint} />
+                  <From>{i.from}</From>
+                  <Timestamp>{i.timestamp}</Timestamp>
+                </Info>
+                <ReviewRating>
+                  {i.rating.map((star) => {
+                    const icon = starRating[star];
+                    return <Star>{icon ? icon() : null}</Star>;
+                  })}
+                </ReviewRating>
+                <Body>{i.body}</Body>
+              </HomeFeedDiv>
+            );
+          })}
         </Div>
+        <ReviewDiv>
+          <Form onSubmit={handleReviewSubmit}>
+            <p>Leave a Review</p>
+            <Rating />
+            <Input
+              type="text"
+              placeholder="write your review"
+              onChange={handleReviewChange}
+            ></Input>
+            <SendMsgBtnDiv>
+              <Cancel>Cancel</Cancel>
+              <SendBtn type="submit">Submit</SendBtn>
+              {error !== "" && <ErrorMessage>{error}</ErrorMessage>}
+            </SendMsgBtnDiv>
+          </Form>
+        </ReviewDiv>
       </Wrapper>
     )
   );
@@ -65,33 +140,33 @@ export default UserProfile;
 
 const Wrapper = styled.div`
   font-family: "Raleway";
-  background-color: rgb(237, 238, 255);
+  background-color: #faf9f0;
   height: max-content;
   width: 100vw;
 `;
 
 const Div = styled.div`
-  background-color: white;
-  height: 800px;
+  background-color: #faf9f0;
+  height: max-content;
   width: 1000px;
   margin: 0 auto;
   margin-top: 100px;
-  border-radius: 30px;
-  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
-    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #d3d3d3;
+  border-radius: 5px;
 `;
 
 const CoverDiv = styled.div`
   height: 200px;
   position: relative;
   background-color: lightsteelblue;
-  border-radius: 30px;
 `;
 
 const Whitespace = styled.div`
   height: 40px;
   position: relative;
-  background-color: white;
+  background-color: #faf9f0;
   top: -25px;
 `;
 
@@ -106,7 +181,7 @@ const Image = styled.img`
 `;
 
 const Name = styled.h2`
-  color: black;
+  color: #3d405b;
   width: 500px;
   position: relative;
   text-align: center;
@@ -123,9 +198,10 @@ const Bio = styled.h3`
   font-size: 16px;
   left: 230px;
   top: -150px;
+  color: #3d405b;
 `;
 
-const Rating = styled.div`
+const RatingDiv = styled.div`
   padding: 10px;
   color: black;
   display: flex;
@@ -172,35 +248,114 @@ const Underline = styled.div`
   margin: 0 auto;
 `;
 
-/* <Image src={profile.avatar} />
-<Info>
-  <Name>{profile.name}</Name>
-  <Bio>{profile.bio}</Bio>
-  {/* <Map>MAP</Map> */
-// </Info>
-// <Rating>
-//   {" "}
-//   {profile.rating.map((i) => {
-//     const icon = starRating[i];
-//     return <Star>{icon ? icon() : null}</Star>;
-//   })}
-// </Rating>
-// <ForteContainer>
-//   <Fortes>Fortes:</Fortes>
-//   {profile.forte?.length > 0 &&
-//     profile.forte?.slice(0, 3).map((skill) => {
-//       return <Forte key={`id-${skill}`}>{skill}</Forte>;
-//     })}
-// </ForteContainer>
-// <PetDiv>
-//   <span>My Pets</span>
-//   {profile.myPets &&
-//     profile.myPets.map((i) => {
-//       return (
-//         <div>
-//           <PetImage src={i.imageSrc} />
-//           {i.name}
-//         </div>
-//       );
-//     })}
-// </PetDiv> */}
+const ReviewRating = styled.div`
+  display: flex;
+  width: 280px;
+  justify-content: center;
+`;
+
+const HomeFeedDiv = styled.div`
+  display: flex;
+  border-top: solid 1px #d3d3d3;
+  height: max-content;
+  width: 1000px;
+  flex-direction: column;
+`;
+
+const ReviewDiv = styled.div`
+  display: flex;
+  border-top: solid 1px #d3d3d3;
+  height: max-content;
+  width: 1000px;
+  flex-direction: column;
+  margin: 0 auto;
+  margin-top: 25px;
+  border: solid 1px #d3d3d3;
+  border-radius: 5px;
+`;
+
+const PawPrint = styled.img`
+  height: 40px;
+  width: 50px;
+  border-radius: 40px;
+`;
+
+const Info = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+  width: 250px;
+  margin-top: 5px;
+`;
+
+const From = styled.p`
+  font-size: 12px;
+  color: #3d405b;
+`;
+
+const Timestamp = styled.p`
+  font-size: 12px;
+  color: #3d405b;
+`;
+
+const Body = styled.p`
+  margin-left: 10px;
+  font-size: 14px;
+  color: #3d405b;
+`;
+
+const Input = styled.input`
+  height: 100px;
+  width: 600px;
+`;
+
+const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+const SendMsgBtnDiv = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 630px;
+  justify-content: space-between;
+`;
+
+const SendBtn = styled.button`
+  margin: 10px;
+  background-color: #81b29a;
+  color: #faf9f0;
+  border: none;
+  border-radius: 5px;
+  font-size: 1em;
+  padding: 10px;
+  cursor: pointer;
+  width: 100px;
+  &:hover {
+    background-color: #5b9e82;
+  }
+`;
+
+const Cancel = styled.button`
+  margin: 10px;
+  background-color: #e07a5f;
+  color: #faf9f0;
+  border: none;
+  border-radius: 5px;
+  font-size: 1em;
+  padding: 10px;
+  cursor: pointer;
+  width: 100px;
+  &:hover {
+    background-color: #ee7257;
+  }
+`;
+
+const ErrorMessage = styled.p`
+  color: red;
+  font-size: 12px;
+  width: 300px;
+  text-align: center;
+  margin-top: 10px;
+`;
