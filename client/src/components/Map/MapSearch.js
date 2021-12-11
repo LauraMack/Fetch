@@ -1,13 +1,4 @@
 import React from "react";
-import {
-  GoogleMap,
-  LoadScript,
-  useLoadScript,
-  onLoad,
-  useJsApiLoader,
-  Marker,
-  InfoWindow,
-} from "@react-google-maps/api";
 import usePlacesAutocomplete, {
   getGeocode,
   getLatLng,
@@ -22,12 +13,12 @@ import {
 } from "@reach/combobox";
 import "@reach/combobox/styles.css";
 import styled from "styled-components";
-import { Redirect } from "react-router";
 
 const MapSearch = ({ panTo }) => {
   const inputStyle = {
     padding: "14px",
     width: "300px",
+    textAlign: "center",
   };
   const {
     ready,
@@ -57,11 +48,10 @@ const MapSearch = ({ panTo }) => {
       }}
     >
       <ComboboxInput
-        className="search"
         style={inputStyle}
         value={value}
         onChange={(ev) => setValue(ev.target.value)}
-        placeholder="enter an address"
+        placeholder="Enter an address"
       />
 
       <ComboboxPopover>

@@ -13,7 +13,7 @@ import Signup from "./components/Signup";
 import Header from "./components/Header";
 import SearchResults from "./components/SearchResults";
 import CategoryPage from "./components/CategoryPage";
-import Map from "./components/Map";
+import Map from "./components/Map/Map";
 
 const App = () => {
   const [result, setResult] = useState(null);
@@ -66,7 +66,7 @@ export default App;
 
 const Main = styled.div`
   display: flex;
-  background-color: rgb(237, 238, 255);
+  background-color: #faf9f0; //rgb(237, 238, 255);
   height: 200vh;
   width: max-content;
   margin: 0px;

@@ -7,8 +7,8 @@ const GlobalStyles = createGlobalStyle`
     --color-yellow: #EDB230;
     --color-light-grey: #E5EBEA;
     --color-viridian-green: #558B6E;
-    --font-heading: "Raleway"
-    --font-body: "Raleway"
+    --font-heading: "Lora"
+    --font-body: "Lora"
   }
 
   *,
@@ -22,28 +22,28 @@ const GlobalStyles = createGlobalStyle`
     padding: 0;
     border: 0;
     box-sizing: border-box;
-    background: rgb(237, 238, 255); 
-    font-family: "Raleway";
+    background: #f4f1de; 
+    font-family: "Lora";
   }
 
 
   h1, h2, h3, h4, h5, h6, button {
-    font-family: "Raleway"
+    font-family: "Lora"
   }
 
   p, textarea {
-    font-family: "Raleway";
-    color: #151627;
+    font-family: "Lora";
+    color: #3d405b;
   }
 
   input {
-    font-family: "Raleway";
+    font-family: "Lora";
   }
 
   ul {
       list-style: none;
       padding: 0;
-      color: #151627;
+      color: #3d405b;
   }
 
 

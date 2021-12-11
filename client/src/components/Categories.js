@@ -70,22 +70,26 @@ export default Categories;
 
 const Button = styled.button`
   margin: 10px;
-  border-radius: 15px;
   font-family: "Raleway";
   cursor: pointer;
-  background-color: #8e94f2;
+  background-color: #81b29a;
   font-weight: bold;
-  width: 120px;
+  width: 145px;
   border-style: none;
 `;
 
 const Category = styled.p`
-  font-size: 14px;
-  color: rgb(237, 238, 255);
+  font-size: 16px;
+  color: #faf9f0;
+  font-weight: bold;
+  &:hover {
+    color: #3d405b;
+  }
 `;
 
 const Title = styled.p`
   text-align: center;
+  color: #3d405b;
 `;
 
 const Div = styled.div`

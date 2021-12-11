@@ -62,7 +62,7 @@ const Div = styled.div`
 
 const Wrapper = styled.div`
   margin: 30px;
-  background-color: white;
+  background-color: #faf9f0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -94,7 +94,7 @@ const Image = styled.img`
 const Name = styled.div`
   margin-top: 10px;
   font-weight: bold;
-  color: grey;
+  color: #3d405b;
   font-size: 20px;
 `;
 
@@ -114,7 +114,7 @@ const ForteContainer = styled.div`
 const Forte = styled.li`
   list-style-type: none;
   font-size: 14px;
-  background-color: #558b6e;
+  background-color: #81b29a;
   border-radius: 20px;
   width: 200px;
   margin: 5px;

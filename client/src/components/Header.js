@@ -80,7 +80,7 @@ const Header = () => {
 export default Header;
 
 const Div = styled.div`
-  background-color: #8e94f2;
+  background-color: #e58e76;
   height: 100px;
   margin-top: -21px;
   margin-left: -21px;
@@ -99,14 +99,17 @@ const Nav = styled.div`
 
 const Title = styled.h1`
   margin-left: 30px;
-  color: rgb(237, 238, 255);
-  font-family: "Raleway";
-  font-size: 40px;
+  color: #faf9f0;
+  font-family: "Lora";
+  font-size: 50px;
+  &:hover {
+    color: #3d405b;
+  }
 `;
 
 const Signin = styled.p`
-  color: rgb(237, 238, 255);
-  font-family: "Raleway";
+  color: #f4f1de;
+  font-family: "Lora";
   padding: 5px 10px;
   &:hover {
     color: #6d326d;
@@ -117,9 +120,8 @@ const SigninLink = styled(Link)`
 `;
 
 const Signup = styled.p`
-  color: rgb(237, 238, 255);
-  font-family: "Raleway";
-  background-color: #558b6e;
+  color: #f4f1de;
+  font-family: "Lora";
   padding: 5px 10px;
   border-radius: 6px;
   &:hover {
@@ -136,18 +138,24 @@ const HomeLink = styled(Link)`
 `;
 
 const Ads = styled.p`
-  color: #e5ebea;
-  font-family: "Raleway";
+  color: #faf9f0;
+  font-family: "Lora";
+  font-size: 16px;
+  margin-right: 15px;
+  font-weight: bold;
   &:hover {
-    color: #6d326d;
+    color: #3d405b;
   }
 `;
 
 const Profile = styled.p`
-  color: #e5ebea;
-  font-family: "Raleway";
+  color: #faf9f0;
+  font-family: "Lora";
+  font-size: 16px;
+  margin-right: 15px;
+  font-weight: bold;
   &:hover {
-    color: #6d326d;
+    color: #3d405b;
   }
 `;
 
@@ -160,12 +168,14 @@ const ProfileLink = styled(Link)`
 `;
 
 const Signout = styled.button`
-  color: rgb(237, 238, 255);
+  color: #faf9f0;
   background-color: transparent;
   border-style: none;
-  font-family: "Raleway";
-  padding: 5px 10px;
+  font-family: "Lora";
+  font-size: 16px;
+  font-weight: bold;
+  margin-right: 5px;
   &:hover {
-    color: #6d326d;
+    color: #3d405b;
   }
 `;

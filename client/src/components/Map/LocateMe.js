@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
-import { CurrentUserContext } from "./CurrentUserContext";
-import { UsersContext } from "./UsersContext";
+import { CurrentUserContext } from "../CurrentUserContext";
+import { UsersContext } from "../UsersContext";
 import styled from "styled-components";
 
 const LocateMe = ({ panTo }) => {
@@ -37,7 +37,7 @@ const LocateMe = ({ panTo }) => {
 
   return (
     <div>
-      <button onClick={handleLocationSet}>locate users in your area</button>
+      <Button onClick={handleLocationSet}>Locate users near you</Button>
       {error !== "" && <ErrorMessage>{error}</ErrorMessage>}
     </div>
   );
@@ -51,4 +51,14 @@ const ErrorMessage = styled.p`
   width: 300px;
   text-align: center;
   margin-top: 2px;
+`;
+
+const Button = styled.button`
+  padding: 15px;
+  width: 330px;
+  background-color: #8e94f2;
+  border-style: none;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
 `;

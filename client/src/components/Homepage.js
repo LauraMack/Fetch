@@ -7,6 +7,7 @@ import { useContext } from "react";
 import { UsersContext } from "./UsersContext";
 import { CurrentUserContext } from "./CurrentUserContext";
 import Loading from "./Loading";
+import dogWalker from "../assets/dog-walkers.png";
 
 const Homepage = ({ result, setResult }) => {
   const {
@@ -136,6 +137,9 @@ const Homepage = ({ result, setResult }) => {
           </LocationButton>
         </LocationDiv>
       )}
+      <ImageContainer>
+        <DogWalker src={dogWalker} />
+      </ImageContainer>
       <Searchdiv>
         <Searchbar result={result} setResult={setResult} />
       </Searchdiv>
@@ -175,17 +179,17 @@ const Homepage = ({ result, setResult }) => {
 export default Homepage;
 
 const Wrapper = styled.div`
-  font-family: "Raleway";
+  font-family: "Lora";
   height: max-content;
   width: 100vw;
 `;
 const Searchdiv = styled.div`
   height: 50px;
-  width: 400px;
+  width: 900px;
   display: flex;
   flex-direction: row;
   margin: 0 auto;
-  margin-top: 200px;
+  margin-top: 400px;
 `;
 
 const CategoryDiv = styled.div`
@@ -254,4 +258,19 @@ const LocationDiv = styled.div`
 
 const LocationButton = styled.button`
   margin-right: 30px;
+`;
+
+const DogWalker = styled.img`
+  height: 400px;
+  border-radius: 180px;
+`;
+
+const ImageContainer = styled.div`
+  height: 50px;
+  width: 600px;
+  display: flex;
+  flex-direction: row wrap;
+  justify-content: center;
+  margin: 0 auto;
+  margin-top: 30px;
 `;
