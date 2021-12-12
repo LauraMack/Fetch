@@ -22,7 +22,6 @@ const CategoryPage = ({ setResult, profileId }) => {
       behavior: "smooth",
       transition: "all 0.5s ease 0s",
     });
-    console.log("running category page");
     setResult(categoryQuery);
     let matchesArray = [];
     if (allUsers.data) {

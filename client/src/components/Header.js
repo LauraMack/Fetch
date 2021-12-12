@@ -66,30 +66,20 @@ const Header = () => {
           <HomeLink to={"/"}>
             <Title>Fetch</Title>
           </HomeLink>
-          <DropdownContainer>
-            <DropdownButton onClick={handleDropdownClick}>
-              {open ? <RiArrowDropDownLine /> : <RiMenuLine />}
-            </DropdownButton>
-            {open && <NavBar />}
-          </DropdownContainer>
-          {/* <HomeLink to={"/"}>
-            <Title>Fetch</Title>
-          </HomeLink>
           <Nav>
-            <AdsLink to={"/my-ads"}>
-              <Ads>My Ads</Ads>
+            <AdsLink to={"/all-ads"}>
+              <Ads>Ads</Ads>
             </AdsLink>
-            <ProfileLink
-              to={
-                myProfile
-                  ? `/my-profile/${currentUser.data._id}`
-                  : `/edit-profile/${currentUser.data._id}`
-              }
-            >
-              <Profile>My Profile</Profile>
-            </ProfileLink>
-            <Signout onClick={handleSignOut}>Sign out</Signout>
-          </Nav> */}
+            <MapLink to={"/map"}>
+              <Map>Map</Map>
+            </MapLink>
+            <DropdownContainer>
+              <DropdownButton onClick={handleDropdownClick}>
+                {open ? <RiArrowDropDownLine /> : <RiMenuLine />}
+              </DropdownButton>
+              {open && <NavBar />}
+            </DropdownContainer>
+          </Nav>
         </Div>
       )}
     </div>
@@ -172,7 +162,7 @@ const Ads = styled.p`
   }
 `;
 
-const Profile = styled.p`
+const Map = styled.p`
   color: #faf9f0;
   font-family: "Lora";
   font-size: 16px;
@@ -187,26 +177,13 @@ const AdsLink = styled(Link)`
   text-decoration: none;
 `;
 
-const ProfileLink = styled(Link)`
+const MapLink = styled(Link)`
   text-decoration: none;
 `;
 
-const Signout = styled.button`
-  color: #faf9f0;
-  background-color: transparent;
-  border-style: none;
-  font-family: "Lora";
-  font-size: 16px;
-  font-weight: bold;
-  margin-right: 5px;
-  cursor: pointer;
-  &:hover {
-    color: #3d405b;
-  }
-`;
-
 const DropdownButton = styled.button`
-  margin-right: 40px;
+  margin-right: 30px;
+  margin-top: 15px;
   cursor: pointer;
   padding: 0;
   width: 50px;

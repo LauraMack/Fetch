@@ -5,7 +5,7 @@ import { UsersContext } from "./UsersContext";
 import { IoStarOutline } from "react-icons/io5";
 import { FiCheckCircle } from "react-icons/fi";
 import { CurrentUserContext } from "./CurrentUserContext";
-import pawPrint from "../assets/paw-print.png";
+import placeholder from "../assets/placeholder-image2.jpeg";
 import Rating from "./Rating";
 import moment from "moment";
 import { v4 as uuidv4 } from "uuid";
@@ -100,7 +100,7 @@ const UserProfile = () => {
             return (
               <HomeFeedDiv>
                 <Info>
-                  <PawPrint src={pawPrint} />
+                  <Placeholder src={placeholder} />
                   <From>{i.from}</From>
                   <Timestamp>{i.timestamp}</Timestamp>
                 </Info>
@@ -274,8 +274,8 @@ const ReviewDiv = styled.div`
   border-radius: 5px;
 `;
 
-const PawPrint = styled.img`
-  height: 40px;
+const Placeholder = styled.img`
+  height: 50px;
   width: 50px;
   border-radius: 40px;
 `;

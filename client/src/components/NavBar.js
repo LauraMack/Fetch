@@ -25,25 +25,26 @@ const NavBar = () => {
 
   return (
     <Wrapper>
-      <ul>
-        <li>
-          <Link
+      <StyledUl>
+        <StyledLi>
+          <StyledLink
             to={
               myProfile
                 ? `/my-profile/${currentUser.data._id}`
                 : `/edit-profile/${currentUser.data._id}`
             }
           >
+            {" "}
             My profile
-          </Link>
-        </li>
-        <li>
-          <Link to="/my-ads">My ads</Link>
-        </li>
-        <li>
-          <button onClick={handleSignOut}>Sign out</button>
-        </li>
-      </ul>
+          </StyledLink>
+        </StyledLi>
+        <StyledLi>
+          <StyledLink to="/my-ads">My ads</StyledLink>
+        </StyledLi>
+        <StyledLi>
+          <Signout onClick={handleSignOut}>Sign out</Signout>
+        </StyledLi>
+      </StyledUl>
     </Wrapper>
   );
 };
@@ -54,8 +55,45 @@ const Wrapper = styled.div`
   position: absolute;
   top: 40px;
   right: 30px;
-  width: 300px;
+  height: 150px;
+  width: 180px;
   z-index: 2;
-  border: 1px solid rgba(0, 0, 0, 0.04);
-  box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14);
+  background-color: #a2d2ff;
+  border-radius: 4px;
+`;
+
+const StyledUl = styled.ul`
+  position: relative;
+`;
+
+const StyledLi = styled.li`
+  text-align: center;
+  padding: 10px;
+  &:hover {
+    background-color: #faf9f0;
+    color: #a2d2ff;
+  }
+`;
+
+const StyledLink = styled(Link)`
+  color: #136f63;
+  padding: 10px;
+  &:hover {
+    background-color: #faf9f0;
+    color: #a2d2ff;
+  }
+`;
+
+const Signout = styled.button`
+  color: #136f63;
+  background-color: transparent;
+  border-style: none;
+  font-family: "Lora";
+  font-size: 16px;
+  font-weight: bold;
+  margin-right: 5px;
+  cursor: pointer;
+  &:hover {
+    color: #a2d2ff;
+  }
 `;

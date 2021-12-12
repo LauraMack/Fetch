@@ -130,13 +130,13 @@ const Homepage = ({ result, setResult }) => {
 
   return (
     <Wrapper>
-      {/* {currentUser && (
+      {currentUser && (
         <LocationDiv>
           <LocationButton onClick={handleLocationSet}>
             Set My location
           </LocationButton>
         </LocationDiv>
-      )} */}
+      )}
       <ImageContainer>
         <DogWalker src={dogWalker} />
       </ImageContainer>
@@ -234,11 +234,9 @@ const LoadMore = styled.button`
   width: 150px;
   font-family: "Lora";
   background-color: transparent;
-  border-radius: 40px;
-  box-shadow: none;
+  border: solid 2px #558b6e;
+  border-radius: 5px;
   color: #558b6e;
-  border-color: #558b6e;
-  border-width: 2px;
   text-align: center;
   margin-bottom: 20px;
   font-size: 18px;

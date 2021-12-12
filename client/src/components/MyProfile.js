@@ -1,9 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useParams } from "react-router-dom";
-import { useEffect, useContext } from "react";
-import { UsersContext } from "./UsersContext";
-import { IoStarOutline } from "react-icons/io5";
+import { useContext } from "react";
 import placeholder from "../assets/placeholder-image2.jpeg";
 import { Link } from "react-router-dom";
 import { CurrentUserContext } from "./CurrentUserContext";
@@ -40,7 +38,7 @@ export default MyProfile;
 
 const Wrapper = styled.div`
   font-family: "Raleway";
-  background-color: rgb(237, 238, 255);
+  background-color: #faf9f0;
   height: max-content;
   width: 100vw;
 `;

@@ -4,7 +4,7 @@ import GlobalStyles from "./components/GlobalStyles";
 import styled from "styled-components";
 import Homepage from "./components/Homepage";
 import MyAds from "./components/MyAds";
-import PostAd from "./components/PostAd";
+import AllAds from "./components/AllAds";
 import UserProfile from "./components/UserProfile";
 import MyProfile from "./components/MyProfile";
 import EditProfile from "./components/EditProfile";
@@ -15,7 +15,7 @@ import SearchResults from "./components/SearchResults";
 import CategoryPage from "./components/CategoryPage";
 import Map from "./components/Map/Map";
 
-const App = () => {
+const App = ({ profileId }) => {
   const [result, setResult] = useState(null);
   return (
     <Router>
@@ -29,8 +29,8 @@ const App = () => {
           <Route exact path="/my-ads">
             <MyAds />
           </Route>
-          <Route exact path="/post-ad">
-            <PostAd />
+          <Route exact path="/all-ads">
+            <AllAds profileId={profileId} />
           </Route>
           <Route exact path="/signin">
             <Signin />

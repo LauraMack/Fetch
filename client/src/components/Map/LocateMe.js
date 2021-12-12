@@ -56,7 +56,7 @@ const ErrorMessage = styled.p`
 const Button = styled.button`
   padding: 15px;
   width: 330px;
-  background-color: #8e94f2;
+  background-color: #a2d2ff;
   border-style: none;
   color: white;
   font-size: 16px;

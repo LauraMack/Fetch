@@ -19,7 +19,7 @@ import { CurrentUserContext } from "../CurrentUserContext";
 import { UsersContext } from "../UsersContext";
 import LocateMe from "./LocateMe";
 import MapSearch from "./MapSearch";
-import mapStyles from "../mapStyles";
+import mapStyles from "./mapStyles";
 import dogWalker from "../../assets/dog-walking.png";
 import { IoStarOutline } from "react-icons/io5";
 
