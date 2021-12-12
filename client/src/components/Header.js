@@ -186,7 +186,7 @@ const DropdownButton = styled.button`
   margin-top: 15px;
   cursor: pointer;
   padding: 0;
-  width: 50px;
+  width: 80px;
   border: 0;
   background-color: #a2d2ff;
   color: white;

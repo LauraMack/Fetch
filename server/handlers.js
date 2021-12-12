@@ -15,8 +15,6 @@ const { v4: uuidv4 } = require("uuid");
 
 const { users } = require("./data/users");
 
-const { reviews } = require("./data/reviews");
-
 //get all users in the DB
 const getAllUsers = async (req, res) => {
   const client = new MongoClient(MONGO_URI, options);
@@ -113,6 +111,8 @@ const updateUser = async (req, res) => {
         name: req.body.name,
         bio: req.body.bio,
         forte: req.body.forte,
+        openToTrading: req.body.openToTrading,
+        ads: [],
       },
     }
   );
@@ -151,6 +151,30 @@ const addReview = async (req, res) => {
   }
 };
 
+const addAd = async (req, res) => {
+  try {
+    const client = new MongoClient(MONGO_URI, options);
+    await client.connect();
+    const db = client.db("final-project");
+    const result = await db.collection("users").updateOne(
+      { _id: req.body._id },
+      {
+        $push: {
+          ads: {
+            avatar: req.body.avatar,
+            name: req.body.name,
+            timestamp: req.body.timestamp,
+            body: req.body.body,
+          },
+        },
+      }
+    );
+    res.status(200).json({ status: 200, message: "ok", data: req.body });
+  } catch (error) {
+    res.status(404).json({ status: 404, message: "error", data: req.body });
+  }
+};
+
 module.exports = {
   getAllUsers,
   getUserById,
@@ -158,4 +182,5 @@ module.exports = {
   updateUser,
   getExistingUser,
   addReview,
+  addAd,
 };

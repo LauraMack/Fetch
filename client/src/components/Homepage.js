@@ -7,7 +7,7 @@ import { useContext } from "react";
 import { UsersContext } from "./UsersContext";
 import { CurrentUserContext } from "./CurrentUserContext";
 import Loading from "./Loading";
-import dogWalker from "../assets/dog-walkers.png";
+import dogWalker from "../assets/dog-walkers2.png";
 
 const Homepage = ({ result, setResult }) => {
   const {
@@ -239,14 +239,15 @@ const LoadMore = styled.button`
   color: #558b6e;
   text-align: center;
   margin-bottom: 20px;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: bold;
   cursor: pointer;
   opacity: ${(props) => (props.disabled ? "0.4" : "1")};
-  /* &:hover {
-    background-color: #558b6e;
-    color: white;
-  } */
+  &:hover {
+    background-color: #a2d2ff;
+    color: #faf9f0;
+    border-style: none;
+  }
 `;
 
 const LocationDiv = styled.div`

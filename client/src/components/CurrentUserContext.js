@@ -18,6 +18,7 @@ export const CurrentUserProvider = ({ children }) => {
   const [name, setName] = useState("");
   const [bio, setBio] = useState("");
   const [forte, setForte] = useState([]);
+  const [openToTrading, setOpenToTrading] = useState(false);
   const [error, setError] = useState("");
 
   return (
@@ -41,6 +42,8 @@ export const CurrentUserProvider = ({ children }) => {
         setForte,
         error,
         setError,
+        openToTrading,
+        setOpenToTrading,
       }}
     >
       {children}

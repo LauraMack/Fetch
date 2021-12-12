@@ -6,6 +6,7 @@ const {
   updateUser,
   getExistingUser,
   addReview,
+  addAd,
 } = require("./handlers");
 
 // import the needed node_modules.
@@ -27,8 +28,10 @@ express()
   .get("/profile/:_id", getUserById)
   .post("/users/:email", getExistingUser)
   .post("/users", addNewUser)
-  .patch("/users/:_id", updateUser)
+  .post("/all-ads", addAd)
   .post("/profile/:_id", addReview)
+  .patch("/users/:_id", updateUser)
+
   // endpoints are added above
 
   .listen(PORT, function () {

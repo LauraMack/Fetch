@@ -17,6 +17,8 @@ const EditProfile = () => {
     setBio,
     forte,
     setForte,
+    openToTrading,
+    setOpenToTrading,
   } = useContext(CurrentUserContext);
   let history = useHistory();
 
@@ -26,6 +28,14 @@ const EditProfile = () => {
 
   const handleBio = (ev) => {
     setBio(ev.target.value);
+  };
+
+  const handleAvailability = (ev) => {
+    if (ev.target.value === "Yes") {
+      setOpenToTrading(true);
+    } else {
+      setOpenToTrading(false);
+    }
   };
 
   const handleForte = (ev) => {
@@ -55,6 +65,8 @@ const EditProfile = () => {
         name,
         bio,
         forte,
+        ads: [],
+        openToTrading,
       }),
     })
       .then((res) => res.json())
@@ -76,11 +88,37 @@ const EditProfile = () => {
         <Edit>Edit Your Profile</Edit>
         <ProfileForm onSubmit={handleProfileSubmit}>
           <Image src={placeholder} />
+          <InputDiv>
+            <Input type="text" placeholder="name" onChange={handleName}></Input>
+            <Input type="text" placeholder="bio" onChange={handleBio}></Input>
+          </InputDiv>
           <UploadLink to={"#"}>
             <Upload>Upload a photo</Upload>
           </UploadLink>
-          <Input type="text" placeholder="name" onChange={handleName}></Input>
-          <Input type="text" placeholder="bio" onChange={handleBio}></Input>
+          <Trade>
+            We love to see pet owners helping each other out. How do you feel
+            about lending your time to others on fetch for their pet-related
+            needs?
+          </Trade>
+          <TradeTwo>You can change this setting later.</TradeTwo>
+          <AvailContainer>
+            <label>
+              <AvailCheckbox
+                type="checkbox"
+                value="Yes"
+                onChange={handleAvailability}
+              ></AvailCheckbox>
+              Yes, I'm available to lend my time to others.
+            </label>
+            <label>
+              <AvailCheckbox
+                type="checkbox"
+                value="No"
+                onChange={handleAvailability}
+              ></AvailCheckbox>
+              I'm not available right now.{" "}
+            </label>
+          </AvailContainer>
           <ForteTitle>What's your forte?</ForteTitle>
           <ForteTitleTwo>Select all that apply</ForteTitleTwo>
           <ForteContainer>
@@ -138,25 +176,27 @@ const EditProfile = () => {
             </ForteDiv>
           </ForteContainer>
           <ButtonDiv>
+            <SaveChanges type="submit" disabled={name === ""}>
+              Save Changes
+            </SaveChanges>
+          </ButtonDiv>
+          {/* <Edit>Upload Your Pets</Edit>
+          <PetContainer>
+            <PetImage src={placeholderPet} />
+            <PetInput type="text" placeholder="name"></PetInput>
+          </PetContainer>
+          <PetContainer>
+            <PetImage src={placeholderPet} />
+            <PetInput type="text" placeholder="name"></PetInput>
+          </PetContainer>
+          <Add>Add more</Add> */}
+          {/* <ButtonDiv>
             <Button type="submit" disabled={name === ""}>
               Save Changes
             </Button>
-          </ButtonDiv>
+          </ButtonDiv> */}
         </ProfileForm>
-        <Underline></Underline>
       </Div>
-      <PetDiv>
-        <Edit>Upload Your Pets</Edit>
-        <PetContainer>
-          <PetImage src={placeholderPet} />
-          <PetInput type="text" placeholder="name"></PetInput>
-        </PetContainer>
-        <PetContainer>
-          <PetImage src={placeholderPet} />
-          <PetInput type="text" placeholder="name"></PetInput>
-        </PetContainer>
-        <Add>Add more</Add>
-      </PetDiv>
     </Wrapper>
   );
 };
@@ -164,78 +204,29 @@ const EditProfile = () => {
 export default EditProfile;
 
 const Wrapper = styled.div`
-  font-family: "Raleway";
-  background-color: rgb(237, 238, 255);
+  background-color: #faf9f0;
   height: max-content;
   width: 100vw;
 `;
 
 const Div = styled.div`
-  background-color: white;
-  height: 600px;
+  background-color: #faf9f0;
+  height: 700px;
   width: 1000px;
   margin: 0 auto;
   margin-top: 100px;
-  border-radius: 80px;
+  border-radius: 20px;
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
     rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 `;
 
-const PetDiv = styled.div`
-  background-color: white;
-  height: 520px;
-  width: 1000px;
-  margin: 0 auto;
-  margin-top: 60px;
-  border-radius: 80px;
-  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
-    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
-`;
-
-const PetContainer = styled.div`
+const ProfileForm = styled.form`
+  display: flex;
+  flex-direction: column;
   width: 900px;
-`;
-
-const Image = styled.img`
-  border-style: solid;
-  border-width: 2px;
-  border-color: darkgray;
-  height: 250px;
-  width: 250px;
-  border-radius: 80px;
   position: relative;
-  right: 320px;
-  top: 250px;
-`;
-
-const Add = styled.p`
-  width: 500px;
-  text-align: center;
-  margin-left: 250px;
-  text-decoration: underline;
-  color: darkgray;
-`;
-const PetImage = styled.img`
-  border-style: solid;
-  border-width: 2px;
-  border-color: darkgray;
-  height: 150px;
-  width: 200px;
-  border-radius: 60px;
-  margin-left: 90px;
-  position: relative;
-  top: 80px;
-`;
-
-const PetInput = styled.input`
-  margin-bottom: 40px;
-  margin-left: 60px;
-  padding: 10px;
-  border-radius: 15px;
-  border: 1px solid #f0f0f0;
-  background: #f0f0f0;
-  width: 300px;
-  font-size: 16px;
+  left: 400px;
+  top: -170px;
 `;
 
 const Edit = styled.h2`
@@ -251,35 +242,77 @@ const Edit = styled.h2`
   margin: 0 auto;
 `;
 
+const Image = styled.img`
+  border-style: solid;
+  border-width: 2px;
+  border-color: darkgray;
+  height: 250px;
+  width: 250px;
+  border-radius: 8px;
+  position: relative;
+  right: 320px;
+  top: 250px;
+`;
+
 const Upload = styled.p`
   position: relative;
   width: 250px;
   text-align: center;
-  top: 260px;
+  top: 30px;
   right: 317px;
 `;
-
 const UploadLink = styled(Link)`
   text-decoration: underline;
 `;
 
-const ProfileForm = styled.form`
-  display: flex;
-  flex-direction: column;
-  width: 400px;
-  position: relative;
-  left: 400px;
-  top: -170px;
+const InputDiv = styled.div`
+  margin-top: 30px;
+  margin-bottom: 0;
 `;
 
 const Input = styled.input`
   margin-bottom: 40px;
   padding: 15px;
-  border-radius: 15px;
+  border-radius: 5px;
   border: 1px solid #f0f0f0;
   background: #f0f0f0;
   width: 500px;
   font-size: 16px;
+`;
+
+const AvailContainer = styled.div`
+  position: relative;
+  width: 250px;
+  text-align: center;
+  top: 35px;
+  right: 317px;
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+`;
+
+const Trade = styled.p`
+  position: relative;
+  width: 250px;
+  text-align: center;
+  font-size: 14px;
+  top: 40px;
+  right: 317px;
+`;
+
+const TradeTwo = styled.p`
+  position: relative;
+  width: 250px;
+  text-align: center;
+  font-size: 12px;
+  color: darkgray;
+  top: 30px;
+  right: 317px;
+`;
+
+const AvailCheckbox = styled.input`
+  margin-right: 10px;
+  margin-left: 15px;
 `;
 
 const ForteDiv = styled.div`
@@ -289,22 +322,30 @@ const ForteDiv = styled.div`
 `;
 
 const ForteContainer = styled.div`
+  position: relative;
+  top: -200px;
+  left: 20px;
   display: flex;
   width: 500px;
   justify-content: space-evenly;
 `;
 
 const ForteTitle = styled.p`
-  margin-top: 20px;
   margin-bottom: 5px;
+  position: relative;
+  left: 20px;
+  top: -220px;
   margin-left: 80px;
   width: 300px;
   text-align: center;
   font-size: 18px;
 `;
 const ForteTitleTwo = styled.p`
+  position: relative;
+  top: -210px;
   margin-top: 0;
   margin-left: 80px;
+  left: 20px;
   width: 300px;
   text-align: center;
   font-size: 14px;
@@ -315,40 +356,22 @@ const Checkbox = styled.input`
   margin-right: 10px;
   margin-left: 15px;
 `;
-
-const Underline = styled.div`
-  border-bottom: 1px solid darkgray;
-  border-top: none;
-  border-right: none;
-  border-left: none;
-  height: 10px;
-  position: relative;
-  top: -280px;
-  width: 900px;
-  margin: 0 auto;
-`;
-
 const ButtonDiv = styled.div`
-  margin-top: 25px;
-  width: 1000px;
-  margin: 0 auto;
-  margin-top: 25px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  position: relative;
+  top: -300px;
 `;
 
-const Button = styled.button`
-  border-radius: 15px;
-  font-family: "Raleway";
-  cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
-  background-color: #8e94f2;
-  color: rgb(237, 238, 255);
-  font-weight: bold;
-  width: 150px;
-  height: 50px;
+const SaveChanges = styled.button`
+  width: 550px;
+  padding: 20px;
+  border-radius: 5px;
+  background-color: #a2d2ff;
+  font-size: 20px;
   border-style: none;
-  font-size: 16px;
+  cursor: pointer;
+  color: #faf9f0;
   opacity: ${(props) => (props.disabled ? "0.4" : "1")};
 `;
 
