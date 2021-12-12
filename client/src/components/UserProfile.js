@@ -20,11 +20,11 @@ const UserProfile = () => {
   console.log(currentUser.data.name);
 
   useEffect(() => {
-    // window.scrollTo({
-    //   top: 0,
-    //   behavior: "smooth",
-    //   transition: "all 0.5s ease 0s",
-    // });
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+      transition: "all 0.5s ease 0s",
+    });
     fetch(`/profile/${profileId}`)
       .then((res) => res.json())
       .then((data) => {

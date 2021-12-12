@@ -15,7 +15,7 @@ const Categories = ({ setResult }) => {
             history.push(`/category/house%20sitting`);
           }}
         >
-          <Category>House Sitting</Category>
+          House Sitting
         </Button>
         <Button
           onClick={(ev) => {
@@ -24,7 +24,7 @@ const Categories = ({ setResult }) => {
             history.push(`/category/drop-in%20visits`);
           }}
         >
-          <Category>Drop-in Visits</Category>
+          Drop-in Visits
         </Button>
         <Button
           onClick={(ev) => {
@@ -33,7 +33,7 @@ const Categories = ({ setResult }) => {
             history.push(`/category/dog%20walking`);
           }}
         >
-          <Category>Dog Walking</Category>
+          Dog Walking
         </Button>
         <Button
           onClick={(ev) => {
@@ -42,7 +42,7 @@ const Categories = ({ setResult }) => {
             history.push(`/category/last%20minute%20transport`);
           }}
         >
-          <Category>Last Minute Transport</Category>
+          Last Minute Transport
         </Button>
         <Button
           onClick={(ev) => {
@@ -51,7 +51,7 @@ const Categories = ({ setResult }) => {
             history.push(`/category/daycare`);
           }}
         >
-          <Category>Daycare</Category>
+          Daycare
         </Button>
         <Button
           onClick={(ev) => {
@@ -60,7 +60,7 @@ const Categories = ({ setResult }) => {
             history.push(`/category/overnight%20boarding`);
           }}
         >
-          <Category>Overnight Boarding</Category>
+          Overnight Boarding
         </Button>
       </Div>
     </div>
@@ -70,13 +70,19 @@ export default Categories;
 
 const Button = styled.button`
   margin: 10px;
-  font-family: "Raleway";
   cursor: pointer;
-  background-color: #81b29a;
+  background-color: #40916c;
   font-weight: bold;
   width: 145px;
   border-style: none;
   border-radius: 5px;
+  font-size: 16px;
+  color: #faf9f0;
+  font-weight: bold;
+  height: 60px;
+  &:hover {
+    color: #3d405b;
+  }
 `;
 
 const Category = styled.p`

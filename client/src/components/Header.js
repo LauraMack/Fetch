@@ -1,9 +1,12 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import { CurrentUserContext } from "./CurrentUserContext";
+import NavBar from "./NavBar";
 import { useHistory } from "react-router";
+import { RiMenuLine } from "react-icons/ri";
+import { RiArrowDropDownLine } from "react-icons/ri";
 
 const Header = () => {
   const { user } = useAuth0();
@@ -17,6 +20,13 @@ const Header = () => {
   } = useContext(CurrentUserContext);
 
   console.log(currentUser);
+
+  const [open, setOpen] = useState(false);
+  const [dropdown, setDropdown] = useState(false);
+
+  const handleDropdownClick = () => {
+    setOpen(!open);
+  };
 
   let history = useHistory();
 
@@ -56,6 +66,15 @@ const Header = () => {
           <HomeLink to={"/"}>
             <Title>Fetch</Title>
           </HomeLink>
+          <DropdownContainer>
+            <DropdownButton onClick={handleDropdownClick}>
+              {open ? <RiArrowDropDownLine /> : <RiMenuLine />}
+            </DropdownButton>
+            {open && <NavBar />}
+          </DropdownContainer>
+          {/* <HomeLink to={"/"}>
+            <Title>Fetch</Title>
+          </HomeLink>
           <Nav>
             <AdsLink to={"/my-ads"}>
               <Ads>My Ads</Ads>
@@ -70,7 +89,7 @@ const Header = () => {
               <Profile>My Profile</Profile>
             </ProfileLink>
             <Signout onClick={handleSignOut}>Sign out</Signout>
-          </Nav>
+          </Nav> */}
         </Div>
       )}
     </div>
@@ -80,7 +99,7 @@ const Header = () => {
 export default Header;
 
 const Div = styled.div`
-  background-color: #e58e76;
+  background-color: #a2d2ff;
   height: 100px;
   margin-top: -21px;
   margin-left: -21px;
@@ -97,13 +116,18 @@ const Nav = styled.div`
   width: 250px;
 `;
 
+const DropdownContainer = styled.div`
+  position: relative;
+  display: inline-block;
+`;
+
 const Title = styled.h1`
   margin-left: 30px;
   color: #faf9f0;
   font-family: "Lora";
   font-size: 50px;
   &:hover {
-    color: #3d405b;
+    color: #d00000;
   }
 `;
 
@@ -175,7 +199,20 @@ const Signout = styled.button`
   font-size: 16px;
   font-weight: bold;
   margin-right: 5px;
+  cursor: pointer;
   &:hover {
     color: #3d405b;
   }
+`;
+
+const DropdownButton = styled.button`
+  margin-right: 40px;
+  cursor: pointer;
+  padding: 0;
+  width: 50px;
+  border: 0;
+  background-color: #a2d2ff;
+  color: white;
+  outline: 0;
+  font-size: 25px;
 `;

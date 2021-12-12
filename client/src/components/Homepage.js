@@ -130,13 +130,13 @@ const Homepage = ({ result, setResult }) => {
 
   return (
     <Wrapper>
-      {currentUser && (
+      {/* {currentUser && (
         <LocationDiv>
           <LocationButton onClick={handleLocationSet}>
             Set My location
           </LocationButton>
         </LocationDiv>
-      )}
+      )} */}
       <ImageContainer>
         <DogWalker src={dogWalker} />
       </ImageContainer>
@@ -232,7 +232,7 @@ const LoadMoreDiv = styled.div`
 const LoadMore = styled.button`
   height: 40px;
   width: 150px;
-  font-family: "Raleway";
+  font-family: "Lora";
   background-color: transparent;
   border-radius: 40px;
   box-shadow: none;
@@ -257,7 +257,18 @@ const LocationDiv = styled.div`
 `;
 
 const LocationButton = styled.button`
-  margin-right: 30px;
+  margin: 30px;
+  cursor: pointer;
+  background-color: #40916c;
+  color: #faf9f0;
+  font-weight: bold;
+  width: 145px;
+  padding: 15px;
+  border-style: none;
+  border-radius: 5px;
+  &:hover {
+    color: #3d405b;
+  }
 `;
 
 const DogWalker = styled.img`

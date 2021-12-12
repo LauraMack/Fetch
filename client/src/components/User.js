@@ -1,13 +1,13 @@
 import React from "react";
 import styled from "styled-components";
-import { IoStarOutline } from "react-icons/io5";
+import { IoStarSharp } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router";
 
 const User = ({ user, profileId }) => {
   let history = useHistory();
   const starRating = {
-    star: IoStarOutline,
+    star: IoStarSharp,
   };
   return (
     <div>
@@ -69,7 +69,7 @@ const Wrapper = styled.div`
   flex-direction: column;
   height: 340px;
   padding: 15px;
-  border-radius: 15px;
+  border-radius: 5px;
   transition: 0.5s ease-in-out;
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
     rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
@@ -105,8 +105,9 @@ const Rating = styled.div`
 `;
 const Star = styled.p`
   margin: 0;
-  color: #edb230;
+  color: #ffba08;
 `;
+
 const ForteContainer = styled.div`
   height: 200px;
 `;
@@ -114,13 +115,16 @@ const ForteContainer = styled.div`
 const Forte = styled.li`
   list-style-type: none;
   font-size: 14px;
-  background-color: #81b29a;
-  border-radius: 20px;
+  background-color: #40916c;
+  border-radius: 5px;
   width: 200px;
   margin: 5px;
   padding: 5px;
   text-align: center;
   color: #e5ebea;
+  &:hover {
+    color: #032b43;
+  }
 `;
 
 const ForteIntro = styled.div`
