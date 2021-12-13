@@ -81,7 +81,7 @@ const Button = styled.button`
   font-weight: bold;
   height: 60px;
   &:hover {
-    color: #3d405b;
+    color: #f6c453;
   }
 `;
 

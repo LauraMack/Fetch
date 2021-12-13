@@ -89,7 +89,7 @@ const Header = () => {
 export default Header;
 
 const Div = styled.div`
-  background-color: #a2d2ff;
+  background-color: #e1eedd;
   height: 100px;
   margin-top: -21px;
   margin-left: -21px;
@@ -113,9 +113,10 @@ const DropdownContainer = styled.div`
 
 const Title = styled.h1`
   margin-left: 30px;
-  color: #faf9f0;
+  color: #24562c;
   font-family: "Lora";
   font-size: 50px;
+  text-align: center;
   &:hover {
     color: #d00000;
   }

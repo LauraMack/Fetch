@@ -62,7 +62,7 @@ const Div = styled.div`
 
 const Wrapper = styled.div`
   margin: 30px;
-  background-color: #faf9f0;
+  background-color: #e1eedd;
   display: flex;
   justify-content: center;
   align-items: center;

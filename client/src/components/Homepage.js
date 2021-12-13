@@ -68,8 +68,6 @@ const Homepage = ({ result, setResult }) => {
       });
       // new array of just the userIds, ordered by distance
       let newArray = locationsByDistance.map(({ userId }) => userId);
-      console.log(newArray);
-
       // function for ordering all the users by the distance from current user
       let mapOrder = (array, order, key) => {
         array.sort((a, b) => {
@@ -258,7 +256,7 @@ const LocationDiv = styled.div`
 const LocationButton = styled.button`
   margin: 30px;
   cursor: pointer;
-  background-color: #40916c;
+  background-color: #24562c;
   color: #faf9f0;
   font-weight: bold;
   width: 145px;

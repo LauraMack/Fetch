@@ -23,13 +23,15 @@ const NavBar = () => {
     });
   };
 
+  console.log(myProfile);
+
   return (
     <Wrapper>
       <StyledUl>
         <StyledLi>
           <StyledLink
             to={
-              myProfile
+              myProfile.data
                 ? `/my-profile/${currentUser.data._id}`
                 : `/edit-profile/${currentUser.data._id}`
             }
@@ -39,7 +41,7 @@ const NavBar = () => {
           </StyledLink>
         </StyledLi>
         <StyledLi>
-          <StyledLink to="/my-ads">My ads</StyledLink>
+          <StyledLink to={`/my-ads/${currentUser.data._id}`}>My ads</StyledLink>
         </StyledLi>
         <StyledLi>
           <Signout onClick={handleSignOut}>Sign out</Signout>

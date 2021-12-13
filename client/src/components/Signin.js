@@ -53,6 +53,7 @@ const Signin = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data.message === "ok") {
+          // fetch current user from mongo here
           setCurrentUser(data);
           setMyProfile(data);
           setSignedIn(true);

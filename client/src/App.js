@@ -26,7 +26,7 @@ const App = ({ profileId }) => {
           <Route exact path="/">
             <Homepage result={result} setResult={setResult} />
           </Route>
-          <Route exact path="/my-ads">
+          <Route exact path="/my-ads/:_id">
             <MyAds />
           </Route>
           <Route exact path="/all-ads">
@@ -66,7 +66,7 @@ export default App;
 
 const Main = styled.div`
   display: flex;
-  background-color: #faf9f0; //rgb(237, 238, 255);
+  background-color: #e1eedd; //rgb(237, 238, 255);
   height: 200vh;
   width: max-content;
   margin: 0px;

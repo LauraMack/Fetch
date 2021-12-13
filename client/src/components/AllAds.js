@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import styled from "styled-components";
 import { UsersContext } from "./UsersContext";
 import { Link } from "react-router-dom";
@@ -8,12 +8,38 @@ import { CurrentUserContext } from "./CurrentUserContext";
 import dog from "../assets/dog2.png";
 
 const AllAds = () => {
-  const { allUsers } = useContext(UsersContext);
-  const { currentUser, error, setError } = useContext(CurrentUserContext);
+  const { allUsers, setAllUsers } = useContext(UsersContext);
+  const { currentUser, error, setError, myProfile, setMyProfile } =
+    useContext(CurrentUserContext);
+  const [allAds, setAllAds] = useState([]);
   const [newAd, setNewAd] = useState("");
   const [adsUpdated, setAdsUpdated] = useState(false);
 
-  console.log(allUsers.data);
+  useEffect(() => {
+    let adsArray = [];
+    if (allUsers.data) {
+      allUsers.data.forEach((i) => {
+        if (i.ads && i.ads.length > 0) {
+          i.ads.forEach((ad) => {
+            let newDate = new Date(ad.timestamp);
+            let newAdsArray = {
+              _id: i._id,
+              name: i.name,
+              avatar: i.avatar,
+              timestamp: newDate,
+              body: ad.body,
+            };
+            adsArray.push(newAdsArray);
+            let sortedAdsArray = adsArray.sort((a, b) => {
+              return a.timestamp - b.timestamp;
+            });
+            let reversed = sortedAdsArray.reverse();
+            setAllAds(reversed);
+          });
+        }
+      });
+    }
+  }, [adsUpdated]);
 
   const handleAdChange = (ev) => {
     setNewAd(ev.target.value);
@@ -26,7 +52,8 @@ const AllAds = () => {
       method: "POST",
       body: JSON.stringify({
         _id: currentUser.data._id,
-        avatar: placeholder,
+        avatar:
+          "http://res.cloudinary.com/dnbqibbaq/image/upload/c_scale,w_150/v1639351122/placeholder-image2_e8rd0o.webp",
         name: currentUser.data.name,
         timestamp: moment(new Date()).format("MMMM DD, YYYY"),
         body: newAd,
@@ -41,6 +68,7 @@ const AllAds = () => {
         if (data.message === "ok") {
           setNewAd("");
           setAdsUpdated(!adsUpdated);
+          myProfile.data.ads.push(data.data);
         }
         if (data.message === "error") {
           setError("Sorry, your ad couldn't be posted. Please try again. ");
@@ -67,31 +95,27 @@ const AllAds = () => {
       </Form>
       <img src={dog} />
       <Title>Recent ads</Title>
-      {allUsers.data &&
-        allUsers.data.map((user) => {
-          if (user.ads && user.ads.length > 0) {
-            return (
-              <div>
-                {user.ads.map((i) => {
-                  return (
-                    <AdsDiv>
-                      <Info>
-                        <Link to={`/profile/${user._id}`}>
-                          <Image src={user.avatar} />
-                        </Link>
-                        <Link to={`/profile/${user._id}`}>
-                          <From>{user.name}</From>
-                        </Link>
-                        <From>-</From>
-                        <Timestamp>{i.timestamp}</Timestamp>
-                      </Info>
-                      <Body>{i.body}</Body>
-                    </AdsDiv>
-                  );
-                })}
-              </div>
-            );
-          }
+      {allAds &&
+        allAds.map((ad) => {
+          return (
+            <div>
+              <AdsDiv>
+                <Info>
+                  <Link to={`/profile/${ad._id}`}>
+                    <Image src={ad.avatar} />
+                  </Link>
+                  <Link to={`/profile/${ad._id}`}>
+                    <From>{ad.name}</From>
+                  </Link>
+                  <From>-</From>
+                  <Timestamp>
+                    {moment(ad.timestamp).format("MMMM DD, YYYY")}
+                  </Timestamp>
+                </Info>
+                <Body>{ad.body}</Body>
+              </AdsDiv>
+            </div>
+          );
         })}
     </Wrapper>
   );
@@ -100,7 +124,7 @@ const AllAds = () => {
 export default AllAds;
 
 const Wrapper = styled.div`
-  background-color: #faf9f0;
+  background-color: #e1eedd;
   height: max-content;
   width: 100vw;
 `;
@@ -113,6 +137,7 @@ const Image = styled.img`
 
 const AdsDiv = styled.div`
   display: flex;
+  background-color: #40916c;
   border-top: solid 1px #d3d3d3;
   height: max-content;
   width: 1000px;
@@ -121,6 +146,8 @@ const AdsDiv = styled.div`
   margin-top: 25px;
   border: solid 1px #d3d3d3;
   border-radius: 5px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 `;
 
 const Info = styled.div`
@@ -132,18 +159,18 @@ const Info = styled.div`
 
 const From = styled.p`
   font-size: 12px;
-  color: darkgray;
+  color: #e1eedd;
 `;
 
 const Timestamp = styled.p`
   font-size: 12px;
-  color: darkgray;
+  color: #e1eedd;
 `;
 
 const Body = styled.p`
   margin-left: 10px;
   font-size: 14px;
-  color: #3d405b;
+  color: #e1eedd;
 `;
 
 const Form = styled.form`
