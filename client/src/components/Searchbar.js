@@ -26,7 +26,9 @@ const Searchbar = ({ result, setResult }) => {
         }}
       ></Input>
       <Button aria-label="search" onClick={(ev) => handleSearch(ev)}>
-        <IoPawSharp />
+        <Paw>
+          <IoPawSharp />
+        </Paw>
       </Button>
     </Searchdiv>
   );
@@ -55,7 +57,10 @@ const Input = styled.input`
   color: #3d405b;
   &:focus {
     outline: none;
-    border: solid 2px #81b29a;
+    border: solid 2px #40916c;
+  }
+  &::placeholder {
+    color: #183a1d;
   }
 `;
 
@@ -71,6 +76,14 @@ const Button = styled.button`
   font-size: 20px;
   cursor: pointer;
   &:hover {
-    background-color: #3d405b;
+    background-color: #f6c453;
+  }
+`;
+
+const Paw = styled.p`
+  color: #e1eedd;
+  margin-top: 5px;
+  &:hover {
+    color: #183a1d;
   }
 `;

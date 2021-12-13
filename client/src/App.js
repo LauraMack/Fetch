@@ -66,7 +66,7 @@ export default App;
 
 const Main = styled.div`
   display: flex;
-  background-color: #e1eedd; //rgb(237, 238, 255);
+  background-color: #e1eedd;
   height: 200vh;
   width: max-content;
   margin: 0px;

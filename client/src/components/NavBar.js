@@ -31,7 +31,7 @@ const NavBar = () => {
         <StyledLi>
           <StyledLink
             to={
-              myProfile.data
+              currentUser.data
                 ? `/my-profile/${currentUser.data._id}`
                 : `/edit-profile/${currentUser.data._id}`
             }
@@ -56,11 +56,10 @@ export default NavBar;
 const Wrapper = styled.div`
   position: absolute;
   top: 40px;
-  right: 30px;
   height: 150px;
-  width: 180px;
+  width: 120px;
   z-index: 2;
-  background-color: #a2d2ff;
+  background-color: #40916c;
   border-radius: 4px;
 `;
 
@@ -72,22 +71,22 @@ const StyledLi = styled.li`
   text-align: center;
   padding: 10px;
   &:hover {
-    background-color: #faf9f0;
-    color: #a2d2ff;
+    background-color: #f6c453;
+    color: #183a1d;
   }
 `;
 
 const StyledLink = styled(Link)`
-  color: #136f63;
+  color: #faf9f0;
   padding: 10px;
   &:hover {
-    background-color: #faf9f0;
-    color: #a2d2ff;
+    background-color: #f6c453;
+    color: #183a1d;
   }
 `;
 
 const Signout = styled.button`
-  color: #136f63;
+  color: #faf9f0;
   background-color: transparent;
   border-style: none;
   font-family: "Lora";
@@ -96,6 +95,6 @@ const Signout = styled.button`
   margin-right: 5px;
   cursor: pointer;
   &:hover {
-    color: #a2d2ff;
+    color: #183a1d;
   }
 `;

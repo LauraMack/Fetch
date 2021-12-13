@@ -19,13 +19,18 @@ const SignInBtn = () => {
 export default SignInBtn;
 
 const GoogleButton = styled.button`
-  font-family: "Raleway";
+  font-family: "Lora";
   width: 312px;
   border-radius: 4px;
+  border: solid 1px #183a1d;
   border-style: solid;
   border-width: 1px;
   padding: 5px;
-  background-color: #8e94f2;
-  color: white;
+  background-color: #40916c;
+  color: #e1eedd;
   font-weight: bold;
+  &:hover {
+    background-color: #f6c453;
+    color: #183a1d;
+  }
 `;

@@ -81,22 +81,15 @@ const Button = styled.button`
   font-weight: bold;
   height: 60px;
   &:hover {
-    color: #f6c453;
-  }
-`;
-
-const Category = styled.p`
-  font-size: 16px;
-  color: #faf9f0;
-  font-weight: bold;
-  &:hover {
-    color: #3d405b;
+    color: #183a1d;
+    background-color: #f6c453;
   }
 `;
 
 const Title = styled.p`
   text-align: center;
-  color: #3d405b;
+  color: #183a1d;
+  font-size: 18px;
 `;
 
 const Div = styled.div`

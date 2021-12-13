@@ -88,13 +88,13 @@ const UserLink = styled(Link)`
 const Image = styled.img`
   height: 150px;
   width: 150px;
-  border-radius: 30%;
+  border-radius: 50%;
 `;
 
 const Name = styled.div`
   margin-top: 10px;
   font-weight: bold;
-  color: #3d405b;
+  color: #183a1d;
   font-size: 20px;
 `;
 
@@ -105,7 +105,7 @@ const Rating = styled.div`
 `;
 const Star = styled.p`
   margin: 0;
-  color: #ffba08;
+  color: #f6c453;
 `;
 
 const ForteContainer = styled.div`
@@ -123,12 +123,13 @@ const Forte = styled.li`
   text-align: center;
   color: #e5ebea;
   &:hover {
-    color: #032b43;
+    color: #183a1d;
+    background-color: #f6c453;
   }
 `;
 
 const ForteIntro = styled.div`
   font-size: 14px;
   text-align: center;
-  color: grey;
+  color: #183a1d;
 `;

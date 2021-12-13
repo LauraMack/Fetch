@@ -180,21 +180,6 @@ const EditProfile = () => {
               Save Changes
             </SaveChanges>
           </ButtonDiv>
-          {/* <Edit>Upload Your Pets</Edit>
-          <PetContainer>
-            <PetImage src={placeholderPet} />
-            <PetInput type="text" placeholder="name"></PetInput>
-          </PetContainer>
-          <PetContainer>
-            <PetImage src={placeholderPet} />
-            <PetInput type="text" placeholder="name"></PetInput>
-          </PetContainer>
-          <Add>Add more</Add> */}
-          {/* <ButtonDiv>
-            <Button type="submit" disabled={name === ""}>
-              Save Changes
-            </Button>
-          </ButtonDiv> */}
         </ProfileForm>
       </Div>
     </Wrapper>
@@ -204,18 +189,18 @@ const EditProfile = () => {
 export default EditProfile;
 
 const Wrapper = styled.div`
-  background-color: #faf9f0;
+  background-color: #e1eedd;
   height: max-content;
   width: 100vw;
 `;
 
 const Div = styled.div`
-  background-color: #faf9f0;
+  background-color: #e1eedd;
   height: 700px;
   width: 1000px;
   margin: 0 auto;
   margin-top: 100px;
-  border-radius: 20px;
+  border-radius: 5px;
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
     rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 `;
@@ -233,19 +218,18 @@ const Edit = styled.h2`
   width: 900px;
   text-align: center;
   position: relative;
+  color: #183a1d;
   height: 40px;
   top: 50px;
   border-top: none;
   border-right: none;
   border-left: none;
-  border-bottom: 1px solid darkgray;
+  border-bottom: 1px solid #183a1d;
   margin: 0 auto;
 `;
 
 const Image = styled.img`
-  border-style: solid;
-  border-width: 2px;
-  border-color: darkgray;
+  border: solid 1px #183a1d;
   height: 250px;
   width: 250px;
   border-radius: 8px;
@@ -257,6 +241,7 @@ const Image = styled.img`
 const Upload = styled.p`
   position: relative;
   width: 250px;
+  color: #40916c;
   text-align: center;
   top: 30px;
   right: 317px;
@@ -274,10 +259,17 @@ const Input = styled.input`
   margin-bottom: 40px;
   padding: 15px;
   border-radius: 5px;
-  border: 1px solid #f0f0f0;
-  background: #f0f0f0;
+  border: 1px solid #183a1d;
+  background: #faf9f0;
   width: 500px;
   font-size: 16px;
+  &::placeholder {
+    color: #183a1d;
+  }
+  &:focus {
+    outline: none;
+    border: solid 2px #40916c;
+  }
 `;
 
 const AvailContainer = styled.div`
@@ -288,6 +280,7 @@ const AvailContainer = styled.div`
   right: 317px;
   font-size: 14px;
   display: flex;
+  color: #183a1d;
   flex-direction: column;
 `;
 
@@ -298,6 +291,7 @@ const Trade = styled.p`
   font-size: 14px;
   top: 40px;
   right: 317px;
+  color: #183a1d;
 `;
 
 const TradeTwo = styled.p`
@@ -305,7 +299,7 @@ const TradeTwo = styled.p`
   width: 250px;
   text-align: center;
   font-size: 12px;
-  color: darkgray;
+  color: #40916c;
   top: 30px;
   right: 317px;
 `;
@@ -319,6 +313,7 @@ const ForteDiv = styled.div`
   height: 200px;
   display: flex;
   flex-direction: column;
+  color: #183a1d;
 `;
 
 const ForteContainer = styled.div`
@@ -338,6 +333,7 @@ const ForteTitle = styled.p`
   margin-left: 80px;
   width: 300px;
   text-align: center;
+  color: #183a1d;
   font-size: 18px;
 `;
 const ForteTitleTwo = styled.p`
@@ -349,13 +345,14 @@ const ForteTitleTwo = styled.p`
   width: 300px;
   text-align: center;
   font-size: 14px;
-  color: darkgray;
+  color: #183a1d;
 `;
 
 const Checkbox = styled.input`
   margin-right: 10px;
   margin-left: 15px;
 `;
+
 const ButtonDiv = styled.div`
   display: flex;
   align-items: center;
@@ -367,19 +364,37 @@ const SaveChanges = styled.button`
   width: 550px;
   padding: 20px;
   border-radius: 5px;
-  background-color: #a2d2ff;
+  background-color: #40916c;
   font-size: 20px;
   border-style: none;
   cursor: pointer;
-  color: #faf9f0;
+  color: #e1eedd;
   opacity: ${(props) => (props.disabled ? "0.4" : "1")};
+  &:hover {
+    background-color: #f6c453;
+    color: #183a1d;
+  }
 `;
 
 const Skip = styled.p`
-  width: 1000px;
+  width: 200px;
+  margin-left: 390px;
+  text-align: center;
+  position: absolute;
+  z-index: 10;
+  top: 120px;
+  text-decoration: underline;
+  color: #40916c;
+  cursor: pointer;
+`;
+
+const SkipLink = styled(Link)`
+  width: 200px;
+  margin-left: 390px;
   text-align: center;
   position: absolute;
   top: 120px;
   text-decoration: underline;
-  color: darkgray;
+  color: #40916c;
+  cursor: pointer;
 `;

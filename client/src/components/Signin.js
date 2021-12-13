@@ -94,7 +94,8 @@ const Signin = () => {
           <Or>or</Or>
           <SignInBtn />
           <Member>
-            Not yet a member? <Link to={"/signup"}>Sign up for Fetch</Link>
+            Not yet a member?{" "}
+            <SignupLink to={"/signup"}>Sign up for Fetch</SignupLink>
           </Member>
           {error !== "" && <ErrorMessage>{error}</ErrorMessage>}
         </SignUpDiv>
@@ -106,14 +107,13 @@ const Signin = () => {
 export default Signin;
 
 const Wrapper = styled.div`
-  font-family: "Raleway";
-  background-color: rgb(237, 238, 255);
+  background-color: #e1eedd;
   height: max-content;
   width: 100vw;
 `;
 
 const Div = styled.div`
-  background-color: white;
+  background-color: #e1eedd;
   height: 400px;
   width: 500px;
   margin: 0 auto;
@@ -134,51 +134,73 @@ const SignUpDiv = styled.div`
 `;
 
 const Input = styled.input`
-  font-family: "Raleway";
+  font-family: "Lora";
   padding: 5px;
   width: 300px;
   border-radius: 4px;
-  border-style: solid;
-  border-width: 1px;
+  border: solid 1px #183a1d;
+  background-color: #faf9f0;
+  &::placeholder {
+    color: #183a1d;
+  }
+  &:focus {
+    outline: none;
+    border: solid 2px #40916c;
+  }
 `;
 
 const Title = styled.p`
   width: 300px;
   text-align: center;
   font-size: 24px;
+  color: #183a1d;
 `;
 
 const Label = styled.p`
   margin: 0;
   font-size: 12px;
   margin-top: 10px;
+  color: #183a1d;
 `;
 
 const Button = styled.button`
-  font-family: "Raleway";
+  font-family: "Lora";
   width: 312px;
   margin-top: 10px;
   border-radius: 4px;
-  border-style: solid;
-  border-width: 1px;
+  border: solid 1px #183a1d;
   padding: 5px;
-  background-color: #8e94f2;
-  color: white;
+  background-color: #40916c;
+  color: #e1eedd;
   font-weight: bold;
+  font-size: 14px;
+  &:hover {
+    background-color: #f6c453;
+    color: #183a1d;
+  }
 `;
 
 const Or = styled.p`
   font-size: 12px;
-  color: grey;
+  color: #183a1d;
   width: 300px;
   text-align: center;
 `;
 
 const Member = styled.p`
+  font-family: "Lora";
   font-size: 12px;
   width: 300px;
   text-align: center;
   margin-top: 20px;
+  color: #183a1d;
+`;
+
+const SignupLink = styled(Link)`
+  color: #40916c;
+  &:hover {
+    color: #f6c453;
+  }
 `;
 
 const ErrorMessage = styled.p`

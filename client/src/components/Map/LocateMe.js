@@ -56,9 +56,14 @@ const ErrorMessage = styled.p`
 const Button = styled.button`
   padding: 15px;
   width: 330px;
-  background-color: #a2d2ff;
+  background-color: #40916c;
   border-style: none;
-  color: white;
+  color: #faf9f0;
   font-size: 16px;
   font-weight: bold;
+  cursor: pointer;
+  &:hover {
+    color: #183a1d;
+    background-color: #f6c453;
+  }
 `;

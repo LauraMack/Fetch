@@ -11,7 +11,7 @@ const MyAds = () => {
   return (
     <Wrapper>
       <div>
-        <h2>My ads</h2>
+        <Title>My ads</Title>
       </div>
       {myProfile.data.ads.map((ad) => {
         return (
@@ -35,6 +35,7 @@ const MyAds = () => {
               >
                 <From>{ad.name}</From>
               </Link>
+              <From>-</From>
               <Timestamp>{ad.timestamp}</Timestamp>
             </Info>
             <Body>{ad.body}</Body>
@@ -61,14 +62,15 @@ const Image = styled.img`
 
 const AdsDiv = styled.div`
   display: flex;
-  border-top: solid 1px #d3d3d3;
+  background-color: #e1eedd;
   height: max-content;
   width: 1000px;
   flex-direction: column;
   margin: 0 auto;
   margin-top: 25px;
-  border: solid 1px #d3d3d3;
   border-radius: 5px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 `;
 
 const Info = styled.div`
@@ -80,16 +82,20 @@ const Info = styled.div`
 
 const From = styled.p`
   font-size: 12px;
-  color: darkgray;
+  color: #183a1d;
 `;
 
 const Timestamp = styled.p`
   font-size: 12px;
-  color: darkgray;
+  color: #183a1d;
 `;
 
 const Body = styled.p`
   margin-left: 10px;
   font-size: 14px;
-  color: #3d405b;
+  color: #183a1d;
+`;
+
+const Title = styled.h2`
+  color: #183a1d;
 `;

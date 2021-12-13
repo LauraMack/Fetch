@@ -186,7 +186,7 @@ const Div = styled.div`
   height: 80vh;
   margin-top: 30px;
   margin-left: 30px;
-  background-color: white;
+  background-color: #faf9f0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -215,7 +215,7 @@ const Name = styled.p`
 
 const Or = styled.p`
   font-size: 16px;
-  color: grey;
+  color: #183a1d;
   width: 300px;
   text-align: center;
 `;
@@ -224,6 +224,7 @@ const Title = styled.p`
   width: 300px;
   font-size: 24px;
   margin-top: 40px;
+  color: #183a1d;
 `;
 
 const DogWalker = styled.img`

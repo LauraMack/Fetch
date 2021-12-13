@@ -4,20 +4,12 @@ import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import { CurrentUserContext } from "./CurrentUserContext";
 import NavBar from "./NavBar";
-import { useHistory } from "react-router";
 import { RiMenuLine } from "react-icons/ri";
 import { RiArrowDropDownLine } from "react-icons/ri";
 
 const Header = () => {
   const { user } = useAuth0();
-  const {
-    currentUser,
-    setCurrentUser,
-    signedIn,
-    setSignedIn,
-    myProfile,
-    setMyProfile,
-  } = useContext(CurrentUserContext);
+  const { currentUser } = useContext(CurrentUserContext);
 
   console.log(currentUser);
 
@@ -26,23 +18,6 @@ const Header = () => {
 
   const handleDropdownClick = () => {
     setOpen(!open);
-  };
-
-  let history = useHistory();
-
-  // isAuthenticated, isLoading
-
-  const handleSignOut = (ev) => {
-    setCurrentUser(null);
-    setSignedIn(false);
-    setMyProfile(null);
-    window.sessionStorage.clear();
-    history.push("/");
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-      transition: "all 0.5s ease 0s",
-    });
   };
 
   return (
@@ -118,16 +93,16 @@ const Title = styled.h1`
   font-size: 50px;
   text-align: center;
   &:hover {
-    color: #d00000;
+    color: #f6c453;
   }
 `;
 
 const Signin = styled.p`
-  color: #f4f1de;
+  color: #183a1d;
   font-family: "Lora";
   padding: 5px 10px;
   &:hover {
-    color: #6d326d;
+    color: #f6c453;
   }
 `;
 const SigninLink = styled(Link)`
@@ -135,12 +110,12 @@ const SigninLink = styled(Link)`
 `;
 
 const Signup = styled.p`
-  color: #f4f1de;
+  color: #183a1d;
   font-family: "Lora";
   padding: 5px 10px;
   border-radius: 6px;
   &:hover {
-    color: #6d326d;
+    color: #f6c453;
   }
 `;
 
@@ -153,24 +128,24 @@ const HomeLink = styled(Link)`
 `;
 
 const Ads = styled.p`
-  color: #faf9f0;
+  color: #183a1d;
   font-family: "Lora";
   font-size: 16px;
   margin-right: 15px;
   font-weight: bold;
   &:hover {
-    color: #3d405b;
+    color: #f6c453;
   }
 `;
 
 const Map = styled.p`
-  color: #faf9f0;
+  color: #183a1d;
   font-family: "Lora";
   font-size: 16px;
   margin-right: 15px;
   font-weight: bold;
   &:hover {
-    color: #3d405b;
+    color: #f6c453;
   }
 `;
 
@@ -189,8 +164,8 @@ const DropdownButton = styled.button`
   padding: 0;
   width: 80px;
   border: 0;
-  background-color: #a2d2ff;
-  color: white;
+  background-color: #e1eedd;
+  color: #183a1d;
   outline: 0;
-  font-size: 25px;
+  font-size: 23px;
 `;

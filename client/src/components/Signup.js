@@ -87,7 +87,7 @@ const Signup = () => {
             <SignInBtn />
           </form>
           <Member>
-            Already a member? <Link to={"/signin"}>Sign in</Link>
+            Already a member? <SigninLink to={"/signin"}>Sign in</SigninLink>
           </Member>
           {error !== "" && <ErrorMessage>{error}</ErrorMessage>}
         </SignUpDiv>
@@ -99,14 +99,13 @@ const Signup = () => {
 export default Signup;
 
 const Wrapper = styled.div`
-  font-family: "Raleway";
-  background-color: rgb(237, 238, 255);
+  background-color: #e1eedd;
   height: max-content;
   width: 100vw;
 `;
 
 const Div = styled.div`
-  background-color: white;
+  background-color: #e1eedd;
   height: 400px;
   width: 500px;
   margin: 0 auto;
@@ -127,42 +126,54 @@ const SignUpDiv = styled.div`
 `;
 
 const Input = styled.input`
-  font-family: "Raleway";
+  font-family: "Lora";
   padding: 5px;
   width: 300px;
   border-radius: 4px;
-  border-style: solid;
-  border-width: 1px;
+  border: solid 1px #183a1d;
+  background-color: #faf9f0;
+  &::placeholder {
+    color: #183a1d;
+  }
+  &:focus {
+    outline: none;
+    border: solid 2px #40916c;
+  }
 `;
 
 const Title = styled.p`
   width: 300px;
   text-align: center;
   font-size: 24px;
+  color: #183a1d;
 `;
 
 const Label = styled.p`
   margin: 0;
   font-size: 12px;
   margin-top: 10px;
+  color: #183a1d;
 `;
 
 const Button = styled.button`
-  font-family: "Raleway";
+  font-family: "Lora";
   width: 312px;
   margin-top: 10px;
   border-radius: 4px;
-  border-style: solid;
-  border-width: 1px;
+  border: solid 1px #183a1d;
   padding: 5px;
-  background-color: #8e94f2;
+  background-color: #40916c;
   color: white;
   font-weight: bold;
+  &:hover {
+    background-color: #f6c453;
+    color: #183a1d;
+  }
 `;
 
 const Or = styled.p`
   font-size: 12px;
-  color: grey;
+  color: #183a1d;
   width: 300px;
   text-align: center;
   margin-top: 10px;
@@ -173,6 +184,11 @@ const Member = styled.p`
   width: 300px;
   text-align: center;
   margin-top: 20px;
+  color: #183a1d;
+`;
+
+const SigninLink = styled(Link)`
+  color: #40916c;
 `;
 
 const ErrorMessage = styled.p`

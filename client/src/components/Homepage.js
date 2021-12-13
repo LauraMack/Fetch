@@ -212,8 +212,11 @@ const UserHeader = styled.div`
   height: 100px;
   width: 1000px;
   text-align: center;
+  color: #183a1d;
   margin: 0 auto;
   margin-top: 230px;
+  font-weight: bold;
+  font-size: 18px;
 `;
 
 const LoadMoreDiv = styled.div`
@@ -232,9 +235,9 @@ const LoadMore = styled.button`
   width: 150px;
   font-family: "Lora";
   background-color: transparent;
-  border: solid 2px #558b6e;
+  border: solid 2px #183a1d;
   border-radius: 5px;
-  color: #558b6e;
+  color: #183a1d;
   text-align: center;
   margin-bottom: 20px;
   font-size: 16px;
@@ -242,8 +245,8 @@ const LoadMore = styled.button`
   cursor: pointer;
   opacity: ${(props) => (props.disabled ? "0.4" : "1")};
   &:hover {
-    background-color: #a2d2ff;
-    color: #faf9f0;
+    background-color: #f6c453;
+    color: #183a1d;
     border-style: none;
   }
 `;
@@ -256,7 +259,7 @@ const LocationDiv = styled.div`
 const LocationButton = styled.button`
   margin: 30px;
   cursor: pointer;
-  background-color: #24562c;
+  background-color: #40916c;
   color: #faf9f0;
   font-weight: bold;
   width: 145px;
@@ -264,7 +267,8 @@ const LocationButton = styled.button`
   border-style: none;
   border-radius: 5px;
   &:hover {
-    color: #3d405b;
+    background-color: #f6c453;
+    color: #183a1d;
   }
 `;
 

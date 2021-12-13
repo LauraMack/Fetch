@@ -19,6 +19,8 @@ const MapSearch = ({ panTo }) => {
     padding: "14px",
     width: "300px",
     textAlign: "center",
+    border: "solid 1px #183A1D",
+    backgroundColor: "#faf9f0",
   };
   const {
     ready,
@@ -47,7 +49,7 @@ const MapSearch = ({ panTo }) => {
         }
       }}
     >
-      <ComboboxInput
+      <Input
         style={inputStyle}
         value={value}
         onChange={(ev) => setValue(ev.target.value)}
@@ -65,3 +67,9 @@ const MapSearch = ({ panTo }) => {
 };
 
 export default MapSearch;
+
+const Input = styled(ComboboxInput)`
+  &::placeholder {
+    color: #183a1d;
+  }
+`;

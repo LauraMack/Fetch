@@ -60,7 +60,8 @@ export default CategoryPage;
 const Main = styled.div`
   margin: 0 auto;
   width: 100vw;
-  height: 100vh;
+  height: max-content;
+  background-color: #e1eedd;
 `;
 
 const SearchDiv = styled.div`
@@ -71,7 +72,7 @@ const SearchDiv = styled.div`
   text-align: center;
   font-weight: bold;
   font-size: 24px;
-  color: gray;
+  color: #183a1d;
 `;
 
 const UserDiv = styled.div`

@@ -137,14 +137,12 @@ const Image = styled.img`
 
 const AdsDiv = styled.div`
   display: flex;
-  background-color: #40916c;
-  border-top: solid 1px #d3d3d3;
+  background-color: #e1eedd;
   height: max-content;
   width: 1000px;
   flex-direction: column;
   margin: 0 auto;
   margin-top: 25px;
-  border: solid 1px #d3d3d3;
   border-radius: 5px;
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
     rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
@@ -159,18 +157,18 @@ const Info = styled.div`
 
 const From = styled.p`
   font-size: 12px;
-  color: #e1eedd;
+  color: #183a1d;
 `;
 
 const Timestamp = styled.p`
   font-size: 12px;
-  color: #e1eedd;
+  color: #183a1d;
 `;
 
 const Body = styled.p`
   margin-left: 10px;
   font-size: 14px;
-  color: #e1eedd;
+  color: #183a1d;
 `;
 
 const Form = styled.form`
@@ -188,9 +186,11 @@ const SendMsgBtnDiv = styled.div`
 `;
 
 const SendBtn = styled.button`
+  position: relative;
+  left: 200px;
   margin: 10px;
-  background-color: #81b29a;
-  color: #faf9f0;
+  background-color: #40916c;
+  color: #e1eedd;
   border: none;
   border-radius: 5px;
   font-size: 1em;
@@ -198,7 +198,8 @@ const SendBtn = styled.button`
   cursor: pointer;
   width: 100px;
   &:hover {
-    background-color: #5b9e82;
+    background-color: #f6c453;
+    color: #183a1d;
   }
 `;
 
@@ -206,8 +207,9 @@ const Cancel = styled.button`
   position: relative;
   z-index: 10;
   margin: 10px;
-  background-color: #e07a5f;
-  color: #faf9f0;
+  right: 200px;
+  background-color: #40916c;
+  color: #e1eedd;
   border: none;
   border-radius: 5px;
   font-size: 1em;
@@ -215,20 +217,9 @@ const Cancel = styled.button`
   cursor: pointer;
   width: 100px;
   &:hover {
-    background-color: #ee7257;
+    background-color: #f6c453;
+    color: #183a1d;
   }
-`;
-
-const ReviewDiv = styled.div`
-  display: flex;
-  border-top: solid 1px #d3d3d3;
-  height: max-content;
-  width: 1000px;
-  flex-direction: column;
-  margin: 0 auto;
-  margin-top: 25px;
-  border: solid 1px #d3d3d3;
-  border-radius: 5px;
 `;
 
 const Input = styled.input`
@@ -237,6 +228,12 @@ const Input = styled.input`
   font-size: 20px;
   text-align: center;
   margin-top: 25px;
+  background-color: #faf9f0;
+  border: solid 1px #183a1d;
+  border-radius: 5px;
+  &::placeholder {
+    color: #183a1d;
+  }
 `;
 
 const ErrorMessage = styled.p`
@@ -250,4 +247,6 @@ const ErrorMessage = styled.p`
 const Title = styled.h1`
   margin-top: 20px;
   padding: 20px;
+  color: #183a1d;
+  font-size: 24px;
 `;
