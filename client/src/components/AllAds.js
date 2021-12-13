@@ -8,12 +8,12 @@ import { CurrentUserContext } from "./CurrentUserContext";
 import dog from "../assets/dog2.png";
 
 const AllAds = () => {
-  const { allUsers, setAllUsers } = useContext(UsersContext);
+  const { allUsers, setAllUsers, adsUpdated, setAdsUpdated } =
+    useContext(UsersContext);
   const { currentUser, error, setError, myProfile, setMyProfile } =
     useContext(CurrentUserContext);
   const [allAds, setAllAds] = useState([]);
   const [newAd, setNewAd] = useState("");
-  const [adsUpdated, setAdsUpdated] = useState(false);
 
   useEffect(() => {
     let adsArray = [];
@@ -83,16 +83,19 @@ const AllAds = () => {
           Need help with your pets? Post an ad to see if anyone can lend a hand.
         </Title>
         <Input
+          value={newAd}
           onChange={handleAdChange}
           type="text"
           placeholder="What are you looking for?"
         ></Input>
         <SendMsgBtnDiv>
-          <Cancel>Cancel</Cancel>
-          <SendBtn type="submit">Submit</SendBtn>
+          <SendBtn type="submit" disabled={newAd === ""}>
+            Submit
+          </SendBtn>
           {error !== "" && <ErrorMessage>{error}</ErrorMessage>}
         </SendMsgBtnDiv>
       </Form>
+      <Cancel>Cancel</Cancel>
       <img src={dog} />
       <Title>Recent ads</Title>
       {allAds &&
@@ -187,7 +190,7 @@ const SendMsgBtnDiv = styled.div`
 
 const SendBtn = styled.button`
   position: relative;
-  left: 200px;
+  left: 710px;
   margin: 10px;
   background-color: #40916c;
   color: #e1eedd;
@@ -197,6 +200,7 @@ const SendBtn = styled.button`
   padding: 10px;
   cursor: pointer;
   width: 100px;
+  opacity: ${(props) => (props.disabled ? "0.4" : "1")};
   &:hover {
     background-color: #f6c453;
     color: #183a1d;
@@ -206,8 +210,9 @@ const SendBtn = styled.button`
 const Cancel = styled.button`
   position: relative;
   z-index: 10;
+  bottom: 180px;
+  left: 208px;
   margin: 10px;
-  right: 200px;
   background-color: #40916c;
   color: #e1eedd;
   border: none;

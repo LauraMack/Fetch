@@ -1,9 +1,10 @@
 import React, { useEffect, useContext, useState } from "react";
 import styled from "styled-components";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { UsersContext } from "./UsersContext";
-import { IoStarOutline } from "react-icons/io5";
+import { IoStarSharp } from "react-icons/io5";
 import { FiCheckCircle } from "react-icons/fi";
+import { FaRegTimesCircle } from "react-icons/fa";
 import { CurrentUserContext } from "./CurrentUserContext";
 import placeholder from "../assets/placeholder-image2.jpeg";
 import Rating from "./Rating";
@@ -11,7 +12,7 @@ import moment from "moment";
 import { v4 as uuidv4 } from "uuid";
 
 const UserProfile = () => {
-  const { profile, setProfile } = useContext(UsersContext);
+  const { profile, setProfile, rating, setRating } = useContext(UsersContext);
   const { currentUser, error, setError } = useContext(CurrentUserContext);
   const { profileId } = useParams();
   const [newReview, setNewReview] = useState("");
@@ -19,12 +20,16 @@ const UserProfile = () => {
 
   console.log(currentUser.data.name);
 
+  console.log(profile.openToTrading);
+
+  let history = useHistory();
+
   useEffect(() => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-      transition: "all 0.5s ease 0s",
-    });
+    // window.scrollTo({
+    //   top: 0,
+    //   behavior: "smooth",
+    //   transition: "all 0.5s ease 0s",
+    // });
     fetch(`/profile/${profileId}`)
       .then((res) => res.json())
       .then((data) => {
@@ -32,10 +37,10 @@ const UserProfile = () => {
       });
   }, [profileId, reviewsUpdated]);
 
-  console.log(profile.reviews);
+  console.log(profile);
 
   const starRating = {
-    star: IoStarOutline,
+    star: IoStarSharp,
   };
 
   const handleReviewChange = (ev) => {
@@ -71,22 +76,14 @@ const UserProfile = () => {
         }
       });
   };
-
+  console.log(newReview);
   return (
     profile && (
       <Wrapper>
         <Div>
           <CoverDiv></CoverDiv>
           <Whitespace></Whitespace>
-          <ContactDiv>
-            <button>Contact {profile.name}</button>
-            <div>
-              <p>
-                <FiCheckCircle />
-                Open to trading
-              </p>
-            </div>
-          </ContactDiv>
+          <div></div>
           <Image src={profile.avatar} />
           <Name>{profile.name}</Name>
           <RatingDiv>
@@ -96,40 +93,87 @@ const UserProfile = () => {
             })}
           </RatingDiv>
           <Bio>{profile.bio}</Bio>
-          {profile.reviews.map((i) => {
-            return (
-              <HomeFeedDiv>
-                <Info>
-                  <Placeholder src={placeholder} />
-                  <From>{i.from}</From>
-                  <Timestamp>{i.timestamp}</Timestamp>
-                </Info>
-                <ReviewRating>
-                  {i.rating.map((star) => {
-                    const icon = starRating[star];
-                    return <Star>{icon ? icon() : null}</Star>;
-                  })}
-                </ReviewRating>
-                <Body>{i.body}</Body>
-              </HomeFeedDiv>
-            );
-          })}
+          {profile.openToTrading === true ? (
+            <Trade>
+              <Check />
+              Open to trading
+            </Trade>
+          ) : (
+            <Trade>
+              <Ex />
+              {profile.name} isn't currently available to trade their time.
+            </Trade>
+          )}
+          <InfoContainer>
+            <ForteDiv>
+              <ForteTitle>{profile.name}'s Fortes:</ForteTitle>
+              {profile.forte.map((skill) => {
+                return (
+                  <Forte
+                    onClick={(ev) => {
+                      ev.preventDefault();
+                      history.push(`/category/${skill}`);
+                    }}
+                    key={Math.floor(Math.random() * 1000000000000000)}
+                  >
+                    {skill}
+                  </Forte>
+                );
+              })}
+            </ForteDiv>
+            <InfoDiv>
+              <Contact>Contact {profile.name}</Contact>
+
+              <AdsButton>{profile.name}'s Ads</AdsButton>
+            </InfoDiv>
+          </InfoContainer>
         </Div>
+        <TitleDiv>
+          <ReviewsTitle>User Reviews</ReviewsTitle>
+        </TitleDiv>
+        {profile.reviews.map((i) => {
+          return (
+            <ReviewsDiv>
+              <Info>
+                <Placeholder src={placeholder} />
+                <From>{i.from}</From>
+                <Timestamp>{i.timestamp}</Timestamp>
+              </Info>
+              <ReviewRating>
+                {i.rating.map((star) => {
+                  const icon = starRating[star];
+                  return <Star>{icon ? icon() : null}</Star>;
+                })}
+              </ReviewRating>
+              <Body>{i.body}</Body>
+            </ReviewsDiv>
+          );
+        })}
+
         <ReviewDiv>
           <Form onSubmit={handleReviewSubmit}>
-            <p>Leave a Review</p>
+            <LeaveRvw>Leave a Review</LeaveRvw>
             <Rating />
             <Input
               type="text"
               placeholder="write your review"
               onChange={handleReviewChange}
+              value={newReview}
             ></Input>
             <SendMsgBtnDiv>
-              <Cancel>Cancel</Cancel>
-              <SendBtn type="submit">Submit</SendBtn>
+              <SendBtn type="submit" disabled={newReview === ""}>
+                Submit
+              </SendBtn>
               {error !== "" && <ErrorMessage>{error}</ErrorMessage>}
             </SendMsgBtnDiv>
           </Form>
+          <Cancel
+            onClick={() => {
+              setNewReview("");
+            }}
+          >
+            Cancel
+          </Cancel>
         </ReviewDiv>
       </Wrapper>
     )
@@ -140,14 +184,14 @@ export default UserProfile;
 
 const Wrapper = styled.div`
   font-family: "Raleway";
-  background-color: #faf9f0;
+  background-color: #e1eedd;
   height: max-content;
   width: 100vw;
 `;
 
 const Div = styled.div`
-  background-color: #faf9f0;
-  height: max-content;
+  background-color: #e1eedd;
+  height: 850px;
   width: 1000px;
   margin: 0 auto;
   margin-top: 100px;
@@ -155,19 +199,97 @@ const Div = styled.div`
   border-width: 1px;
   border-color: #d3d3d3;
   border-radius: 5px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+`;
+
+const InfoContainer = styled.div`
+  display: flex;
+  width: 1000px;
+  justify-content: space-evenly;
+  position: relative;
+  top: -160px;
+  left: 50px;
+  height: 400px;
+`;
+
+const LeaveRvw = styled.p`
+  color: #183a1d;
+  font-size: 18px;
+`;
+
+const ForteTitle = styled.p`
+  color: #183a1d;
+`;
+
+const InfoDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  margin-top: 20px;
+`;
+
+const ReviewsDiv = styled.div`
+  background-color: #e1eedd;
+  height: max-content;
+  width: 1000px;
+  margin: 0 auto;
+  margin-top: 20px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #d3d3d3;
+  border-radius: 5px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+`;
+const TitleDiv = styled.div`
+  width: 1000px;
+  text-align: center;
+  margin: 0 auto;
+`;
+const ReviewsTitle = styled.h2`
+  color: #183a1d;
+  margin-top: 50px;
+  margin-bottom: 50px;
+`;
+const ReviewDiv = styled.div`
+  background-color: #e1eedd;
+  height: max-content;
+  width: 1000px;
+  margin: 0 auto;
+  margin-top: 20px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #d3d3d3;
+  border-radius: 5px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 `;
 
 const CoverDiv = styled.div`
   height: 200px;
   position: relative;
-  background-color: lightsteelblue;
+  background-color: #40916c;
+  border-radius: 5px;
 `;
 
 const Whitespace = styled.div`
   height: 40px;
   position: relative;
-  background-color: #faf9f0;
+  background-color: #e1eedd;
   top: -25px;
+`;
+
+const AdsButton = styled.button`
+  background-color: #40916c;
+  border: solid 1px #183a1d;
+  border-radius: 5px;
+  color: #e1eedd;
+  padding: 20px;
+  &:hover {
+    background-color: #f6c453;
+    color: #183a1d;
+  }
 `;
 
 const Image = styled.img`
@@ -181,7 +303,7 @@ const Image = styled.img`
 `;
 
 const Name = styled.h2`
-  color: #3d405b;
+  color: #183a1d;
   width: 500px;
   position: relative;
   text-align: center;
@@ -197,8 +319,8 @@ const Bio = styled.h3`
   text-align: center;
   font-size: 16px;
   left: 230px;
-  top: -150px;
-  color: #3d405b;
+  top: -180px;
+  color: #183a1d;
 `;
 
 const RatingDiv = styled.div`
@@ -213,65 +335,82 @@ const RatingDiv = styled.div`
   top: -140px;
 `;
 const Star = styled.p`
-  margin: 0;
-  color: #edb230;
+  margin-top: 0;
+  position: relative;
+  right: 10px;
+  color: #f6c453;
+  font-size: 24px;
 `;
 
-const ContactDiv = styled.div`
+const ForteDiv = styled.div`
   display: flex;
-  width: 900px;
-  margin: 0 auto;
-  justify-content: space-between;
+  flex-direction: column;
+  width: 200px;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  top: -100px;
 `;
 
-const Forte = styled.h3`
-  margin-bottom: 40px;
-  padding: 15px;
+const Contact = styled.button`
+  background-color: #40916c;
+  border: solid 1px #183a1d;
+  border-radius: 5px;
+  color: #e1eedd;
+  padding: 20px;
+  margin-bottom: 10px;
+  margin-top: 40px;
+  &:hover {
+    background-color: #f6c453;
+    color: #183a1d;
+  }
+`;
+
+const Forte = styled.li`
+  list-style-type: none;
+  font-size: 14px;
+  background-color: #40916c;
+  border-radius: 5px;
+  width: 400px;
+  margin: 5px;
+  padding: 5px;
+  text-align: center;
+  cursor: pointer;
+  color: #e5ebea;
+  &:hover {
+    color: #183a1d;
+    background-color: #f6c453;
+  }
+`;
+
+const Trade = styled.p`
+  color: #183a1d;
   border-radius: 15px;
   width: 500px;
   position: relative;
-  left: 400px;
-  top: -150px;
   text-align: center;
   font-size: 16px;
+  left: 230px;
+  top: -180px;
+  color: #183a1d;
 `;
 
-const Underline = styled.div`
-  border-bottom: 1px solid lightgray;
-  border-top: none;
-  border-right: none;
-  border-left: none;
-  height: 10px;
+const Check = styled(FiCheckCircle)`
+  padding: 5px;
   position: relative;
-  top: -140px;
-  width: 900px;
-  margin: 0 auto;
+  top: 8px;
+`;
+
+const Ex = styled(FaRegTimesCircle)`
+  padding: 5px;
+  position: relative;
+  top: 8px;
 `;
 
 const ReviewRating = styled.div`
   display: flex;
   width: 280px;
   justify-content: center;
-`;
-
-const HomeFeedDiv = styled.div`
-  display: flex;
-  border-top: solid 1px #d3d3d3;
-  height: max-content;
-  width: 1000px;
-  flex-direction: column;
-`;
-
-const ReviewDiv = styled.div`
-  display: flex;
-  border-top: solid 1px #d3d3d3;
-  height: max-content;
-  width: 1000px;
-  flex-direction: column;
-  margin: 0 auto;
-  margin-top: 25px;
-  border: solid 1px #d3d3d3;
-  border-radius: 5px;
 `;
 
 const Placeholder = styled.img`
@@ -289,23 +428,36 @@ const Info = styled.div`
 
 const From = styled.p`
   font-size: 12px;
-  color: #3d405b;
+  color: #183a1d;
 `;
 
 const Timestamp = styled.p`
   font-size: 12px;
-  color: #3d405b;
+  color: #183a1d;
 `;
 
 const Body = styled.p`
   margin-left: 10px;
   font-size: 14px;
-  color: #3d405b;
+  color: #183a1d;
+  margin-top: 0;
 `;
 
 const Input = styled.input`
   height: 100px;
-  width: 600px;
+  width: 800px;
+  text-align: center;
+  font-size: 16px;
+  background-color: #faf9f0;
+  border: solid 1px #183a1d;
+  border-radius: 5px;
+  &:focus {
+    outline: none;
+    border: solid 2px #40916c;
+  }
+  &::placeholder {
+    color: #183a1d;
+  }
 `;
 
 const Form = styled.form`
@@ -323,24 +475,31 @@ const SendMsgBtnDiv = styled.div`
 `;
 
 const SendBtn = styled.button`
+  position: relative;
+  left: 610px;
   margin: 10px;
-  background-color: #81b29a;
-  color: #faf9f0;
+  background-color: #40916c;
+  color: #e1eedd;
   border: none;
   border-radius: 5px;
   font-size: 1em;
   padding: 10px;
   cursor: pointer;
   width: 100px;
+  opacity: ${(props) => (props.disabled ? "0.4" : "1")};
   &:hover {
-    background-color: #5b9e82;
+    background-color: #f6c453;
+    color: #183a1d;
   }
 `;
 
 const Cancel = styled.button`
+  position: relative;
+  bottom: 60px;
+  left: 88px;
   margin: 10px;
-  background-color: #e07a5f;
-  color: #faf9f0;
+  background-color: #40916c;
+  color: #e1eedd;
   border: none;
   border-radius: 5px;
   font-size: 1em;
@@ -348,7 +507,8 @@ const Cancel = styled.button`
   cursor: pointer;
   width: 100px;
   &:hover {
-    background-color: #ee7257;
+    background-color: #f6c453;
+    color: #183a1d;
   }
 `;
 

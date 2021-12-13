@@ -1,12 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import styled from "styled-components";
 import { IoStarHalfOutline } from "react-icons/io5";
 import { IoStarSharp } from "react-icons/io5";
 import { IoStarOutline } from "react-icons/io5";
+import { UsersContext } from "./UsersContext";
 
 const Rating = () => {
-  const [rating, setRating] = useState(1);
+  const { rating, setRating } = useContext(UsersContext);
+  let ratingArray = [...Array(5)];
+  console.log(ratingArray);
+  console.log(rating);
 
+  const handleRating = (ev) => {
+    setRating(ev.target.value);
+  };
+
+  console.log(rating);
   return (
     <Div>
       {[...Array(5)].map((star, index) => {
@@ -17,12 +26,11 @@ const Rating = () => {
               type="radio"
               name="rating"
               value={ratingValue}
-              onClick={() => {
-                setRating(ratingValue);
-                console.log(rating);
-              }}
+              onClick={handleRating}
             />
-            <StyledStarOutline />
+            <StyledFullStar
+              style={{ color: ratingValue <= rating ? "#f6c453" : "#40916c" }}
+            />
           </label>
         );
       })}
@@ -50,5 +58,5 @@ const StyledStarOutline = styled(IoStarOutline)`
 `;
 
 const Input = styled.input`
-  display: none;
+  visibility: hidden;
 `;

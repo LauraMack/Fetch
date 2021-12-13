@@ -179,6 +179,7 @@ export default Homepage;
 const Wrapper = styled.div`
   font-family: "Lora";
   height: max-content;
+  background-color: #e1eedd;
   width: 100vw;
 `;
 const Searchdiv = styled.div`

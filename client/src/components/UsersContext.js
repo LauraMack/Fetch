@@ -9,6 +9,8 @@ export const UsersProvider = ({ children }) => {
   const [currentLatitude, setCurrentLatitude] = useState(null);
   const [currentLongitude, setCurrentLongitude] = useState(null);
   const [orderedUsers, setOrderedUsers] = useState(null);
+  const [adsUpdated, setAdsUpdated] = useState(false);
+  const [rating, setRating] = useState(0);
 
   useEffect(() => {
     fetch("/users")
@@ -27,7 +29,7 @@ export const UsersProvider = ({ children }) => {
           console.log(sliced, "ordered slice");
         }
       });
-  }, [orderedUsers]);
+  }, [orderedUsers, adsUpdated]);
 
   return (
     <UsersContext.Provider
@@ -44,6 +46,10 @@ export const UsersProvider = ({ children }) => {
         setCurrentLongitude,
         orderedUsers,
         setOrderedUsers,
+        adsUpdated,
+        setAdsUpdated,
+        rating,
+        setRating,
       }}
     >
       {children}
