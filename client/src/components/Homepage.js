@@ -6,8 +6,8 @@ import User from "./User";
 import { useContext } from "react";
 import { UsersContext } from "./UsersContext";
 import { CurrentUserContext } from "./CurrentUserContext";
-import Loading from "./Loading";
 import dogWalker from "../assets/dog-walkers2.png";
+import atHome from "../assets/at-home.png";
 
 const Homepage = ({ result, setResult }) => {
   const {
@@ -128,13 +128,6 @@ const Homepage = ({ result, setResult }) => {
 
   return (
     <Wrapper>
-      {currentUser && (
-        <LocationDiv>
-          <LocationButton onClick={handleLocationSet}>
-            Set My location
-          </LocationButton>
-        </LocationDiv>
-      )}
       <ImageContainer>
         <DogWalker src={dogWalker} />
       </ImageContainer>
@@ -144,6 +137,18 @@ const Homepage = ({ result, setResult }) => {
       <CategoryDiv>
         <Categories result={result} setResult={setResult} />
       </CategoryDiv>
+      {currentUser && (
+        <LocationDiv>
+          <HomeImage src={atHome} />
+          <LocationHeader>
+            Help us find users near you at the click of a button by setting your
+            location below.
+          </LocationHeader>
+          <LocationButton onClick={handleLocationSet}>
+            Set My location
+          </LocationButton>
+        </LocationDiv>
+      )}
       {orderedUsers !== null ? (
         <UserHeader>Users near you:</UserHeader>
       ) : (
@@ -215,7 +220,18 @@ const UserHeader = styled.div`
   text-align: center;
   color: #183a1d;
   margin: 0 auto;
-  margin-top: 230px;
+  margin-top: 150px;
+  font-weight: bold;
+  font-size: 18px;
+`;
+
+const LocationHeader = styled.div`
+  height: 50px;
+  width: 1000px;
+  text-align: center;
+  color: #183a1d;
+  margin: 0 auto;
+  margin-top: 50px;
   font-weight: bold;
   font-size: 18px;
 `;
@@ -254,11 +270,12 @@ const LoadMore = styled.button`
 
 const LocationDiv = styled.div`
   display: flex;
-  justify-content: flex-end;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 250px;
 `;
 
 const LocationButton = styled.button`
-  margin: 30px;
   cursor: pointer;
   background-color: #40916c;
   color: #faf9f0;
@@ -286,4 +303,9 @@ const ImageContainer = styled.div`
   justify-content: center;
   margin: 0 auto;
   margin-top: 30px;
+`;
+
+const HomeImage = styled.img`
+  height: 300px;
+  width: 400px;
 `;

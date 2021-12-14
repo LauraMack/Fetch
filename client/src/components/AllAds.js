@@ -4,6 +4,7 @@ import { UsersContext } from "./UsersContext";
 import { Link } from "react-router-dom";
 import moment from "moment";
 import placeholder from "../assets/placeholder-image2.jpeg";
+import { IoPawSharp } from "react-icons/io5";
 import { CurrentUserContext } from "./CurrentUserContext";
 import dog from "../assets/dog2.png";
 
@@ -17,6 +18,7 @@ const AllAds = () => {
 
   useEffect(() => {
     let adsArray = [];
+    console.log(allUsers);
     if (allUsers.data) {
       allUsers.data.forEach((i) => {
         if (i.ads && i.ads.length > 0) {
@@ -39,7 +41,9 @@ const AllAds = () => {
         }
       });
     }
-  }, [adsUpdated]);
+  }, [allUsers]);
+
+  console.log(allAds);
 
   const handleAdChange = (ev) => {
     setNewAd(ev.target.value);
@@ -52,10 +56,9 @@ const AllAds = () => {
       method: "POST",
       body: JSON.stringify({
         _id: currentUser.data._id,
-        avatar:
-          "http://res.cloudinary.com/dnbqibbaq/image/upload/c_scale,w_150/v1639351122/placeholder-image2_e8rd0o.webp",
+        avatar: currentUser.data.avatar,
         name: currentUser.data.name,
-        timestamp: moment(new Date()).format("MMMM DD, YYYY"),
+        timestamp: new Date(),
         body: newAd,
       }),
       headers: {
@@ -95,26 +98,30 @@ const AllAds = () => {
           {error !== "" && <ErrorMessage>{error}</ErrorMessage>}
         </SendMsgBtnDiv>
       </Form>
-      <Cancel>Cancel</Cancel>
-      <img src={dog} />
-      <Title>Recent ads</Title>
+      <TitleDiv>
+        <img src={dog} />
+        <Title>Recent ads</Title>
+      </TitleDiv>
       {allAds &&
         allAds.map((ad) => {
           return (
             <div>
               <AdsDiv>
-                <Info>
-                  <Link to={`/profile/${ad._id}`}>
-                    <Image src={ad.avatar} />
-                  </Link>
-                  <Link to={`/profile/${ad._id}`}>
-                    <From>{ad.name}</From>
-                  </Link>
-                  <From>-</From>
-                  <Timestamp>
-                    {moment(ad.timestamp).format("MMMM DD, YYYY")}
-                  </Timestamp>
-                </Info>
+                <InfoContainer>
+                  <Info>
+                    <Link to={`/profile/${ad._id}`}>
+                      <Image src={ad.avatar} />
+                    </Link>
+                    <Link to={`/profile/${ad._id}`}>
+                      <From>{ad.name}</From>
+                    </Link>
+                    <From>-</From>
+                    <Timestamp>
+                      {moment(ad.timestamp).format("MMMM DD, YYYY")}
+                    </Timestamp>
+                  </Info>
+                  <ContactButton>Contact</ContactButton>
+                </InfoContainer>
                 <Body>{ad.body}</Body>
               </AdsDiv>
             </div>
@@ -140,7 +147,7 @@ const Image = styled.img`
 
 const AdsDiv = styled.div`
   display: flex;
-  background-color: #e1eedd;
+  background-color: #faf9f0;
   height: max-content;
   width: 1000px;
   flex-direction: column;
@@ -209,7 +216,6 @@ const SendBtn = styled.button`
 
 const Cancel = styled.button`
   position: relative;
-  z-index: 10;
   bottom: 180px;
   left: 208px;
   margin: 10px;
@@ -254,4 +260,44 @@ const Title = styled.h1`
   padding: 20px;
   color: #183a1d;
   font-size: 24px;
+`;
+
+const TitleDiv = styled.div`
+  width: 1000px;
+  display: flex;
+  margin: 0 auto;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+`;
+
+const Paw = styled.div`
+  margin-right: 20px;
+  color: #183a1d;
+  margin-top: 5px;
+  &:hover {
+    color: #183a1d;
+  }
+`;
+
+const InfoContainer = styled.div`
+  display: flex;
+  width: 1000px;
+  justify-content: space-between;
+`;
+
+const ContactButton = styled.button`
+  width: 170px;
+  height: 30px;
+  margin-top: 5px;
+  margin-right: 5px;
+  border-radius: 5px;
+  border-style: none;
+  background-color: #40916c;
+  color: #e1eedd;
+  cursor: pointer;
+  &:hover {
+    background-color: #f6c453;
+    color: #183a1d;
+  }
 `;

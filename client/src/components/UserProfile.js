@@ -25,11 +25,11 @@ const UserProfile = () => {
   let history = useHistory();
 
   useEffect(() => {
-    // window.scrollTo({
-    //   top: 0,
-    //   behavior: "smooth",
-    //   transition: "all 0.5s ease 0s",
-    // });
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+      transition: "all 0.5s ease 0s",
+    });
     fetch(`/profile/${profileId}`)
       .then((res) => res.json())
       .then((data) => {
@@ -124,7 +124,13 @@ const UserProfile = () => {
             <InfoDiv>
               <Contact>Contact {profile.name}</Contact>
 
-              <AdsButton>{profile.name}'s Ads</AdsButton>
+              <AdsButton
+                onClick={() => {
+                  history.push(`/users/ads/${profile._id}`);
+                }}
+              >
+                {profile.name}'s Ads
+              </AdsButton>
             </InfoDiv>
           </InfoContainer>
         </Div>
@@ -190,7 +196,7 @@ const Wrapper = styled.div`
 `;
 
 const Div = styled.div`
-  background-color: #e1eedd;
+  background-color: #faf9f0;
   height: 850px;
   width: 1000px;
   margin: 0 auto;
@@ -230,7 +236,7 @@ const InfoDiv = styled.div`
 `;
 
 const ReviewsDiv = styled.div`
-  background-color: #e1eedd;
+  background-color: #faf9f0;
   height: max-content;
   width: 1000px;
   margin: 0 auto;
@@ -276,7 +282,7 @@ const CoverDiv = styled.div`
 const Whitespace = styled.div`
   height: 40px;
   position: relative;
-  background-color: #e1eedd;
+  background-color: #faf9f0;
   top: -25px;
 `;
 
@@ -286,6 +292,7 @@ const AdsButton = styled.button`
   border-radius: 5px;
   color: #e1eedd;
   padding: 20px;
+  font-size: 18px;
   &:hover {
     background-color: #f6c453;
     color: #183a1d;
@@ -356,6 +363,7 @@ const Contact = styled.button`
   background-color: #40916c;
   border: solid 1px #183a1d;
   border-radius: 5px;
+  font-size: 18px;
   color: #e1eedd;
   padding: 20px;
   margin-bottom: 10px;
@@ -367,6 +375,7 @@ const Contact = styled.button`
 `;
 
 const Forte = styled.li`
+  font-family: "Lora";
   list-style-type: none;
   font-size: 14px;
   background-color: #40916c;

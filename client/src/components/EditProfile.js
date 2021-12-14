@@ -62,6 +62,7 @@ const EditProfile = () => {
       },
       body: JSON.stringify({
         _id: currentUser.data._id,
+        avatar: placeholder,
         name,
         bio,
         forte,
@@ -195,7 +196,7 @@ const Wrapper = styled.div`
 `;
 
 const Div = styled.div`
-  background-color: #e1eedd;
+  background-color: #faf9f0;
   height: 700px;
   width: 1000px;
   margin: 0 auto;

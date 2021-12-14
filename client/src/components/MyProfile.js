@@ -86,7 +86,7 @@ const Wrapper = styled.div`
 `;
 
 const Div = styled.div`
-  background-color: #e1eedd;
+  background-color: #faf9f0;
   height: 850px;
   width: 1000px;
   margin: 0 auto;
@@ -109,11 +109,6 @@ const InfoContainer = styled.div`
   height: 400px;
 `;
 
-const LeaveRvw = styled.p`
-  color: #183a1d;
-  font-size: 18px;
-`;
-
 const ForteTitle = styled.p`
   color: #183a1d;
 `;
@@ -123,43 +118,6 @@ const InfoDiv = styled.div`
   flex-direction: column;
   width: 400px;
   margin-top: 20px;
-`;
-
-const ReviewsDiv = styled.div`
-  background-color: #e1eedd;
-  height: max-content;
-  width: 1000px;
-  margin: 0 auto;
-  margin-top: 20px;
-  border-style: solid;
-  border-width: 1px;
-  border-color: #d3d3d3;
-  border-radius: 5px;
-  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
-    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
-`;
-const TitleDiv = styled.div`
-  width: 1000px;
-  text-align: center;
-  margin: 0 auto;
-`;
-const ReviewsTitle = styled.h2`
-  color: #183a1d;
-  margin-top: 50px;
-  margin-bottom: 50px;
-`;
-const ReviewDiv = styled.div`
-  background-color: #e1eedd;
-  height: max-content;
-  width: 1000px;
-  margin: 0 auto;
-  margin-top: 20px;
-  border-style: solid;
-  border-width: 1px;
-  border-color: #d3d3d3;
-  border-radius: 5px;
-  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
-    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 `;
 
 const CoverDiv = styled.div`
@@ -172,7 +130,7 @@ const CoverDiv = styled.div`
 const Whitespace = styled.div`
   height: 40px;
   position: relative;
-  background-color: #e1eedd;
+  background-color: #faf9f0;
   top: -25px;
 `;
 
@@ -183,6 +141,7 @@ const AdsButton = styled.button`
   border-radius: 5px;
   color: #e1eedd;
   padding: 20px;
+  font-size: 18px;
   &:hover {
     background-color: #f6c453;
     color: #183a1d;
@@ -249,20 +208,6 @@ const ForteDiv = styled.div`
   top: -100px;
 `;
 
-const Contact = styled.button`
-  background-color: #40916c;
-  border: solid 1px #183a1d;
-  border-radius: 5px;
-  color: #e1eedd;
-  padding: 20px;
-  margin-bottom: 10px;
-  margin-top: 40px;
-  &:hover {
-    background-color: #f6c453;
-    color: #183a1d;
-  }
-`;
-
 const Forte = styled.li`
   list-style-type: none;
   font-size: 14px;
@@ -274,6 +219,7 @@ const Forte = styled.li`
   text-align: center;
   cursor: pointer;
   color: #e5ebea;
+  font-family: "Lora";
   &:hover {
     color: #183a1d;
     background-color: #f6c453;
@@ -296,117 +242,6 @@ const Check = styled(FiCheckCircle)`
   padding: 5px;
   position: relative;
   top: 8px;
-`;
-
-const ReviewRating = styled.div`
-  display: flex;
-  width: 280px;
-  justify-content: center;
-`;
-
-const Placeholder = styled.img`
-  height: 50px;
-  width: 50px;
-  border-radius: 40px;
-`;
-
-const Info = styled.div`
-  display: flex;
-  justify-content: space-evenly;
-  width: 250px;
-  margin-top: 5px;
-`;
-
-const From = styled.p`
-  font-size: 12px;
-  color: #183a1d;
-`;
-
-const Timestamp = styled.p`
-  font-size: 12px;
-  color: #183a1d;
-`;
-
-const Body = styled.p`
-  margin-left: 10px;
-  font-size: 14px;
-  color: #183a1d;
-  margin-top: 0;
-`;
-
-const Input = styled.input`
-  height: 100px;
-  width: 800px;
-  text-align: center;
-  font-size: 16px;
-  background-color: #faf9f0;
-  border: solid 1px #183a1d;
-  border-radius: 5px;
-  &:focus {
-    outline: none;
-    border: solid 2px #40916c;
-  }
-  &::placeholder {
-    color: #183a1d;
-  }
-`;
-
-const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`;
-
-const SendMsgBtnDiv = styled.div`
-  display: flex;
-  flex-direction: row;
-  width: 630px;
-  justify-content: space-between;
-`;
-
-const SendBtn = styled.button`
-  position: relative;
-  left: 100px;
-  margin: 10px;
-  background-color: #40916c;
-  color: #e1eedd;
-  border: none;
-  border-radius: 5px;
-  font-size: 1em;
-  padding: 10px;
-  cursor: pointer;
-  width: 100px;
-  &:hover {
-    background-color: #f6c453;
-    color: #183a1d;
-  }
-`;
-
-const Cancel = styled.button`
-  position: relative;
-  right: 100px;
-  margin: 10px;
-  background-color: #40916c;
-  color: #e1eedd;
-  border: none;
-  border-radius: 5px;
-  font-size: 1em;
-  padding: 10px;
-  cursor: pointer;
-  width: 100px;
-  &:hover {
-    background-color: #f6c453;
-    color: #183a1d;
-  }
-`;
-
-const ErrorMessage = styled.p`
-  color: red;
-  font-size: 12px;
-  width: 300px;
-  text-align: center;
-  margin-top: 10px;
 `;
 
 const Skip = styled.p`

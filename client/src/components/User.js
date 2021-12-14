@@ -58,11 +58,12 @@ export default User;
 const Div = styled.div`
   border-radius: 15px;
   cursor: pointer;
+  margin-left: 20px;
 `;
 
 const Wrapper = styled.div`
   margin: 30px;
-  background-color: #e1eedd;
+  background-color: #faf9f0;
   display: flex;
   justify-content: center;
   align-items: center;

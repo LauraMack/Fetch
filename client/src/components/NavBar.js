@@ -1,10 +1,10 @@
-import React, { useContext, useRef } from "react";
+import React, { useContext, useRef, useEffect } from "react";
 import { CurrentUserContext } from "./CurrentUserContext";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { useHistory } from "react-router";
 
-const NavBar = () => {
+const NavBar = ({ open, setOpen }) => {
   const { currentUser, setCurrentUser, setSignedIn, myProfile, setMyProfile } =
     useContext(CurrentUserContext);
 

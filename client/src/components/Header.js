@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useRef } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -8,18 +8,12 @@ import { RiMenuLine } from "react-icons/ri";
 import { RiArrowDropDownLine } from "react-icons/ri";
 
 const Header = () => {
-  const { user } = useAuth0();
   const { currentUser } = useContext(CurrentUserContext);
-
-  console.log(currentUser);
-
   const [open, setOpen] = useState(false);
-  const [dropdown, setDropdown] = useState(false);
 
   const handleDropdownClick = () => {
     setOpen(!open);
   };
-
   return (
     <div>
       {currentUser === null ? (
@@ -29,10 +23,10 @@ const Header = () => {
           </HomeLink>
           <Nav>
             <SigninLink to={"/signin"}>
-              <Signin>sign in</Signin>
+              <Signin>Sign in</Signin>
             </SigninLink>
             <SignupLink to={"/signup"}>
-              <Signup>sign up</Signup>
+              <Signup>Sign up</Signup>
             </SignupLink>
           </Nav>
         </Div>
@@ -52,7 +46,7 @@ const Header = () => {
               <DropdownButton onClick={handleDropdownClick}>
                 {open ? <RiArrowDropDownLine /> : <RiMenuLine />}
               </DropdownButton>
-              {open && <NavBar />}
+              {open && <NavBar open={open} setOpen={setOpen} />}
             </DropdownContainer>
           </Nav>
         </Div>

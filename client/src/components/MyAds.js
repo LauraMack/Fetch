@@ -139,4 +139,8 @@ const PostAd = styled.button`
   border-style: none;
   color: #e1eedd;
   cursor: pointer;
+  &:hover {
+    background-color: #f6c453;
+    color: #183a1d;
+  }
 `;

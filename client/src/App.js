@@ -14,6 +14,7 @@ import Header from "./components/Header";
 import SearchResults from "./components/SearchResults";
 import CategoryPage from "./components/CategoryPage";
 import Map from "./components/Map/Map";
+import UserAds from "./components/UserAds";
 
 const App = ({ profileId }) => {
   const [result, setResult] = useState(null);
@@ -31,6 +32,9 @@ const App = ({ profileId }) => {
           </Route>
           <Route exact path="/all-ads">
             <AllAds profileId={profileId} />
+          </Route>
+          <Route exact path="/users/ads/:id">
+            <UserAds />
           </Route>
           <Route exact path="/signin">
             <Signin />

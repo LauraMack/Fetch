@@ -7,6 +7,7 @@ const {
   getExistingUser,
   addReview,
   addAd,
+  getUserAdsByUserId,
 } = require("./handlers");
 
 // import the needed node_modules.
@@ -26,6 +27,7 @@ express()
   // endpoints are added below
   .get("/users", getAllUsers)
   .get("/profile/:_id", getUserById)
+  .get("/users/ads/:_id", getUserAdsByUserId)
   .post("/users/:email", getExistingUser)
   .post("/users", addNewUser)
   .post("/all-ads", addAd)
