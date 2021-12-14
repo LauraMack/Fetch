@@ -28,12 +28,14 @@ const GlobalStyles = createGlobalStyle`
 
 
   h1, h2, h3, h4, h5, h6, button {
-    font-family: "Lora"
+    font-family: "Lora";
+    transition: 0.3s ease-in-out;
   }
 
   p, textarea {
     font-family: "Lora";
     color: #3d405b;
+    transition: 0.3s ease-in-out;
   }
 
   input {
@@ -44,6 +46,10 @@ const GlobalStyles = createGlobalStyle`
       list-style: none;
       padding: 0;
       color: #3d405b;
+  }
+
+  li {
+    transition: 0.3s ease-in-out;
   }
 
 

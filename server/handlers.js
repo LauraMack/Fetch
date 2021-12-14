@@ -140,7 +140,7 @@ const addReview = async (req, res) => {
             _id: req.body._id,
             from: req.body.from,
             timestamp: req.body.timestamp,
-            rating: ["star", "star", "star", "star", "star"],
+            rating: req.body.rating,
             body: req.body.body,
           },
         },

@@ -26,11 +26,11 @@ const UserProfile = () => {
   let history = useHistory();
 
   useEffect(() => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-      transition: "all 0.5s ease 0s",
-    });
+    // window.scrollTo({
+    //   top: 0,
+    //   behavior: "smooth",
+    //   transition: "all 0.5s ease 0s",
+    // });
     fetch(`/profile/${profileId}`)
       .then((res) => res.json())
       .then((data) => {
@@ -59,7 +59,7 @@ const UserProfile = () => {
         avatar: myProfile.data.avatar,
         from: currentUser.data.name,
         timestamp: moment(new Date()).format("MMMM DD, YYYY"),
-        rating: ["star", "star", "star", "star", "star"],
+        rating: ratingArray,
         body: newReview,
       }),
       headers: {
@@ -78,7 +78,9 @@ const UserProfile = () => {
         }
       });
   };
-  console.log(newReview);
+  let ratingArray = [];
+  ratingArray.length = rating;
+  console.log(ratingArray);
   return (
     profile && (
       <Wrapper>
@@ -152,13 +154,13 @@ const UserProfile = () => {
                 />
                 <From>{i.from}</From>
                 <Timestamp>{i.timestamp}</Timestamp>
+                <ReviewRating>
+                  {i.rating.map((star) => {
+                    const icon = starRating.star;
+                    return <Star>{icon()}</Star>;
+                  })}
+                </ReviewRating>
               </Info>
-              <ReviewRating>
-                {i.rating.map((star) => {
-                  const icon = starRating[star];
-                  return <Star>{icon ? icon() : null}</Star>;
-                })}
-              </ReviewRating>
               <Body>{i.body}</Body>
             </ReviewsDiv>
           );
@@ -351,6 +353,7 @@ const RatingDiv = styled.div`
 `;
 const Star = styled.p`
   margin-top: 0;
+  margin-bottom: 0;
   position: relative;
   right: 10px;
   color: #f6c453;
@@ -426,8 +429,9 @@ const Ex = styled(FaRegTimesCircle)`
 
 const ReviewRating = styled.div`
   display: flex;
-  width: 280px;
-  justify-content: center;
+  position: relative;
+  top: 5px;
+  height: 30px;
 `;
 
 const Placeholder = styled.img`
@@ -438,26 +442,30 @@ const Placeholder = styled.img`
 
 const Info = styled.div`
   display: flex;
-  justify-content: space-evenly;
-  width: 250px;
+  width: 400px;
   margin-top: 5px;
 `;
 
 const From = styled.p`
   font-size: 12px;
   color: #183a1d;
+  margin-bottom: 0;
+  width: 100px;
+  margin-left: 10px;
 `;
 
 const Timestamp = styled.p`
   font-size: 12px;
   color: #183a1d;
+  margin-bottom: 0;
+  width: 200px;
 `;
 
 const Body = styled.p`
   margin-left: 10px;
   font-size: 14px;
   color: #183a1d;
-  margin-top: 0;
+  margin-top: 15px; ;
 `;
 
 const Input = styled.input`

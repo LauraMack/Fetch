@@ -32,14 +32,14 @@ const Header = () => {
           <HomeLink to={"/"}>
             <Title>Fetch</Title>
           </HomeLink>
-          <Nav>
+          <NavDiv>
             <SigninLink to={"/signin"}>
               <Signin>Sign in</Signin>
             </SigninLink>
             <SignupLink to={"/signup"}>
               <Signup>Sign up</Signup>
             </SignupLink>
-          </Nav>
+          </NavDiv>
         </Div>
       ) : (
         <Div>
@@ -63,12 +63,6 @@ const Header = () => {
               <Profile>My Profile</Profile>
             </ProfileLink>
             <Signout onClick={handleSignOut}>Sign Out</Signout>
-            {/* <DropdownContainer>
-              <DropdownButton onClick={handleDropdownClick}>
-                {open ? <RiArrowDropDownLine /> : <RiMenuLine />}
-              </DropdownButton>
-              {open && <NavBar open={open} setOpen={setOpen} />}
-            </DropdownContainer> */}
           </Nav>
         </Div>
       )}
@@ -96,9 +90,11 @@ const Nav = styled.div`
   width: 400px;
 `;
 
-const DropdownContainer = styled.div`
-  position: relative;
-  display: inline-block;
+const NavDiv = styled.div`
+  display: flex;
+  margin-right: 30px;
+  justify-content: space-evenly;
+  width: 220px;
 `;
 
 const Title = styled.h1`
@@ -185,21 +181,6 @@ const MapLink = styled(Link)`
 
 const ProfileLink = styled(Link)`
   text-decoration: none;
-`;
-
-const DropdownButton = styled.button`
-  margin-right: 30px;
-  margin-top: 15px;
-  cursor: pointer;
-  position: relative;
-  z-index: 10;
-  padding: 0;
-  width: 80px;
-  border: 0;
-  background-color: #e1eedd;
-  color: #183a1d;
-  outline: 0;
-  font-size: 23px;
 `;
 
 const Signout = styled.button`

@@ -2,6 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { useEffect, useContext, useState } from "react";
 import { UsersContext } from "./UsersContext";
+import NoResultsFound from "./NoResultsFound";
 import styled from "styled-components";
 import User from "./User";
 
@@ -51,19 +52,24 @@ const SearchResults = ({ result, setResult, profileId }) => {
   }, [searchResult]);
 
   console.log(matchingResults, "matching results");
-
-  return (
-    matchingResults && (
+  if (matchingResults <= 0) {
+    return <NoResultsFound searchResult={searchResult} />;
+  } else {
+    return (
       <Main>
-        <SearchDiv>Search results for "{searchResult}"</SearchDiv>
-        <UserDiv>
-          {matchingResults.map((user) => {
-            return <User user={user} profileId={user._id} />;
-          })}
-        </UserDiv>
+        {matchingResults && (
+          <div>
+            <SearchDiv>Search results for "{searchResult}"</SearchDiv>
+            <UserDiv>
+              {matchingResults.map((user) => {
+                return <User user={user} profileId={user._id} />;
+              })}
+            </UserDiv>
+          </div>
+        )}
       </Main>
-    )
-  );
+    );
+  }
 };
 
 export default SearchResults;

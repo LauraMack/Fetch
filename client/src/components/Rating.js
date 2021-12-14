@@ -7,15 +7,13 @@ import { UsersContext } from "./UsersContext";
 
 const Rating = () => {
   const { rating, setRating } = useContext(UsersContext);
-  let ratingArray = [...Array(5)];
-  console.log(ratingArray);
-  console.log(rating);
 
   const handleRating = (ev) => {
     setRating(ev.target.value);
   };
 
   console.log(rating);
+
   return (
     <Div>
       {[...Array(5)].map((star, index) => {

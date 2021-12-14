@@ -29,7 +29,7 @@ const MyProfile = () => {
         <CoverDiv></CoverDiv>
         <Whitespace></Whitespace>
         <Link to={`/edit-profile/${currentUser.data._id}`}>
-          <Skip>edit profile</Skip>
+          <Skip>Edit profile</Skip>
         </Link>
         <Image src={myProfile.data.avatar} />
 

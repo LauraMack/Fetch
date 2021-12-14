@@ -391,7 +391,7 @@ const SaveChanges = styled.button`
   background-color: #40916c;
   font-size: 20px;
   border-style: none;
-  cursor: pointer;
+  cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
   color: #e1eedd;
   opacity: ${(props) => (props.disabled ? "0.4" : "1")};
   &:hover {
