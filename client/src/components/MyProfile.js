@@ -1,7 +1,7 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { ThemeConsumer } from "styled-components";
 import { useParams } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react";
 import placeholder from "../assets/placeholder-image2.jpeg";
 import { Link, useHistory } from "react-router-dom";
 import { CurrentUserContext } from "./CurrentUserContext";
@@ -11,10 +11,17 @@ import { FaRegTimesCircle } from "react-icons/fa";
 
 const MyProfile = () => {
   const { currentUser, myProfile } = useContext(CurrentUserContext);
-  const { id } = useParams();
   let history = useHistory();
 
-  console.log(myProfile.data.name);
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+      transition: "all 0.5s ease 0s",
+    });
+  }, []);
+
+  console.log(currentUser);
 
   return (
     <Wrapper>
@@ -24,7 +31,8 @@ const MyProfile = () => {
         <Link to={`/edit-profile/${currentUser.data._id}`}>
           <Skip>edit profile</Skip>
         </Link>
-        <Image src={placeholder} />
+        <Image src={myProfile.data.avatar} />
+
         <Name>{myProfile.data.name}</Name>
         <RatingDiv>
           <Star />
@@ -77,6 +85,12 @@ const MyProfile = () => {
   );
 };
 export default MyProfile;
+
+const Button = styled.button`
+  width: 300px;
+  position: relative;
+  z-index: 10;
+`;
 
 const Wrapper = styled.div`
   font-family: "Raleway";
@@ -257,4 +271,11 @@ const Ex = styled(FaRegTimesCircle)`
   padding: 5px;
   position: relative;
   top: 8px;
+`;
+
+const Upload = styled.p`
+  position: relative;
+  width: 250px;
+  color: #40916c;
+  text-align: center;
 `;

@@ -1,10 +1,11 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import styled from "styled-components";
 import placeholder from "../assets/placeholder-image2.jpeg";
 import placeholderPet from "../assets/placeholder-pet.png";
 import { Link } from "react-router-dom";
 import { CurrentUserContext } from "./CurrentUserContext";
 import { useHistory } from "react-router";
+import { UsersContext } from "./UsersContext";
 
 const EditProfile = () => {
   const {
@@ -20,6 +21,8 @@ const EditProfile = () => {
     openToTrading,
     setOpenToTrading,
   } = useContext(CurrentUserContext);
+  const { userUpdated, setUserUpdated } = useContext(UsersContext);
+  const [url, setUrl] = useState("");
   let history = useHistory();
 
   const handleName = (ev) => {
@@ -50,7 +53,23 @@ const EditProfile = () => {
     setForte(forteArray);
   };
 
-  console.log(forte);
+  const uploadImage = (ev) => {
+    ev.preventDefault();
+    const data = new FormData();
+    data.append("file", ev.target.files[0]);
+    data.append("upload_preset", "gbx7psse");
+    data.append("cloud_name", "dnbqibbaq");
+    console.log(data);
+    fetch("https://api.cloudinary.com/v1_1/dnbqibbaq/image/upload", {
+      method: "POST",
+      body: data,
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setUrl(data.url);
+      });
+  };
 
   const handleProfileSubmit = (ev) => {
     console.log("hello");
@@ -62,7 +81,7 @@ const EditProfile = () => {
       },
       body: JSON.stringify({
         _id: currentUser.data._id,
-        avatar: placeholder,
+        avatar: url ? url : placeholder,
         name,
         bio,
         forte,
@@ -88,18 +107,22 @@ const EditProfile = () => {
         </Link>
         <Edit>Edit Your Profile</Edit>
         <ProfileForm onSubmit={handleProfileSubmit}>
-          <Image src={placeholder} />
+          <Image src={url ? url : placeholder} />
           <InputDiv>
-            <Input type="text" placeholder="name" onChange={handleName}></Input>
+            <Input
+              type="text"
+              placeholder="name"
+              onChange={handleName}
+              required
+            ></Input>
             <Input type="text" placeholder="bio" onChange={handleBio}></Input>
           </InputDiv>
-          <UploadLink to={"#"}>
-            <Upload>Upload a photo</Upload>
-          </UploadLink>
+          <Upload>
+            <input type="file" onChange={uploadImage}></input>
+          </Upload>
           <Trade>
             We love to see pet owners helping each other out. How do you feel
-            about lending your time to others on fetch for their pet-related
-            needs?
+            about lending your time to others for their pet-related needs?
           </Trade>
           <TradeTwo>You can change this setting later.</TradeTwo>
           <AvailContainer>

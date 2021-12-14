@@ -220,7 +220,7 @@ const UserHeader = styled.div`
   text-align: center;
   color: #183a1d;
   margin: 0 auto;
-  margin-top: 150px;
+  margin-top: 100px;
   font-weight: bold;
   font-size: 18px;
 `;

@@ -1,19 +1,30 @@
 import React, { useContext, useState, useRef } from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import { CurrentUserContext } from "./CurrentUserContext";
-import NavBar from "./NavBar";
 import { RiMenuLine } from "react-icons/ri";
 import { RiArrowDropDownLine } from "react-icons/ri";
 
 const Header = () => {
-  const { currentUser } = useContext(CurrentUserContext);
-  const [open, setOpen] = useState(false);
+  const { currentUser, setCurrentUser, setSignedIn, myProfile, setMyProfile } =
+    useContext(CurrentUserContext);
 
-  const handleDropdownClick = () => {
-    setOpen(!open);
+  let history = useHistory();
+
+  const handleSignOut = (ev) => {
+    setCurrentUser(null);
+    setSignedIn(false);
+    setMyProfile(null);
+    window.sessionStorage.clear();
+    history.push("/");
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+      transition: "all 0.5s ease 0s",
+    });
   };
+
   return (
     <div>
       {currentUser === null ? (
@@ -42,12 +53,22 @@ const Header = () => {
             <MapLink to={"/map"}>
               <Map>Map</Map>
             </MapLink>
-            <DropdownContainer>
+            <ProfileLink
+              to={
+                currentUser.data
+                  ? `/my-profile/${currentUser.data._id}`
+                  : `/edit-profile/${currentUser.data._id}`
+              }
+            >
+              <Profile>My Profile</Profile>
+            </ProfileLink>
+            <Signout onClick={handleSignOut}>Sign Out</Signout>
+            {/* <DropdownContainer>
               <DropdownButton onClick={handleDropdownClick}>
                 {open ? <RiArrowDropDownLine /> : <RiMenuLine />}
               </DropdownButton>
               {open && <NavBar open={open} setOpen={setOpen} />}
-            </DropdownContainer>
+            </DropdownContainer> */}
           </Nav>
         </Div>
       )}
@@ -71,8 +92,8 @@ const Div = styled.div`
 const Nav = styled.div`
   display: flex;
   margin-right: 30px;
-  justify-content: space-evenly;
-  width: 250px;
+  justify-content: space-around;
+  width: 400px;
 `;
 
 const DropdownContainer = styled.div`
@@ -143,6 +164,17 @@ const Map = styled.p`
   }
 `;
 
+const Profile = styled.p`
+  color: #183a1d;
+  font-family: "Lora";
+  font-size: 16px;
+  margin-right: 15px;
+  font-weight: bold;
+  &:hover {
+    color: #f6c453;
+  }
+`;
+
 const AdsLink = styled(Link)`
   text-decoration: none;
 `;
@@ -151,10 +183,16 @@ const MapLink = styled(Link)`
   text-decoration: none;
 `;
 
+const ProfileLink = styled(Link)`
+  text-decoration: none;
+`;
+
 const DropdownButton = styled.button`
   margin-right: 30px;
   margin-top: 15px;
   cursor: pointer;
+  position: relative;
+  z-index: 10;
   padding: 0;
   width: 80px;
   border: 0;
@@ -162,4 +200,18 @@ const DropdownButton = styled.button`
   color: #183a1d;
   outline: 0;
   font-size: 23px;
+`;
+
+const Signout = styled.button`
+  color: #183a1d;
+  background-color: transparent;
+  border-style: none;
+  font-family: "Lora";
+  font-size: 16px;
+  font-weight: bold;
+  margin-right: 5px;
+  cursor: pointer;
+  &:hover {
+    color: #f6c453;
+  }
 `;

@@ -13,7 +13,8 @@ import { v4 as uuidv4 } from "uuid";
 
 const UserProfile = () => {
   const { profile, setProfile, rating, setRating } = useContext(UsersContext);
-  const { currentUser, error, setError } = useContext(CurrentUserContext);
+  const { currentUser, error, setError, myProfile } =
+    useContext(CurrentUserContext);
   const { profileId } = useParams();
   const [newReview, setNewReview] = useState("");
   const [reviewsUpdated, setReviewsUpdated] = useState(false);
@@ -55,6 +56,7 @@ const UserProfile = () => {
       method: "POST",
       body: JSON.stringify({
         _id: newId,
+        avatar: myProfile.data.avatar,
         from: currentUser.data.name,
         timestamp: moment(new Date()).format("MMMM DD, YYYY"),
         rating: ["star", "star", "star", "star", "star"],
@@ -141,7 +143,13 @@ const UserProfile = () => {
           return (
             <ReviewsDiv>
               <Info>
-                <Placeholder src={placeholder} />
+                <Placeholder
+                  src={
+                    i.from === myProfile.data.name
+                      ? myProfile.data.avatar
+                      : placeholder
+                  }
+                />
                 <From>{i.from}</From>
                 <Timestamp>{i.timestamp}</Timestamp>
               </Info>
