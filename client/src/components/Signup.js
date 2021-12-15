@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
 import SignInBtn from "./auth0/SignInBtn";
-import { useAuth0 } from "@auth0/auth0-react";
 import { CurrentUserContext } from "./CurrentUserContext";
 import { UsersContext } from "./UsersContext";
 import { useHistory } from "react-router";

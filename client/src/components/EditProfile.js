@@ -4,7 +4,6 @@ import placeholder from "../assets/placeholder-image2.jpeg";
 import { Link } from "react-router-dom";
 import { CurrentUserContext } from "./CurrentUserContext";
 import { useHistory } from "react-router";
-import { UsersContext } from "./UsersContext";
 
 const EditProfile = () => {
   const {

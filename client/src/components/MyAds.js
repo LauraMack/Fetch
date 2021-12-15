@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { useParams, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { CurrentUserContext } from "./CurrentUserContext";
 import dogWalker from "../assets/dog-walker.jpeg";

@@ -1,8 +1,6 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
-import { IoStarHalfOutline } from "react-icons/io5";
 import { IoStarSharp } from "react-icons/io5";
-import { IoStarOutline } from "react-icons/io5";
 import { UsersContext } from "./UsersContext";
 
 const Rating = () => {
