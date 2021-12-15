@@ -53,13 +53,7 @@ const Header = () => {
             <MapLink to={"/map"}>
               <Map>Map</Map>
             </MapLink>
-            <ProfileLink
-              to={
-                currentUser.data
-                  ? `/my-profile/${currentUser.data._id}`
-                  : `/edit-profile/${currentUser.data._id}`
-              }
-            >
+            <ProfileLink to={`/my-profile/${currentUser.data._id}`}>
               <Profile>My Profile</Profile>
             </ProfileLink>
             <Signout onClick={handleSignOut}>Sign Out</Signout>
@@ -99,7 +93,7 @@ const NavDiv = styled.div`
 
 const Title = styled.h1`
   margin-left: 30px;
-  color: #24562c;
+  color: #183a1d;
   font-family: "Lora";
   font-size: 50px;
   text-align: center;

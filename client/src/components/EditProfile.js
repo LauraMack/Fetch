@@ -102,9 +102,9 @@ const EditProfile = () => {
   return (
     <Wrapper>
       <Div>
-        <Link to={"/"}>
+        {/* <Link to={"/"}>
           <Skip>Skip this step for now</Skip>
-        </Link>
+        </Link> */}
         <Edit>Edit Your Profile</Edit>
         <ProfileForm onSubmit={handleProfileSubmit}>
           <Image src={url ? url : placeholder} />

@@ -19,18 +19,14 @@ const UserProfile = () => {
   const [newReview, setNewReview] = useState("");
   const [reviewsUpdated, setReviewsUpdated] = useState(false);
 
-  console.log(currentUser.data.name);
-
-  console.log(profile.openToTrading);
-
   let history = useHistory();
 
   useEffect(() => {
-    // window.scrollTo({
-    //   top: 0,
-    //   behavior: "smooth",
-    //   transition: "all 0.5s ease 0s",
-    // });
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+      transition: "all 0.5s ease 0s",
+    });
     fetch(`/profile/${profileId}`)
       .then((res) => res.json())
       .then((data) => {
@@ -147,7 +143,7 @@ const UserProfile = () => {
               <Info>
                 <Placeholder
                   src={
-                    i.from === myProfile.data.name
+                    myProfile && i.from === myProfile.data.name
                       ? myProfile.data.avatar
                       : placeholder
                   }
@@ -336,7 +332,7 @@ const Bio = styled.h3`
   text-align: center;
   font-size: 16px;
   left: 230px;
-  top: -180px;
+  top: -150px;
   color: #183a1d;
 `;
 
@@ -348,7 +344,7 @@ const RatingDiv = styled.div`
   margin: 0 auto;
   width: 500px;
   position: relative;
-  left: 185px;
+  left: 195px;
   top: -140px;
 `;
 const Star = styled.p`
@@ -357,7 +353,7 @@ const Star = styled.p`
   position: relative;
   right: 10px;
   color: #f6c453;
-  font-size: 24px;
+  font-size: 18px;
 `;
 
 const ForteDiv = styled.div`
@@ -411,7 +407,7 @@ const Trade = styled.p`
   text-align: center;
   font-size: 16px;
   left: 230px;
-  top: -180px;
+  top: -150px;
   color: #183a1d;
 `;
 
@@ -430,7 +426,7 @@ const Ex = styled(FaRegTimesCircle)`
 const ReviewRating = styled.div`
   display: flex;
   position: relative;
-  top: 5px;
+  top: 10px;
   height: 30px;
 `;
 
@@ -450,15 +446,15 @@ const From = styled.p`
   font-size: 12px;
   color: #183a1d;
   margin-bottom: 0;
-  width: 100px;
-  margin-left: 10px;
+  width: 60px;
+  margin-left: 15px;
 `;
 
 const Timestamp = styled.p`
   font-size: 12px;
   color: #183a1d;
   margin-bottom: 0;
-  width: 200px;
+  width: 140px;
 `;
 
 const Body = styled.p`

@@ -1,13 +1,72 @@
 import React from "react";
+import styled from "styled-components";
+import { useHistory } from "react-router";
+import dogPark from "../assets/cat-love.png";
 
 const NoResultsFound = ({ searchResult }) => {
+  let history = useHistory();
+  const handleHomeClick = () => {
+    history.push("/");
+  };
   return (
-    <div>
-      <h2>
-        <h2>Whoops...</h2>No Matching results were found for "{searchResult}"
-      </h2>
-      <button>Try again</button>
-    </div>
+    <Wrapper>
+      <Div>
+        <div>
+          <Title>Whoops...</Title>
+          <NoMatching>
+            No matching results were found for "{searchResult}"
+          </NoMatching>
+          <TryAgain onClick={handleHomeClick}>Try again</TryAgain>
+        </div>
+        <Image src={dogPark} />
+      </Div>
+    </Wrapper>
   );
 };
 export default NoResultsFound;
+
+const Wrapper = styled.div`
+  font-family: "Lora";
+  background-color: #e1eedd;
+  height: max-content;
+  width: 100vw;
+`;
+
+const Div = styled.div`
+  display: flex;
+`;
+
+const Title = styled.h2`
+  color: #183a1d;
+  margin-left: 100px;
+  margin-top: 150px;
+  font-size: 45px;
+`;
+
+const NoMatching = styled.h2`
+  color: #183a1d;
+  margin-left: 100px;
+  font-size: 25px;
+`;
+
+const TryAgain = styled.button`
+  margin-left: 100px;
+  margin-top: 20px;
+  font-size: 18px;
+  padding: 5px;
+  width: 150px;
+  border-radius: 5px;
+  border-style: none;
+  background-color: #40916c;
+  color: #e1eedd;
+  &:hover {
+    background-color: #f6c453;
+    color: #183a1d;
+  }
+`;
+
+const Image = styled.img`
+  height: 300px;
+  margin-top: 120px;
+  margin-left: 150px;
+`;

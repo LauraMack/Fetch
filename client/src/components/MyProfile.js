@@ -93,7 +93,7 @@ const Button = styled.button`
 `;
 
 const Wrapper = styled.div`
-  font-family: "Raleway";
+  font-family: "Lora";
   background-color: #e1eedd;
   height: max-content;
   width: 100vw;

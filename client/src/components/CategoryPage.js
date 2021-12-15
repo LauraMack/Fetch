@@ -3,8 +3,9 @@ import { useParams } from "react-router-dom";
 import { useEffect, useContext, useState } from "react";
 import { UsersContext } from "./UsersContext";
 import styled from "styled-components";
-import { IoStarOutline } from "react-icons/io5";
+import dog from "../assets/dog-backwards.png";
 import User from "./User";
+import Loading from "./Loading";
 
 const CategoryPage = ({ setResult, profileId }) => {
   const { allUsers } = useContext(UsersContext);
@@ -42,17 +43,20 @@ const CategoryPage = ({ setResult, profileId }) => {
     }
   }, [categoryQuery]);
 
-  return (
-    matchingCategory && (
-      <Main>
-        <SearchDiv>Category: {categoryQuery}</SearchDiv>
-        <UserDiv>
-          {matchingCategory.map((user) => {
-            return <User user={user} profileId={user._id} />;
-          })}
-        </UserDiv>
-      </Main>
-    )
+  return !matchingCategory ? (
+    <Loading />
+  ) : (
+    <Main>
+      <ImageDiv>
+        <img src={dog} />
+      </ImageDiv>
+      <SearchDiv>Category: {categoryQuery}</SearchDiv>
+      <UserDiv>
+        {matchingCategory.map((user) => {
+          return <User user={user} profileId={user._id} />;
+        })}
+      </UserDiv>
+    </Main>
   );
 };
 export default CategoryPage;
@@ -66,9 +70,9 @@ const Main = styled.div`
 
 const SearchDiv = styled.div`
   width: 1000px;
-  height: 200px;
+  height: 100px;
   margin: 0 auto;
-  margin-top: 200px;
+  margin-top: 50px;
   text-align: center;
   font-weight: bold;
   font-size: 24px;
@@ -80,4 +84,14 @@ const UserDiv = styled.div`
   width: 1000px;
   margin: 0 auto;
   flex-wrap: wrap;
+`;
+
+const ImageDiv = styled.div`
+  width: 1000px;
+  height: 100px;
+  margin: 0 auto;
+  margin-top: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;

@@ -22,6 +22,7 @@ import MapSearch from "./MapSearch";
 import mapStyles from "./mapStyles";
 import dogWalker from "../../assets/dog-walking.png";
 import { IoStarOutline } from "react-icons/io5";
+import Loading from "../Loading";
 
 const libraries = ["places"];
 const mapContainerStyle = {
@@ -93,7 +94,11 @@ const Map = () => {
 
   return (
     <div>
-      {isLoaded ? (
+      {!isLoaded ? (
+        <LoadDiv>
+          <Loading />
+        </LoadDiv>
+      ) : (
         <Wrapper>
           <MapDiv>
             <GoogleMap
@@ -158,8 +163,6 @@ const Map = () => {
             <MapSearch panTo={panTo} />
           </Div>
         </Wrapper>
-      ) : (
-        <div>{error !== "" && <ErrorMessage>{error}</ErrorMessage>}</div>
       )}
     </div>
   );
@@ -250,4 +253,11 @@ const Star = styled.p`
 
 const Rating = styled.div`
   display: flex;
+`;
+
+const LoadDiv = styled.div`
+  height: 100px;
+  width: 100px;
+  position: absolute;
+  left: 50%;
 `;

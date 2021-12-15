@@ -22,13 +22,15 @@ const Homepage = ({ result, setResult }) => {
     setOrderedUsers,
   } = useContext(UsersContext);
 
-  const { currentUser, signedIn } = useContext(CurrentUserContext);
+  const { currentUser, signedIn, myProfile } = useContext(CurrentUserContext);
 
   const [locationClicked, setLocationClicked] = useState(false);
 
   const deg2rad = (deg) => {
     return deg * (Math.PI / 180);
   };
+
+  console.log(myProfile);
 
   // get distance of users from current users
   const getDistanceFromLatLonInKm = (userId, lat1, lon1, lat2, lon2) => {
@@ -168,10 +170,7 @@ const Homepage = ({ result, setResult }) => {
         })}
       </UserDiv>
       <LoadMoreDiv>
-        <LoadMore
-          disabled={moreUsers.length === moreUsers.length - 1}
-          onClick={handleLoadMore}
-        >
+        <LoadMore disabled={moreUsers.length >= 12} onClick={handleLoadMore}>
           Load More
         </LoadMore>
       </LoadMoreDiv>
@@ -220,7 +219,7 @@ const UserHeader = styled.div`
   text-align: center;
   color: #183a1d;
   margin: 0 auto;
-  margin-top: 100px;
+  margin-top: 200px;
   font-weight: bold;
   font-size: 18px;
 `;

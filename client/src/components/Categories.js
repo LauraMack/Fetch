@@ -12,7 +12,7 @@ const Categories = ({ setResult }) => {
           onClick={(ev) => {
             ev.preventDefault();
             setResult("house-sitting");
-            history.push(`/category/house%20sitting`);
+            history.push(`/category/House%20Sitting`);
           }}
         >
           House Sitting
@@ -21,7 +21,7 @@ const Categories = ({ setResult }) => {
           onClick={(ev) => {
             ev.preventDefault();
             setResult("drop-in%20visits");
-            history.push(`/category/drop-in%20visits`);
+            history.push(`/category/Drop-in%20Visits`);
           }}
         >
           Drop-in Visits
@@ -30,7 +30,7 @@ const Categories = ({ setResult }) => {
           onClick={(ev) => {
             ev.preventDefault();
             setResult("dog%20walking");
-            history.push(`/category/dog%20walking`);
+            history.push(`/category/Dog%20Walking`);
           }}
         >
           Dog Walking
@@ -39,7 +39,7 @@ const Categories = ({ setResult }) => {
           onClick={(ev) => {
             ev.preventDefault();
             setResult("last%20minute%20transport");
-            history.push(`/category/last%20minute%20transport`);
+            history.push(`/category/Last%20Minute%20Transport`);
           }}
         >
           Last Minute Transport
@@ -48,7 +48,7 @@ const Categories = ({ setResult }) => {
           onClick={(ev) => {
             ev.preventDefault();
             setResult("daycare");
-            history.push(`/category/daycare`);
+            history.push(`/category/Daycare`);
           }}
         >
           Daycare
@@ -57,7 +57,7 @@ const Categories = ({ setResult }) => {
           onClick={(ev) => {
             ev.preventDefault();
             setResult("overnight%20boarding");
-            history.push(`/category/overnight%20boarding`);
+            history.push(`/category/Overnight%20Boarding`);
           }}
         >
           Overnight Boarding

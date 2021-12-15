@@ -10,7 +10,7 @@ const MyAds = () => {
 
   return (
     <Wrapper>
-      {myProfile.data.ads > 0 ? (
+      {myProfile.data.ads ? (
         <div>
           <div>
             <Title>My ads</Title>
@@ -74,7 +74,7 @@ const Image = styled.img`
 
 const AdsDiv = styled.div`
   display: flex;
-  background-color: #e1eedd;
+  background-color: #faf9f0;
   height: max-content;
   width: 1000px;
   flex-direction: column;
@@ -108,10 +108,14 @@ const Body = styled.p`
   color: #183a1d;
 `;
 
-const Title = styled.h2`
+const Title = styled.div`
+  width: 1000px;
+  margin: 0 auto;
+  text-align: center;
   color: #183a1d;
   font-size: 40px;
-  margin-left: 20px;
+  margin-top: 120px;
+  margin-bottom: 100px;
 `;
 
 const Container = styled.div`

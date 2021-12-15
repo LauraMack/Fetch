@@ -7,14 +7,15 @@ import placeholder from "../assets/placeholder-image2.jpeg";
 import { IoPawSharp } from "react-icons/io5";
 import { CurrentUserContext } from "./CurrentUserContext";
 import dog from "../assets/dog2.png";
+import Loading from "./Loading";
 
 const AllAds = () => {
-  const { allUsers, setAllUsers, adsUpdated, setAdsUpdated } =
-    useContext(UsersContext);
+  const { allUsers, adsUpdated, setAdsUpdated } = useContext(UsersContext);
   const { currentUser, error, setError, myProfile, setMyProfile } =
     useContext(CurrentUserContext);
   const [allAds, setAllAds] = useState([]);
   const [newAd, setNewAd] = useState("");
+  const [status, setStatus] = useState("idle");
 
   useEffect(() => {
     let adsArray = [];
@@ -52,6 +53,7 @@ const AllAds = () => {
 
   const handleAdSubmit = (ev) => {
     ev.preventDefault();
+    setStatus("pending");
     fetch("/all-ads", {
       method: "POST",
       body: JSON.stringify({
@@ -72,6 +74,7 @@ const AllAds = () => {
           setNewAd("");
           setAdsUpdated(!adsUpdated);
           myProfile.data.ads.push(data.data);
+          setStatus("success");
         }
         if (data.message === "error") {
           setError("Sorry, your ad couldn't be posted. Please try again. ");
@@ -98,8 +101,13 @@ const AllAds = () => {
           {error !== "" && <ErrorMessage>{error}</ErrorMessage>}
         </SendMsgBtnDiv>
       </Form>
+      {status === "pending" && (
+        <LoadDiv>
+          <Loading />
+        </LoadDiv>
+      )}
       <TitleDiv>
-        <img src={dog} />
+        <Dog src={dog} />
         <Title>Recent ads</Title>
       </TitleDiv>
       {allAds &&
@@ -181,6 +189,10 @@ const Body = styled.p`
   color: #183a1d;
 `;
 
+const Dog = styled.img`
+  position: relative;
+`;
+
 const Form = styled.form`
   display: flex;
   flex-direction: column;
@@ -214,25 +226,6 @@ const SendBtn = styled.button`
   }
 `;
 
-const Cancel = styled.button`
-  position: relative;
-  bottom: 180px;
-  left: 208px;
-  margin: 10px;
-  background-color: #40916c;
-  color: #e1eedd;
-  border: none;
-  border-radius: 5px;
-  font-size: 1em;
-  padding: 10px;
-  cursor: pointer;
-  width: 100px;
-  &:hover {
-    background-color: #f6c453;
-    color: #183a1d;
-  }
-`;
-
 const Input = styled.input`
   height: 100px;
   width: 1000px;
@@ -242,6 +235,10 @@ const Input = styled.input`
   background-color: #faf9f0;
   border: solid 1px #183a1d;
   border-radius: 5px;
+  &:focus {
+    outline: none;
+    border: solid 2px #40916c;
+  }
   &::placeholder {
     color: #183a1d;
   }
@@ -271,15 +268,6 @@ const TitleDiv = styled.div`
   flex-direction: column;
 `;
 
-const Paw = styled.div`
-  margin-right: 20px;
-  color: #183a1d;
-  margin-top: 5px;
-  &:hover {
-    color: #183a1d;
-  }
-`;
-
 const InfoContainer = styled.div`
   display: flex;
   width: 1000px;
@@ -300,4 +288,12 @@ const ContactButton = styled.button`
     background-color: #f6c453;
     color: #183a1d;
   }
+`;
+
+const LoadDiv = styled.div`
+  height: 100px;
+  width: 100px;
+  position: absolute;
+  right: 75px;
+  bottom: 260px;
 `;
