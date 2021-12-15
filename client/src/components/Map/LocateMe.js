@@ -5,12 +5,7 @@ import styled from "styled-components";
 
 const LocateMe = ({ panTo }) => {
   const { error, setError } = useContext(CurrentUserContext);
-  const {
-    currentLatitude,
-    currentLongitude,
-    setCurrentLatitude,
-    setCurrentLongitude,
-  } = useContext(UsersContext);
+  const { setCurrentLatitude, setCurrentLongitude } = useContext(UsersContext);
 
   const handleLocationSet = () => {
     if (!navigator.geolocation) {
