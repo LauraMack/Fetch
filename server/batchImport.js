@@ -14,14 +14,12 @@ const batchImport = async () => {
   const client = new MongoClient(MONGO_URI, options);
 
   await client.connect();
-  console.log("connected");
 
   const db = client.db("final-project");
 
   await db.collection("users").insertMany(users);
 
   client.close();
-  console.log("disconnected");
 };
 
 batchImport();

@@ -15,8 +15,6 @@ const CategoryPage = ({ setResult, profileId }) => {
     return persistParam !== null ? JSON.parse(persistParam) : null;
   });
 
-  console.log(allUsers.data);
-
   useEffect(() => {
     window.scrollTo({
       top: 0,

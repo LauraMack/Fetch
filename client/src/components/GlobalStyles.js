@@ -2,11 +2,6 @@ import { createGlobalStyle } from "styled-components";
 
 const GlobalStyles = createGlobalStyle`
   :root {
-    --color-cornflower-blue: #7F87F0;
-    --color-palatine-purple: #6D326D;
-    --color-yellow: #EDB230;
-    --color-light-grey: #E5EBEA;
-    --color-viridian-green: #558B6E;
     --font-heading: "Lora"
     --font-body: "Lora"
   }

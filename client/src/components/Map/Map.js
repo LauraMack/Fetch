@@ -7,10 +7,7 @@ import React, {
 } from "react";
 import {
   GoogleMap,
-  LoadScript,
   useLoadScript,
-  onLoad,
-  useJsApiLoader,
   Marker,
   InfoWindow,
 } from "@react-google-maps/api";
@@ -21,7 +18,7 @@ import LocateMe from "./LocateMe";
 import MapSearch from "./MapSearch";
 import mapStyles from "./mapStyles";
 import dogWalker from "../../assets/dog-walking.png";
-import { IoStarOutline } from "react-icons/io5";
+import { IoStarSharp } from "react-icons/io5";
 import Loading from "../Loading";
 
 const libraries = ["places"];
@@ -42,14 +39,12 @@ const options = {
 };
 
 const Map = () => {
-  const { allUsers, currentLatitude, currentLongitude } =
-    useContext(UsersContext);
-  const { error, setError } = useContext(CurrentUserContext);
+  const { allUsers } = useContext(UsersContext);
+  const { setError } = useContext(CurrentUserContext);
   const [markers, setMarkers] = useState([]);
   const [selected, setSelected] = useState(null);
   const [name, setName] = useState(null);
   const [avatar, setAvatar] = useState(null);
-  const [rating, setRating] = useState(null);
   const { isLoaded } = useLoadScript({
     id: "google-map-script",
     googleMapsApiKey: process.env.REACT_APP_MAP_API_KEY,
@@ -78,8 +73,6 @@ const Map = () => {
       setMarkers(markersArray);
     }
   }, [allUsers]);
-
-  console.log(markers, "markers array");
 
   const mapRef = useRef(null);
 
@@ -129,19 +122,19 @@ const Map = () => {
                           <Name>{name}</Name>
                           <Rating>
                             <Star>
-                              <IoStarOutline />
+                              <IoStarSharp />
                             </Star>
                             <Star>
-                              <IoStarOutline />
+                              <IoStarSharp />
                             </Star>
                             <Star>
-                              <IoStarOutline />
+                              <IoStarSharp />
                             </Star>
                             <Star>
-                              <IoStarOutline />
+                              <IoStarSharp />
                             </Star>
                             <Star>
-                              <IoStarOutline />
+                              <IoStarSharp />
                             </Star>
                           </Rating>
                         </InfoDiv>
@@ -197,14 +190,6 @@ const Div = styled.div`
     rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 `;
 
-const ErrorMessage = styled.p`
-  color: red;
-  font-size: 24px;
-  width: 500px;
-  text-align: center;
-  margin-top: 2px;
-`;
-
 const WindowImage = styled.img`
   height: 80px;
   border-radius: 50px;
@@ -212,7 +197,7 @@ const WindowImage = styled.img`
 
 const Name = styled.p`
   font-size: 16px;
-  color: darkgray;
+  color: #183a1d;
   font-weight: bold;
 `;
 

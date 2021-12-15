@@ -17,16 +17,13 @@ export const UsersProvider = ({ children }) => {
       .then((res) => res.json())
       .then((data) => {
         setAllUsers(data);
-        console.log(data);
         //slice the original array for pagination purposes
         if (orderedUsers === null) {
           const sliced = data.data.slice(0, 3);
           setMoreUsers(sliced);
-          console.log(sliced, "sliced");
         } else {
           const sliced = orderedUsers.slice(0, 3);
           setMoreUsers(sliced);
-          console.log(sliced, "ordered slice");
         }
       });
   }, [orderedUsers, adsUpdated]);

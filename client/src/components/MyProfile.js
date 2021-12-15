@@ -1,8 +1,6 @@
 import React from "react";
-import styled, { ThemeConsumer } from "styled-components";
-import { useParams } from "react-router-dom";
-import { useContext, useState, useEffect } from "react";
-import placeholder from "../assets/placeholder-image2.jpeg";
+import styled from "styled-components";
+import { useContext, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { CurrentUserContext } from "./CurrentUserContext";
 import { FiCheckCircle } from "react-icons/fi";
@@ -10,7 +8,7 @@ import { IoStarSharp } from "react-icons/io5";
 import { FaRegTimesCircle } from "react-icons/fa";
 
 const MyProfile = () => {
-  const { currentUser, myProfile } = useContext(CurrentUserContext);
+  const { currentUser } = useContext(CurrentUserContext);
   let history = useHistory();
 
   useEffect(() => {
@@ -20,8 +18,6 @@ const MyProfile = () => {
       transition: "all 0.5s ease 0s",
     });
   }, []);
-
-  console.log(currentUser);
 
   return (
     <Wrapper>
@@ -89,12 +85,6 @@ const MyProfile = () => {
   );
 };
 export default MyProfile;
-
-const Button = styled.button`
-  width: 300px;
-  position: relative;
-  z-index: 10;
-`;
 
 const Wrapper = styled.div`
   font-family: "Lora";
@@ -275,11 +265,4 @@ const Ex = styled(FaRegTimesCircle)`
   padding: 5px;
   position: relative;
   top: 8px;
-`;
-
-const Upload = styled.p`
-  position: relative;
-  width: 250px;
-  color: #40916c;
-  text-align: center;
 `;

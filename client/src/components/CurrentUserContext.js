@@ -7,10 +7,6 @@ export const CurrentUserProvider = ({ children }) => {
     const persistParam = window.sessionStorage.getItem("currentUser");
     return persistParam !== null ? JSON.parse(persistParam) : null;
   });
-  const [myProfile, setMyProfile] = useState(() => {
-    const param = window.sessionStorage.getItem("currentUser");
-    return param !== null ? JSON.parse(param) : null;
-  });
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -33,8 +29,6 @@ export const CurrentUserProvider = ({ children }) => {
         setPassword,
         signedIn,
         setSignedIn,
-        myProfile,
-        setMyProfile,
         name,
         setName,
         bio,

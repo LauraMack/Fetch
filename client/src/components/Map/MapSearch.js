@@ -7,9 +7,7 @@ import {
   Combobox,
   ComboboxInput,
   ComboboxPopover,
-  ComboboxList,
   ComboboxOption,
-  ComboboxOptionText,
 } from "@reach/combobox";
 import "@reach/combobox/styles.css";
 import styled from "styled-components";
@@ -23,7 +21,6 @@ const MapSearch = ({ panTo }) => {
     backgroundColor: "#faf9f0",
   };
   const {
-    ready,
     value,
     suggestions: { status, data },
     setValue,

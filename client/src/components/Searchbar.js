@@ -13,8 +13,6 @@ const Searchbar = ({ result, setResult }) => {
     }
   };
 
-  console.log(result);
-
   return (
     <Searchdiv>
       <Input

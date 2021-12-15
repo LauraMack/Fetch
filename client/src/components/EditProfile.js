@@ -1,7 +1,6 @@
 import React, { useContext, useState } from "react";
 import styled from "styled-components";
 import placeholder from "../assets/placeholder-image2.jpeg";
-import placeholderPet from "../assets/placeholder-pet.png";
 import { Link } from "react-router-dom";
 import { CurrentUserContext } from "./CurrentUserContext";
 import { useHistory } from "react-router";
@@ -11,8 +10,6 @@ const EditProfile = () => {
   const {
     currentUser,
     setCurrentUser,
-    myProfile,
-    setMyProfile,
     name,
     setName,
     bio,
@@ -22,7 +19,6 @@ const EditProfile = () => {
     openToTrading,
     setOpenToTrading,
   } = useContext(CurrentUserContext);
-  const { userUpdated, setUserUpdated } = useContext(UsersContext);
   const [url, setUrl] = useState("");
   let history = useHistory();
 
@@ -60,20 +56,17 @@ const EditProfile = () => {
     data.append("file", ev.target.files[0]);
     data.append("upload_preset", "gbx7psse");
     data.append("cloud_name", "dnbqibbaq");
-    console.log(data);
     fetch("https://api.cloudinary.com/v1_1/dnbqibbaq/image/upload", {
       method: "POST",
       body: data,
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setUrl(data.url);
       });
   };
 
   const handleProfileSubmit = (ev) => {
-    console.log("hello");
     ev.preventDefault();
     fetch(`/users/${currentUser.data._id}`, {
       method: "PATCH",
@@ -136,11 +129,11 @@ const EditProfile = () => {
               Yes, I'm available to lend my time to others.
             </label>
             <label>
-              <AvailCheckbox
+              <NoAvailCheckbox
                 type="checkbox"
                 value="No"
                 onChange={handleAvailability}
-              ></AvailCheckbox>
+              ></NoAvailCheckbox>{" "}
               I'm not available right now.{" "}
             </label>
           </AvailContainer>
@@ -271,9 +264,6 @@ const Upload = styled.p`
   top: 30px;
   right: 317px;
 `;
-const UploadLink = styled(Link)`
-  text-decoration: underline;
-`;
 
 const InputDiv = styled.div`
   margin-top: 30px;
@@ -333,6 +323,8 @@ const AvailCheckbox = styled.input`
   margin-right: 10px;
   margin-left: 15px;
 `;
+
+const NoAvailCheckbox = styled.input``;
 
 const ForteDiv = styled.div`
   height: 200px;
@@ -407,17 +399,6 @@ const Skip = styled.p`
   text-align: center;
   position: absolute;
   z-index: 10;
-  top: 120px;
-  text-decoration: underline;
-  color: #40916c;
-  cursor: pointer;
-`;
-
-const SkipLink = styled(Link)`
-  width: 200px;
-  margin-left: 390px;
-  text-align: center;
-  position: absolute;
   top: 120px;
   text-decoration: underline;
   color: #40916c;

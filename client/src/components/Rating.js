@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import { IoStarHalfOutline } from "react-icons/io5";
 import { IoStarSharp } from "react-icons/io5";
@@ -11,8 +11,6 @@ const Rating = () => {
   const handleRating = (ev) => {
     setRating(ev.target.value);
   };
-
-  console.log(rating);
 
   return (
     <Div>
@@ -42,15 +40,6 @@ const Div = styled.div`
   font-size: 50px;
 `;
 const StyledFullStar = styled(IoStarSharp)`
-  color: #f2cc8f;
-  cursor: pointer;
-`;
-
-const StyledHalfStar = styled(IoStarHalfOutline)`
-  color: #f2cc8f;
-`;
-
-const StyledStarOutline = styled(IoStarOutline)`
   color: #f2cc8f;
   cursor: pointer;
 `;

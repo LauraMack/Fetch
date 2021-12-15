@@ -10,7 +10,6 @@ import dogWalker from "../assets/dog-walkers2.png";
 import atHome from "../assets/at-home.png";
 import { useAuth0 } from "@auth0/auth0-react";
 import Loading from "./Loading";
-import { v4 as uuidv4 } from "uuid";
 
 const Homepage = ({ result, setResult }) => {
   const {
@@ -25,25 +24,11 @@ const Homepage = ({ result, setResult }) => {
     setOrderedUsers,
   } = useContext(UsersContext);
 
-  const { user, isAuthenticated, isLoading } = useAuth0();
-
-  const {
-    currentUser,
-    setCurrentUser,
-    setSignedIn,
-    signedIn,
-    myProfile,
-    status,
-    setStatus,
-  } = useContext(CurrentUserContext);
-
-  const [locationClicked, setLocationClicked] = useState(false);
+  const { currentUser, status, setStatus } = useContext(CurrentUserContext);
 
   const deg2rad = (deg) => {
     return deg * (Math.PI / 180);
   };
-
-  console.log(status);
 
   // get distance of users from current users
   const getDistanceFromLatLonInKm = (userId, lat1, lon1, lat2, lon2) => {
@@ -60,9 +45,6 @@ const Homepage = ({ result, setResult }) => {
     var d = R * c; // Distance in km
     return { distance: d, userId: userId };
   };
-
-  console.log(user);
-  console.log(currentUser);
 
   useEffect(() => {
     if (allUsers.data) {
@@ -129,12 +111,8 @@ const Homepage = ({ result, setResult }) => {
   const success = (position) => {
     setCurrentLatitude(position.coords.latitude);
     setCurrentLongitude(position.coords.longitude);
-    setLocationClicked(true);
     setStatus("success");
   };
-
-  console.log(currentLatitude, currentLongitude, "currentUserLocation");
-  console.log(orderedUsers, "orderedUsers");
 
   //callback function for geolocation API
   const error = () => {
@@ -146,6 +124,9 @@ const Homepage = ({ result, setResult }) => {
       <ImageContainer>
         <DogWalker src={dogWalker} />
       </ImageContainer>
+      <ConnectDiv>
+        <Connect>Connect with fellow pet lovers near you.</Connect>
+      </ConnectDiv>
       <Searchdiv>
         <Searchbar result={result} setResult={setResult} />
       </Searchdiv>
@@ -208,9 +189,27 @@ const Searchdiv = styled.div`
   height: 50px;
   width: 900px;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   margin: 0 auto;
-  margin-top: 400px;
+  margin-top: 40px;
+`;
+
+const ConnectDiv = styled.div`
+  height: 50px;
+  width: 900px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  margin-top: 370px;
+`;
+
+const Connect = styled.p`
+  font-size: 22px;
+  margin: 0;
+  color: #183a1d;
 `;
 
 const CategoryDiv = styled.div`

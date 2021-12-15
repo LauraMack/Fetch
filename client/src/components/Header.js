@@ -1,14 +1,10 @@
-import React, { useContext, useState, useRef } from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import { Link, useHistory } from "react-router-dom";
-import { useAuth0 } from "@auth0/auth0-react";
 import { CurrentUserContext } from "./CurrentUserContext";
-import { RiMenuLine } from "react-icons/ri";
-import { RiArrowDropDownLine } from "react-icons/ri";
-import SignOutBtn from "./auth0/SignOutBtn";
 
 const Header = () => {
-  const { currentUser, setCurrentUser, setSignedIn, myProfile, setMyProfile } =
+  const { currentUser, setCurrentUser, setSignedIn } =
     useContext(CurrentUserContext);
 
   let history = useHistory();

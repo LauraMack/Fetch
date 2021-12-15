@@ -14,7 +14,7 @@ import { v4 as uuidv4 } from "uuid";
 
 const UserProfile = () => {
   const { profile, setProfile, rating, setRating } = useContext(UsersContext);
-  const { currentUser, error, setError, myProfile, status, setStatus } =
+  const { currentUser, error, setError, status, setStatus } =
     useContext(CurrentUserContext);
   const { profileId } = useParams();
   const [newReview, setNewReview] = useState("");
@@ -34,8 +34,6 @@ const UserProfile = () => {
         setProfile(data.data);
       });
   }, [profileId, reviewsUpdated]);
-
-  console.log(profile);
 
   const starRating = {
     star: IoStarSharp,
@@ -79,7 +77,6 @@ const UserProfile = () => {
   };
   let ratingArray = [];
   ratingArray.length = rating;
-  console.log(ratingArray);
   return (
     <Wrapper>
       {profile ? (
@@ -190,6 +187,7 @@ const UserProfile = () => {
             <Cancel
               onClick={() => {
                 setNewReview("");
+                setRating(0);
               }}
             >
               Cancel

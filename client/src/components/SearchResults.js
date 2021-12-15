@@ -7,15 +7,13 @@ import styled from "styled-components";
 import User from "./User";
 import dog from "../assets/dog3.png";
 
-const SearchResults = ({ result, setResult, profileId }) => {
+const SearchResults = ({ result, setResult }) => {
   const { allUsers } = useContext(UsersContext);
   let { searchResult } = useParams();
   const [matchingResults, setMatchingResults] = useState(() => {
     const persistParam = window.sessionStorage.getItem("matching-results");
     return persistParam !== null ? JSON.parse(persistParam) : null;
   });
-
-  console.log(allUsers.data);
 
   useEffect(() => {
     window.scrollTo({
@@ -27,7 +25,6 @@ const SearchResults = ({ result, setResult, profileId }) => {
     let matchesArray = [];
     if (allUsers.data) {
       allUsers.data.forEach((i) => {
-        console.log(i.name);
         if (i.forte) {
           i.forte.forEach((forte) => {
             if (forte.toLowerCase().includes(result.toLowerCase())) {
@@ -52,7 +49,6 @@ const SearchResults = ({ result, setResult, profileId }) => {
     }
   }, [searchResult]);
 
-  console.log(matchingResults, "matching results");
   if (matchingResults <= 0) {
     return <NoResultsFound searchResult={searchResult} />;
   } else {

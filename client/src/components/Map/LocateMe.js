@@ -22,7 +22,6 @@ const LocateMe = ({ panTo }) => {
 
   //callback function for geolocation API
   const success = (position) => {
-    console.log(typeof position.coords.longitude, "TYPEOF");
     setCurrentLatitude(position.coords.latitude);
     setCurrentLongitude(position.coords.longitude);
     panTo({ lat: position.coords.latitude, lng: position.coords.longitude });
@@ -32,8 +31,6 @@ const LocateMe = ({ panTo }) => {
   const err = () => {
     setError("An error occured. Please try again!");
   };
-
-  console.log(currentLatitude, currentLongitude);
 
   return (
     <div>

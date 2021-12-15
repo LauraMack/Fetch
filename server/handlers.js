@@ -13,8 +13,6 @@ const options = {
 // use this package to generate unique ids: https://www.npmjs.com/package/uuid
 const { v4: uuidv4 } = require("uuid");
 
-const { users } = require("./data/users");
-
 //get all users in the DB
 const getAllUsers = async (req, res) => {
   const client = new MongoClient(MONGO_URI, options);

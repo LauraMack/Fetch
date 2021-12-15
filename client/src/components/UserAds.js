@@ -19,7 +19,6 @@ const UserAds = () => {
         setUserAds(data.data);
       });
   }, []);
-  console.log(userAds);
   return (
     <Wrapper>
       {userAds &&
@@ -99,87 +98,6 @@ const Body = styled.p`
   margin-left: 10px;
   font-size: 14px;
   color: #183a1d;
-`;
-
-const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`;
-
-const SendMsgBtnDiv = styled.div`
-  display: flex;
-  flex-direction: row;
-  width: 630px;
-  justify-content: space-between;
-`;
-
-const SendBtn = styled.button`
-  position: relative;
-  left: 710px;
-  margin: 10px;
-  background-color: #40916c;
-  color: #e1eedd;
-  border: none;
-  border-radius: 5px;
-  font-size: 1em;
-  padding: 10px;
-  cursor: pointer;
-  width: 100px;
-  opacity: ${(props) => (props.disabled ? "0.4" : "1")};
-  &:hover {
-    background-color: #f6c453;
-    color: #183a1d;
-  }
-`;
-
-const Cancel = styled.button`
-  position: relative;
-  bottom: 180px;
-  left: 208px;
-  margin: 10px;
-  background-color: #40916c;
-  color: #e1eedd;
-  border: none;
-  border-radius: 5px;
-  font-size: 1em;
-  padding: 10px;
-  cursor: pointer;
-  width: 100px;
-  &:hover {
-    background-color: #f6c453;
-    color: #183a1d;
-  }
-`;
-
-const Input = styled.input`
-  height: 100px;
-  width: 1000px;
-  font-size: 20px;
-  text-align: center;
-  margin-top: 25px;
-  background-color: #faf9f0;
-  border: solid 1px #183a1d;
-  border-radius: 5px;
-  &::placeholder {
-    color: #183a1d;
-  }
-`;
-
-const ErrorMessage = styled.p`
-  color: red;
-  font-size: 12px;
-  width: 300px;
-  text-align: center;
-  margin-top: 10px;
-`;
-
-const Title = styled.h1`
-  margin-top: 20px;
-  padding: 20px;
-  color: #183a1d;
-  font-size: 24px;
 `;
 
 const InfoContainer = styled.div`

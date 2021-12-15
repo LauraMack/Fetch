@@ -1,20 +1,14 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 import SignInBtn from "./auth0/SignInBtn";
 import { CurrentUserContext } from "./CurrentUserContext";
 import { useHistory } from "react-router";
 import { UsersContext } from "./UsersContext";
 
 const Signin = () => {
-  // const { user, isAuthenticated, isLoading } = useAuth0();
   const {
-    currentUser,
     setCurrentUser,
-    signedIn,
     setSignedIn,
-    myProfile,
-    setMyProfile,
     email,
     setEmail,
     password,
@@ -23,12 +17,7 @@ const Signin = () => {
     setError,
   } = useContext(CurrentUserContext);
 
-  const {
-    currentLatitude,
-    setCurrentLatitude,
-    currentLongitude,
-    setCurrentLongitude,
-  } = useContext(UsersContext);
+  const { setCurrentLatitude, setCurrentLongitude } = useContext(UsersContext);
 
   let history = useHistory();
 
@@ -41,8 +30,6 @@ const Signin = () => {
     setPassword(ev.target.value);
     setError("");
   };
-
-  console.log(password);
 
   const handleSignIn = (ev) => {
     ev.preventDefault();
@@ -79,7 +66,6 @@ const Signin = () => {
         }
       });
   };
-  console.log(error);
 
   return (
     <Wrapper>

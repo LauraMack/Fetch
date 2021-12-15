@@ -5,8 +5,7 @@ import { CurrentUserContext } from "./CurrentUserContext";
 import dogWalker from "../assets/dog-walker.jpeg";
 
 const MyAds = () => {
-  const { currentUser, myProfile } = useContext(CurrentUserContext);
-  const { _id } = useParams();
+  const { currentUser } = useContext(CurrentUserContext);
 
   return (
     <Wrapper>

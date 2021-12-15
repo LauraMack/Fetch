@@ -3,29 +3,19 @@ import styled from "styled-components";
 import { UsersContext } from "./UsersContext";
 import { Link } from "react-router-dom";
 import moment from "moment";
-import placeholder from "../assets/placeholder-image2.jpeg";
-import { IoPawSharp } from "react-icons/io5";
 import { CurrentUserContext } from "./CurrentUserContext";
 import dog from "../assets/dog2.png";
 import Loading from "./Loading";
 
 const AllAds = () => {
   const { allUsers, adsUpdated, setAdsUpdated } = useContext(UsersContext);
-  const {
-    currentUser,
-    error,
-    setError,
-    myProfile,
-    setMyProfile,
-    status,
-    setStatus,
-  } = useContext(CurrentUserContext);
+  const { currentUser, error, setError, status, setStatus } =
+    useContext(CurrentUserContext);
   const [allAds, setAllAds] = useState([]);
   const [newAd, setNewAd] = useState("");
 
   useEffect(() => {
     let adsArray = [];
-    console.log(allUsers);
     if (allUsers.data) {
       allUsers.data.forEach((i) => {
         if (i.ads && i.ads.length > 0) {
@@ -49,8 +39,6 @@ const AllAds = () => {
       });
     }
   }, [allUsers]);
-
-  console.log(allAds);
 
   const handleAdChange = (ev) => {
     setNewAd(ev.target.value);

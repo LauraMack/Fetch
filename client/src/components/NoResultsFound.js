@@ -34,6 +34,8 @@ const Wrapper = styled.div`
 
 const Div = styled.div`
   display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const Title = styled.h2`
@@ -67,6 +69,6 @@ const TryAgain = styled.button`
 
 const Image = styled.img`
   height: 300px;
-  margin-top: 120px;
+  margin-top: 140px;
   margin-left: 150px;
 `;

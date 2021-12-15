@@ -1,6 +1,5 @@
 import React from "react";
 import styled, { keyframes } from "styled-components";
-import { FaSpinner } from "react-icons/fa";
 
 const Loading = () => {
   return (
@@ -11,14 +10,7 @@ const Loading = () => {
 };
 
 export default Loading;
-const Wrapper = styled.div`
-  width: 1000px;
-  display: flex;
-  margin: 0 auto;
-  margin-top: 100px;
-  justify-content: center;
-  align-items: center;
-`;
+
 const spin = keyframes`
 0% {
   transform: rotate(0deg);
