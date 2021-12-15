@@ -72,4 +72,8 @@ const Input = styled(ComboboxInput)`
   &::placeholder {
     color: #183a1d;
   }
+  &:focus {
+    outline: none;
+    border: solid 2px #40916c;
+  }
 `;

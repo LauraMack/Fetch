@@ -8,6 +8,9 @@ import { UsersContext } from "./UsersContext";
 import { CurrentUserContext } from "./CurrentUserContext";
 import dogWalker from "../assets/dog-walkers2.png";
 import atHome from "../assets/at-home.png";
+import { useAuth0 } from "@auth0/auth0-react";
+import Loading from "./Loading";
+import { v4 as uuidv4 } from "uuid";
 
 const Homepage = ({ result, setResult }) => {
   const {
@@ -22,7 +25,17 @@ const Homepage = ({ result, setResult }) => {
     setOrderedUsers,
   } = useContext(UsersContext);
 
-  const { currentUser, signedIn, myProfile } = useContext(CurrentUserContext);
+  const { user, isAuthenticated, isLoading } = useAuth0();
+
+  const {
+    currentUser,
+    setCurrentUser,
+    setSignedIn,
+    signedIn,
+    myProfile,
+    status,
+    setStatus,
+  } = useContext(CurrentUserContext);
 
   const [locationClicked, setLocationClicked] = useState(false);
 
@@ -30,7 +43,7 @@ const Homepage = ({ result, setResult }) => {
     return deg * (Math.PI / 180);
   };
 
-  console.log(myProfile);
+  console.log(status);
 
   // get distance of users from current users
   const getDistanceFromLatLonInKm = (userId, lat1, lon1, lat2, lon2) => {
@@ -48,12 +61,10 @@ const Homepage = ({ result, setResult }) => {
     return { distance: d, userId: userId };
   };
 
+  console.log(user);
+  console.log(currentUser);
+
   useEffect(() => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-      transition: "all 0.5s ease 0s",
-    });
     if (allUsers.data) {
       let locations = allUsers.data.map((i) => {
         return getDistanceFromLatLonInKm(
@@ -106,6 +117,7 @@ const Homepage = ({ result, setResult }) => {
 
   //on click for getting the lat and long of the current user
   const handleLocationSet = () => {
+    setStatus("pending");
     if (!navigator.geolocation) {
       console.log("Sorry, Geolocation is not supposed by your browser.");
     } else {
@@ -118,6 +130,7 @@ const Homepage = ({ result, setResult }) => {
     setCurrentLatitude(position.coords.latitude);
     setCurrentLongitude(position.coords.longitude);
     setLocationClicked(true);
+    setStatus("success");
   };
 
   console.log(currentLatitude, currentLongitude, "currentUserLocation");
@@ -151,7 +164,12 @@ const Homepage = ({ result, setResult }) => {
           </LocationButton>
         </LocationDiv>
       )}
-      {orderedUsers !== null ? (
+      {status === "pending" && (
+        <LoadDiv>
+          <Loading />
+        </LoadDiv>
+      )}
+      {currentLatitude && currentLongitude !== null ? (
         <UserHeader>Users near you:</UserHeader>
       ) : (
         <UserHeader>Recent Users:</UserHeader>
@@ -307,4 +325,12 @@ const ImageContainer = styled.div`
 const HomeImage = styled.img`
   height: 300px;
   width: 400px;
+`;
+
+const LoadDiv = styled.div`
+  height: 100px;
+  width: 100px;
+  position: absolute;
+  left: 48vw;
+  top: 1450px;
 `;

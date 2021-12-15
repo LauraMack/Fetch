@@ -20,6 +20,7 @@ export const CurrentUserProvider = ({ children }) => {
   const [forte, setForte] = useState([]);
   const [openToTrading, setOpenToTrading] = useState(false);
   const [error, setError] = useState("");
+  const [status, setStatus] = useState("idle");
 
   return (
     <CurrentUserContext.Provider
@@ -44,6 +45,8 @@ export const CurrentUserProvider = ({ children }) => {
         setError,
         openToTrading,
         setOpenToTrading,
+        status,
+        setStatus,
       }}
     >
       {children}

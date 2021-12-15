@@ -10,6 +10,7 @@ import { UsersContext } from "./UsersContext";
 const EditProfile = () => {
   const {
     currentUser,
+    setCurrentUser,
     myProfile,
     setMyProfile,
     name,
@@ -92,7 +93,7 @@ const EditProfile = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data.message === "ok") {
-          setMyProfile(data);
+          setCurrentUser(data);
           window.sessionStorage.setItem("currentUser", JSON.stringify(data));
           history.push(`/my-profile/${currentUser.data._id}`);
         }
@@ -102,9 +103,9 @@ const EditProfile = () => {
   return (
     <Wrapper>
       <Div>
-        {/* <Link to={"/"}>
+        <Link to={"/"}>
           <Skip>Skip this step for now</Skip>
-        </Link> */}
+        </Link>
         <Edit>Edit Your Profile</Edit>
         <ProfileForm onSubmit={handleProfileSubmit}>
           <Image src={url ? url : placeholder} />
@@ -235,7 +236,7 @@ const ProfileForm = styled.form`
   width: 900px;
   position: relative;
   left: 400px;
-  top: -170px;
+  top: -150px;
 `;
 
 const Edit = styled.h2`

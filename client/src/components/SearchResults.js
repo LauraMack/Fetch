@@ -5,6 +5,7 @@ import { UsersContext } from "./UsersContext";
 import NoResultsFound from "./NoResultsFound";
 import styled from "styled-components";
 import User from "./User";
+import dog from "../assets/dog3.png";
 
 const SearchResults = ({ result, setResult, profileId }) => {
   const { allUsers } = useContext(UsersContext);
@@ -59,7 +60,10 @@ const SearchResults = ({ result, setResult, profileId }) => {
       <Main>
         {matchingResults && (
           <div>
-            <SearchDiv>Search results for "{searchResult}"</SearchDiv>
+            <SearchDiv>
+              <Dog src={dog} />
+              Search results for "{searchResult}"
+            </SearchDiv>
             <UserDiv>
               {matchingResults.map((user) => {
                 return <User user={user} profileId={user._id} />;
@@ -85,11 +89,15 @@ const SearchDiv = styled.div`
   width: 1000px;
   height: 200px;
   margin: 0 auto;
-  margin-top: 200px;
+  margin-top: 160px;
+  margin-bottom: 100px;
   text-align: center;
   font-weight: bold;
   font-size: 24px;
   color: #183a1d;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const UserDiv = styled.div`
@@ -97,4 +105,10 @@ const UserDiv = styled.div`
   width: 1000px;
   margin: 0 auto;
   flex-wrap: wrap;
+`;
+
+const Dog = styled.img`
+  height: 150px;
+  width: 200px;
+  margin-bottom: 30px;
 `;

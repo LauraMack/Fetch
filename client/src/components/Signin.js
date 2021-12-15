@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import SignInBtn from "./auth0/SignInBtn";
 import { CurrentUserContext } from "./CurrentUserContext";
 import { useHistory } from "react-router";
+import { UsersContext } from "./UsersContext";
 
 const Signin = () => {
   // const { user, isAuthenticated, isLoading } = useAuth0();
@@ -21,6 +22,13 @@ const Signin = () => {
     error,
     setError,
   } = useContext(CurrentUserContext);
+
+  const {
+    currentLatitude,
+    setCurrentLatitude,
+    currentLongitude,
+    setCurrentLongitude,
+  } = useContext(UsersContext);
 
   let history = useHistory();
 
@@ -53,10 +61,10 @@ const Signin = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data.message === "ok") {
-          // fetch current user from mongo here
           setCurrentUser(data);
-          setMyProfile(data);
           setSignedIn(true);
+          setCurrentLatitude(null);
+          setCurrentLongitude(null);
           setError("");
           window.sessionStorage.setItem("currentUser", JSON.stringify(data));
           history.push("/");
@@ -95,7 +103,14 @@ const Signin = () => {
           <SignInBtn />
           <Member>
             Not yet a member?{" "}
-            <SignupLink to={"/signup"}>Sign up for Fetch</SignupLink>
+            <SignupButton
+              onClick={() => {
+                setError("");
+                history.push("/signup");
+              }}
+            >
+              Sign up for Fetch
+            </SignupButton>
           </Member>
           {error !== "" && <ErrorMessage>{error}</ErrorMessage>}
         </SignUpDiv>
@@ -114,7 +129,7 @@ const Wrapper = styled.div`
 
 const Div = styled.div`
   background-color: #e1eedd;
-  height: 400px;
+  height: 410px;
   width: 500px;
   margin: 0 auto;
   margin-top: 100px;
@@ -196,11 +211,14 @@ const Member = styled.p`
   color: #183a1d;
 `;
 
-const SignupLink = styled(Link)`
+const SignupButton = styled.button`
+  font-size: 12px;
+  width: 110px;
+  text-align: center;
+  border-style: none;
+  background-color: transparent;
   color: #40916c;
-  &:hover {
-    color: #f6c453;
-  }
+  cursor: pointer;
 `;
 
 const ErrorMessage = styled.p`
@@ -208,5 +226,5 @@ const ErrorMessage = styled.p`
   font-size: 12px;
   width: 300px;
   text-align: center;
-  margin-top: 2px;
+  margin: 0;
 `;

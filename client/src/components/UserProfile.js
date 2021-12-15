@@ -9,11 +9,12 @@ import { CurrentUserContext } from "./CurrentUserContext";
 import placeholder from "../assets/placeholder-image2.jpeg";
 import Rating from "./Rating";
 import moment from "moment";
+import Loading from "./Loading";
 import { v4 as uuidv4 } from "uuid";
 
 const UserProfile = () => {
   const { profile, setProfile, rating, setRating } = useContext(UsersContext);
-  const { currentUser, error, setError, myProfile } =
+  const { currentUser, error, setError, myProfile, status, setStatus } =
     useContext(CurrentUserContext);
   const { profileId } = useParams();
   const [newReview, setNewReview] = useState("");
@@ -47,12 +48,13 @@ const UserProfile = () => {
 
   const handleReviewSubmit = (ev) => {
     ev.preventDefault();
+    setStatus("pending");
     const newId = uuidv4();
     fetch(`/profile/${profileId}`, {
       method: "POST",
       body: JSON.stringify({
         _id: newId,
-        avatar: myProfile.data.avatar,
+        avatar: currentUser.data.avatar,
         from: currentUser.data.name,
         timestamp: moment(new Date()).format("MMMM DD, YYYY"),
         rating: ratingArray,
@@ -68,6 +70,7 @@ const UserProfile = () => {
         if (data.message === "ok") {
           setNewReview("");
           setReviewsUpdated(!reviewsUpdated);
+          setStatus("success");
         }
         if (data.message === "error") {
           setError("Sorry, your review couldn't be posted. Please try again. ");
@@ -78,117 +81,125 @@ const UserProfile = () => {
   ratingArray.length = rating;
   console.log(ratingArray);
   return (
-    profile && (
-      <Wrapper>
-        <Div>
-          <CoverDiv></CoverDiv>
-          <Whitespace></Whitespace>
-          <div></div>
-          <Image src={profile.avatar} />
-          <Name>{profile.name}</Name>
-          <RatingDiv>
-            {profile.rating.map((i) => {
-              const icon = starRating[i];
-              return <Star>{icon ? icon() : null}</Star>;
-            })}
-          </RatingDiv>
-          <Bio>{profile.bio}</Bio>
-          {profile.openToTrading === true ? (
-            <Trade>
-              <Check />
-              Open to trading
-            </Trade>
-          ) : (
-            <Trade>
-              <Ex />
-              {profile.name} isn't currently available to trade their time.
-            </Trade>
-          )}
-          <InfoContainer>
-            <ForteDiv>
-              <ForteTitle>{profile.name}'s Fortes:</ForteTitle>
-              {profile.forte.map((skill) => {
-                return (
-                  <Forte
-                    onClick={(ev) => {
-                      ev.preventDefault();
-                      history.push(`/category/${skill}`);
-                    }}
-                    key={Math.floor(Math.random() * 1000000000000000)}
-                  >
-                    {skill}
-                  </Forte>
-                );
+    <Wrapper>
+      {profile ? (
+        <div>
+          <Div>
+            <CoverDiv></CoverDiv>
+            <Whitespace></Whitespace>
+            <div></div>
+            <Image src={profile.avatar} />
+            <Name>{profile.name}</Name>
+            <RatingDiv>
+              {profile.rating.map((i) => {
+                const icon = starRating[i];
+                return <Star>{icon ? icon() : null}</Star>;
               })}
-            </ForteDiv>
-            <InfoDiv>
-              <Contact>Contact {profile.name}</Contact>
+            </RatingDiv>
+            <Bio>{profile.bio}</Bio>
+            {profile.openToTrading === true ? (
+              <Trade>
+                <Check />
+                Open to trading
+              </Trade>
+            ) : (
+              <Trade>
+                <Ex />
+                {profile.name} isn't currently available to trade their time.
+              </Trade>
+            )}
+            <InfoContainer>
+              <ForteDiv>
+                <ForteTitle>{profile.name}'s Fortes:</ForteTitle>
+                {profile.forte.map((skill) => {
+                  return (
+                    <Forte
+                      onClick={(ev) => {
+                        ev.preventDefault();
+                        history.push(`/category/${skill}`);
+                      }}
+                      key={Math.floor(Math.random() * 1000000000000000)}
+                    >
+                      {skill}
+                    </Forte>
+                  );
+                })}
+              </ForteDiv>
+              <InfoDiv>
+                <Contact>Contact {profile.name}</Contact>
 
-              <AdsButton
-                onClick={() => {
-                  history.push(`/users/ads/${profile._id}`);
-                }}
-              >
-                {profile.name}'s Ads
-              </AdsButton>
-            </InfoDiv>
-          </InfoContainer>
-        </Div>
-        <TitleDiv>
-          <ReviewsTitle>User Reviews</ReviewsTitle>
-        </TitleDiv>
-        {profile.reviews.map((i) => {
-          return (
-            <ReviewsDiv>
-              <Info>
-                <Placeholder
-                  src={
-                    myProfile && i.from === myProfile.data.name
-                      ? myProfile.data.avatar
-                      : placeholder
-                  }
-                />
-                <From>{i.from}</From>
-                <Timestamp>{i.timestamp}</Timestamp>
-                <ReviewRating>
-                  {i.rating.map((star) => {
-                    const icon = starRating.star;
-                    return <Star>{icon()}</Star>;
-                  })}
-                </ReviewRating>
-              </Info>
-              <Body>{i.body}</Body>
-            </ReviewsDiv>
-          );
-        })}
-
-        <ReviewDiv>
-          <Form onSubmit={handleReviewSubmit}>
-            <LeaveRvw>Leave a Review</LeaveRvw>
-            <Rating />
-            <Input
-              type="text"
-              placeholder="write your review"
-              onChange={handleReviewChange}
-              value={newReview}
-            ></Input>
-            <SendMsgBtnDiv>
-              <SendBtn type="submit" disabled={newReview === ""}>
-                Submit
-              </SendBtn>
-              {error !== "" && <ErrorMessage>{error}</ErrorMessage>}
-            </SendMsgBtnDiv>
-          </Form>
-          <Cancel
-            onClick={() => {
-              setNewReview("");
-            }}
-          >
-            Cancel
-          </Cancel>
-        </ReviewDiv>
-      </Wrapper>
-    )
+                <AdsButton
+                  onClick={() => {
+                    history.push(`/users/ads/${profile._id}`);
+                  }}
+                >
+                  {profile.name}'s Ads
+                </AdsButton>
+              </InfoDiv>
+            </InfoContainer>
+          </Div>
+          <TitleDiv>
+            <ReviewsTitle>User Reviews</ReviewsTitle>
+          </TitleDiv>
+          {profile.reviews.map((i) => {
+            return (
+              <ReviewsDiv>
+                <Info>
+                  <Placeholder
+                    src={
+                      currentUser && i.from === currentUser.data.name
+                        ? currentUser.data.avatar
+                        : placeholder
+                    }
+                  />
+                  <From>{i.from}</From>
+                  <Timestamp>{i.timestamp}</Timestamp>
+                  <ReviewRating>
+                    {i.rating.map((star) => {
+                      const icon = starRating.star;
+                      return <Star>{icon()}</Star>;
+                    })}
+                  </ReviewRating>
+                </Info>
+                <Body>{i.body}</Body>
+              </ReviewsDiv>
+            );
+          })}
+          <ReviewDiv>
+            <Form onSubmit={handleReviewSubmit}>
+              <LeaveRvw>Leave a Review</LeaveRvw>
+              <Rating />
+              <Input
+                type="text"
+                placeholder="write your review"
+                onChange={handleReviewChange}
+                value={newReview}
+              ></Input>
+              <SendMsgBtnDiv>
+                <SendBtn type="submit" disabled={newReview === ""}>
+                  Submit
+                </SendBtn>
+                {error !== "" && <ErrorMessage>{error}</ErrorMessage>}
+              </SendMsgBtnDiv>
+              {status === "pending" && (
+                <LoadDiv>
+                  <Loading />
+                </LoadDiv>
+              )}
+            </Form>
+            <Cancel
+              onClick={() => {
+                setNewReview("");
+              }}
+            >
+              Cancel
+            </Cancel>
+          </ReviewDiv>{" "}
+        </div>
+      ) : (
+        <Loading />
+      )}
+    </Wrapper>
   );
 };
 
@@ -539,4 +550,12 @@ const ErrorMessage = styled.p`
   width: 300px;
   text-align: center;
   margin-top: 10px;
+`;
+
+const LoadDiv = styled.div`
+  height: 100px;
+  width: 100px;
+  position: absolute;
+  top: 1890px;
+  left: 1150px;
 `;

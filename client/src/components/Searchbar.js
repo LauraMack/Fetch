@@ -19,7 +19,7 @@ const Searchbar = ({ result, setResult }) => {
     <Searchdiv>
       <Input
         type="text"
-        placeholder="search a user by name or forte"
+        placeholder="Search by name or forte"
         placeholderTextColor="#3d405b"
         onChange={(ev) => {
           setResult(ev.target.value);

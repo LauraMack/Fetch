@@ -25,62 +25,66 @@ const MyProfile = () => {
 
   return (
     <Wrapper>
-      <Div>
-        <CoverDiv></CoverDiv>
-        <Whitespace></Whitespace>
-        <Link to={`/edit-profile/${currentUser.data._id}`}>
-          <Skip>Edit profile</Skip>
-        </Link>
-        <Image src={myProfile.data.avatar} />
+      {currentUser.data.name ? (
+        <Div>
+          <CoverDiv></CoverDiv>
+          <Whitespace></Whitespace>
+          <Link to={`/edit-profile/${currentUser.data._id}`}>
+            <Skip>Edit profile</Skip>
+          </Link>
+          <Image src={currentUser.data.avatar} />
 
-        <Name>{myProfile.data.name}</Name>
-        <RatingDiv>
-          <Star />
-          <Star />
-          <Star />
-          <Star />
-          <Star />
-        </RatingDiv>
-        <Bio>{myProfile.data.bio}</Bio>
-        {myProfile.data.openToTrading ? (
-          <Trade>
-            <Check />
-            Open to trading
-          </Trade>
-        ) : (
-          <Trade>
-            <Ex />
-            You're not currently available to trade your time.
-          </Trade>
-        )}
-        <InfoContainer>
-          <ForteDiv>
-            <ForteTitle>My Fortes:</ForteTitle>
-            {myProfile.data.forte.map((skill) => {
-              return (
-                <Forte
-                  onClick={(ev) => {
-                    ev.preventDefault();
-                    history.push(`/category/${skill}`);
-                  }}
-                  key={Math.floor(Math.random() * 1000000000000000)}
-                >
-                  {skill}
-                </Forte>
-              );
-            })}
-          </ForteDiv>
-          <InfoDiv>
-            <AdsButton
-              onClick={() => {
-                history.push(`/my-ads/${currentUser.data._id}`);
-              }}
-            >
-              My ads
-            </AdsButton>
-          </InfoDiv>
-        </InfoContainer>
-      </Div>
+          <Name>{currentUser.data.name}</Name>
+          <RatingDiv>
+            <Star />
+            <Star />
+            <Star />
+            <Star />
+            <Star />
+          </RatingDiv>
+          <Bio>{currentUser.data.bio}</Bio>
+          {currentUser.data.openToTrading ? (
+            <Trade>
+              <Check />
+              Open to trading
+            </Trade>
+          ) : (
+            <Trade>
+              <Ex />
+              You're not currently available to trade your time.
+            </Trade>
+          )}
+          <InfoContainer>
+            <ForteDiv>
+              <ForteTitle>My Fortes:</ForteTitle>
+              {currentUser.data.forte.map((skill) => {
+                return (
+                  <Forte
+                    onClick={(ev) => {
+                      ev.preventDefault();
+                      history.push(`/category/${skill}`);
+                    }}
+                    key={Math.floor(Math.random() * 1000000000000000)}
+                  >
+                    {skill}
+                  </Forte>
+                );
+              })}
+            </ForteDiv>
+            <InfoDiv>
+              <AdsButton
+                onClick={() => {
+                  history.push(`/my-ads/${currentUser.data._id}`);
+                }}
+              >
+                My ads
+              </AdsButton>
+            </InfoDiv>
+          </InfoContainer>
+        </Div>
+      ) : (
+        history.push(`/edit-profile/${currentUser.data._id}`)
+      )}
     </Wrapper>
   );
 };

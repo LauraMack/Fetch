@@ -11,11 +11,17 @@ import Loading from "./Loading";
 
 const AllAds = () => {
   const { allUsers, adsUpdated, setAdsUpdated } = useContext(UsersContext);
-  const { currentUser, error, setError, myProfile, setMyProfile } =
-    useContext(CurrentUserContext);
+  const {
+    currentUser,
+    error,
+    setError,
+    myProfile,
+    setMyProfile,
+    status,
+    setStatus,
+  } = useContext(CurrentUserContext);
   const [allAds, setAllAds] = useState([]);
   const [newAd, setNewAd] = useState("");
-  const [status, setStatus] = useState("idle");
 
   useEffect(() => {
     let adsArray = [];
@@ -73,7 +79,7 @@ const AllAds = () => {
         if (data.message === "ok") {
           setNewAd("");
           setAdsUpdated(!adsUpdated);
-          myProfile.data.ads.push(data.data);
+          currentUser.data.ads.push(data.data);
           setStatus("success");
         }
         if (data.message === "error") {

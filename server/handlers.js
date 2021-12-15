@@ -86,6 +86,13 @@ const addNewUser = async (req, res) => {
   } else {
     const result = await db.collection("users").insertOne({
       _id: req.body._id,
+      name: req.body.name,
+      avatar: req.body.avatar,
+      bio: req.body.bio,
+      forte: req.body.forte,
+      rating: req.body.rating,
+      ads: req.body.ads,
+      reviews: req.body.reviews,
       email: email,
       password: req.body.password,
     });

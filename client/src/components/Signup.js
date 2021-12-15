@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import SignInBtn from "./auth0/SignInBtn";
 import { useAuth0 } from "@auth0/auth0-react";
 import { CurrentUserContext } from "./CurrentUserContext";
+import { UsersContext } from "./UsersContext";
 import { useHistory } from "react-router";
 import { v4 as uuidv4 } from "uuid";
 const Signup = () => {
@@ -18,6 +19,13 @@ const Signup = () => {
     error,
     setError,
   } = useContext(CurrentUserContext);
+
+  const {
+    currentLatitude,
+    setCurrentLatitude,
+    currentLongitude,
+    setCurrentLongitude,
+  } = useContext(UsersContext);
 
   let history = useHistory();
 
@@ -38,6 +46,13 @@ const Signup = () => {
       method: "POST",
       body: JSON.stringify({
         _id: newId,
+        name: "",
+        avatar: "",
+        bio: "",
+        forte: [],
+        rating: [],
+        ads: [],
+        reviews: [],
         email,
         password,
       }),
@@ -51,6 +66,8 @@ const Signup = () => {
         if (data.message === "ok") {
           setCurrentUser(data);
           setSignedIn(true);
+          setCurrentLatitude(null);
+          setCurrentLongitude(null);
           setError("");
           window.sessionStorage.setItem("currentUser", JSON.stringify(data));
           history.push(`/edit-profile/${data.data._id}`);
@@ -87,7 +104,15 @@ const Signup = () => {
             <SignInBtn />
           </form>
           <Member>
-            Already a member? <SigninLink to={"/signin"}>Sign in</SigninLink>
+            Already a member?{" "}
+            <SignInButton
+              onClick={() => {
+                setError("");
+                history.push("/signin");
+              }}
+            >
+              Sign in
+            </SignInButton>
           </Member>
           {error !== "" && <ErrorMessage>{error}</ErrorMessage>}
         </SignUpDiv>
@@ -106,7 +131,7 @@ const Wrapper = styled.div`
 
 const Div = styled.div`
   background-color: #e1eedd;
-  height: 400px;
+  height: 410px;
   width: 500px;
   margin: 0 auto;
   margin-top: 100px;
@@ -187,8 +212,14 @@ const Member = styled.p`
   color: #183a1d;
 `;
 
-const SigninLink = styled(Link)`
+const SignInButton = styled.button`
+  font-size: 12px;
+  width: 55px;
+  text-align: center;
+  border-style: none;
+  background-color: transparent;
   color: #40916c;
+  cursor: pointer;
 `;
 
 const ErrorMessage = styled.p`
@@ -196,5 +227,5 @@ const ErrorMessage = styled.p`
   font-size: 12px;
   width: 300px;
   text-align: center;
-  margin-top: 10px;
+  margin: 0;
 `;

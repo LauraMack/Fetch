@@ -5,6 +5,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { CurrentUserContext } from "./CurrentUserContext";
 import { RiMenuLine } from "react-icons/ri";
 import { RiArrowDropDownLine } from "react-icons/ri";
+import SignOutBtn from "./auth0/SignOutBtn";
 
 const Header = () => {
   const { currentUser, setCurrentUser, setSignedIn, myProfile, setMyProfile } =
@@ -15,7 +16,6 @@ const Header = () => {
   const handleSignOut = (ev) => {
     setCurrentUser(null);
     setSignedIn(false);
-    setMyProfile(null);
     window.sessionStorage.clear();
     history.push("/");
     window.scrollTo({
@@ -53,7 +53,13 @@ const Header = () => {
             <MapLink to={"/map"}>
               <Map>Map</Map>
             </MapLink>
-            <ProfileLink to={`/my-profile/${currentUser.data._id}`}>
+            <ProfileLink
+              to={
+                currentUser.data.name && currentUser.data.forte
+                  ? `/my-profile/${currentUser.data._id}`
+                  : `/edit-profile/${currentUser.data._id}`
+              }
+            >
               <Profile>My Profile</Profile>
             </ProfileLink>
             <Signout onClick={handleSignOut}>Sign Out</Signout>

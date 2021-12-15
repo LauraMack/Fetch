@@ -10,31 +10,19 @@ const MyAds = () => {
 
   return (
     <Wrapper>
-      {myProfile.data.ads ? (
+      {currentUser.data.ads < 0 ? (
         <div>
           <div>
             <Title>My ads</Title>
           </div>
-          {myProfile.data.ads.map((ad) => {
+          {currentUser.data.ads.map((ad) => {
             return (
               <AdsDiv>
                 <Info>
-                  <Link
-                    to={
-                      myProfile.data
-                        ? `/my-profile/${currentUser.data._id}`
-                        : `/edit-profile/${currentUser.data._id}`
-                    }
-                  >
+                  <Link to={`/my-profile/${currentUser.data._id}`}>
                     <Image src={ad.avatar} />
                   </Link>
-                  <Link
-                    to={
-                      myProfile.data
-                        ? `/my-profile/${currentUser.data._id}`
-                        : `/edit-profile/${currentUser.data._id}`
-                    }
-                  >
+                  <Link to={`/my-profile/${currentUser.data._id}`}>
                     <From>{ad.name}</From>
                   </Link>
                   <From>-</From>
@@ -109,13 +97,12 @@ const Body = styled.p`
 `;
 
 const Title = styled.div`
-  width: 1000px;
   margin: 0 auto;
   text-align: center;
   color: #183a1d;
   font-size: 40px;
   margin-top: 120px;
-  margin-bottom: 100px;
+  margin-bottom: 80px;
 `;
 
 const Container = styled.div`
@@ -125,14 +112,18 @@ const Container = styled.div`
   margin-top: 100px;
   text-align: center;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
 `;
 
-const NoAdsDiv = styled.div``;
+const NoAdsDiv = styled.div`
+  width: 500px;
+  margin-right: 50px;
+`;
 
 const Illustration = styled.img`
   height: 500px;
+  margin-left: 50px;
 `;
 
 const PostAd = styled.button`
