@@ -1,5 +1,4 @@
 const { users } = require("./data/users");
-const { reviews } = require("./data/reviews");
 const { MongoClient } = require("mongodb");
 
 require("dotenv").config();

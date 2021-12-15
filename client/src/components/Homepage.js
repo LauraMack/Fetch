@@ -8,7 +8,6 @@ import { UsersContext } from "./UsersContext";
 import { CurrentUserContext } from "./CurrentUserContext";
 import dogWalker from "../assets/dog-walkers2.png";
 import atHome from "../assets/at-home.png";
-import { useAuth0 } from "@auth0/auth0-react";
 import Loading from "./Loading";
 
 const Homepage = ({ result, setResult }) => {
