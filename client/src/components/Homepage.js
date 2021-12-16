@@ -110,7 +110,7 @@ const Homepage = ({ result, setResult }) => {
   const success = (position) => {
     setCurrentLatitude(position.coords.latitude);
     setCurrentLongitude(position.coords.longitude);
-    setStatus("success");
+    // setStatus("success");
   };
 
   //callback function for geolocation API
@@ -327,8 +327,9 @@ const HomeImage = styled.img`
 
 const LoadDiv = styled.div`
   height: 100px;
-  width: 100px;
-  position: absolute;
-  left: 48vw;
-  top: 1450px;
+  width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;

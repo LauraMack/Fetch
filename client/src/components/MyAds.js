@@ -1,11 +1,12 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { CurrentUserContext } from "./CurrentUserContext";
 import dogWalker from "../assets/dog-walker.jpeg";
 
 const MyAds = () => {
   const { currentUser } = useContext(CurrentUserContext);
+  let history = useHistory();
 
   return (
     <Wrapper>
@@ -36,7 +37,13 @@ const MyAds = () => {
         <Container>
           <NoAdsDiv>
             <Title>No ads yet...</Title>
-            <PostAd>Post an Ad</PostAd>
+            <PostAd
+              onClick={() => {
+                history.push("/all-ads");
+              }}
+            >
+              Post an Ad
+            </PostAd>
           </NoAdsDiv>
           <Illustration src={dogWalker} />
         </Container>
