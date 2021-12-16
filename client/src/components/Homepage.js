@@ -110,7 +110,7 @@ const Homepage = ({ result, setResult }) => {
   const success = (position) => {
     setCurrentLatitude(position.coords.latitude);
     setCurrentLongitude(position.coords.longitude);
-    // setStatus("success");
+    setStatus("success");
   };
 
   //callback function for geolocation API
