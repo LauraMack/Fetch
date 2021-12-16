@@ -30,12 +30,13 @@ const EditProfile = () => {
   };
 
   const handleAvailability = (ev) => {
-    if (ev.target.value === "Yes") {
+    if (ev.target.value === "Yes" && ev.target.checked) {
       setOpenToTrading(true);
-    } else {
+    } else if (!ev.target.checked) {
       setOpenToTrading(false);
     }
   };
+  console.log(openToTrading);
 
   const handleForte = (ev) => {
     let forteArray = [...forte];
@@ -127,14 +128,14 @@ const EditProfile = () => {
               ></AvailCheckbox>
               Yes, I'm available to lend my time to others.
             </label>
-            <label>
+            {/* <label>
               <NoAvailCheckbox
                 type="checkbox"
                 value="No"
                 onChange={handleAvailability}
               ></NoAvailCheckbox>{" "}
               I'm not available right now.{" "}
-            </label>
+            </label> */}
           </AvailContainer>
           <ForteTitle>What's your forte?</ForteTitle>
           <ForteTitleTwo>Select all that apply</ForteTitleTwo>

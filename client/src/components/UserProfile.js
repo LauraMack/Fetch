@@ -69,6 +69,7 @@ const UserProfile = () => {
           setNewReview("");
           setReviewsUpdated(!reviewsUpdated);
           setStatus("success");
+          setRating(0);
         }
         if (data.message === "error") {
           setError("Sorry, your review couldn't be posted. Please try again. ");

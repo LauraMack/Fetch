@@ -67,7 +67,7 @@ const MyProfile = () => {
                 );
               })}
             </ForteDiv>
-            <InfoDiv>
+            {/* <InfoDiv>
               <AdsButton
                 onClick={() => {
                   history.push(`/my-ads/${currentUser.data._id}`);
@@ -75,7 +75,7 @@ const MyProfile = () => {
               >
                 My ads
               </AdsButton>
-            </InfoDiv>
+            </InfoDiv> */}
           </InfoContainer>
         </Div>
       ) : (
@@ -113,7 +113,7 @@ const InfoContainer = styled.div`
   justify-content: space-evenly;
   position: relative;
   top: -160px;
-  left: 50px;
+  left: -20px;
   height: 400px;
 `;
 

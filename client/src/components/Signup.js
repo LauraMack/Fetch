@@ -43,7 +43,7 @@ const Signup = () => {
         bio: "",
         forte: [],
         rating: [],
-        ads: [],
+        // ads: [],
         reviews: [],
         email,
         password,
@@ -91,8 +91,8 @@ const Signup = () => {
               required
             ></Input>
             <Button>Sign up</Button>
-            <Or>or</Or>
-            <SignInBtn />
+            {/* <Or>or</Or>
+            <SignInBtn /> */}
           </form>
           <Member>
             Already a member?{" "}
@@ -122,7 +122,7 @@ const Wrapper = styled.div`
 
 const Div = styled.div`
   background-color: #e1eedd;
-  height: 410px;
+  height: 350px;
   width: 500px;
   margin: 0 auto;
   margin-top: 100px;

@@ -94,12 +94,12 @@ const AllAds = () => {
           </SendBtn>
           {error !== "" && <ErrorMessage>{error}</ErrorMessage>}
         </SendMsgBtnDiv>
+        {status === "pending" && (
+          <LoadDiv>
+            <Loading />
+          </LoadDiv>
+        )}
       </Form>
-      {status === "pending" && (
-        <LoadDiv>
-          <Loading />
-        </LoadDiv>
-      )}
       <TitleDiv>
         <Dog src={dog} />
         <Title>Recent ads</Title>
@@ -287,7 +287,7 @@ const ContactButton = styled.button`
 const LoadDiv = styled.div`
   height: 100px;
   width: 100px;
-  position: absolute;
-  right: 75px;
-  bottom: 260px;
+  margin-left: 720px;
+  margin-top: -50px;
+  position: relative;
 `;

@@ -10,7 +10,7 @@ const MyAds = () => {
 
   return (
     <Wrapper>
-      {currentUser.data.ads < 0 ? (
+      {!currentUser.data.ads < 0 ? (
         <div>
           <div>
             <Title>My ads</Title>

@@ -85,8 +85,8 @@ const Signin = () => {
             placeholder="password"
           ></Input>
           <Button onClick={handleSignIn}>Sign in</Button>
-          <Or>or</Or>
-          <SignInBtn />
+          {/* <Or>or</Or>
+          <SignInBtn /> */}
           <Member>
             Not yet a member?{" "}
             <SignupButton
@@ -115,7 +115,7 @@ const Wrapper = styled.div`
 
 const Div = styled.div`
   background-color: #e1eedd;
-  height: 410px;
+  height: 350px;
   width: 500px;
   margin: 0 auto;
   margin-top: 100px;
