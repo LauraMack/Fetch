@@ -40,6 +40,8 @@ const AllAds = () => {
     }
   }, [allUsers]);
 
+  console.log(currentUser.data.ads);
+
   const handleAdChange = (ev) => {
     setNewAd(ev.target.value);
     setError("");
@@ -65,10 +67,12 @@ const AllAds = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data.message === "ok") {
-          setNewAd("");
           setAdsUpdated(!adsUpdated);
           currentUser.data.ads.push(data.data);
+          console.log(data.data, "NEW AD");
+          console.log(currentUser.data.ads);
           setStatus("success");
+          setNewAd("");
         }
         if (data.message === "error") {
           setError("Sorry, your ad couldn't be posted. Please try again. ");

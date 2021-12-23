@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { CurrentUserContext } from "./CurrentUserContext";
@@ -8,9 +8,33 @@ const MyAds = () => {
   const { currentUser } = useContext(CurrentUserContext);
   let history = useHistory();
 
+  console.log(currentUser.data.ads);
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+      transition: "all 0.5s ease 0s",
+    });
+  }, []);
+
   return (
     <Wrapper>
-      {!currentUser.data.ads < 0 ? (
+      {currentUser.data.ads.length >= 0 ? (
+        <Container>
+          <NoAdsDiv>
+            <Title>No ads yet...</Title>
+            <PostAd
+              onClick={() => {
+                history.push("/all-ads");
+              }}
+            >
+              Post an Ad
+            </PostAd>
+          </NoAdsDiv>
+          <Illustration src={dogWalker} />
+        </Container>
+      ) : (
         <div>
           <div>
             <Title>My ads</Title>
@@ -33,20 +57,6 @@ const MyAds = () => {
             );
           })}
         </div>
-      ) : (
-        <Container>
-          <NoAdsDiv>
-            <Title>No ads yet...</Title>
-            <PostAd
-              onClick={() => {
-                history.push("/all-ads");
-              }}
-            >
-              Post an Ad
-            </PostAd>
-          </NoAdsDiv>
-          <Illustration src={dogWalker} />
-        </Container>
       )}
     </Wrapper>
   );
