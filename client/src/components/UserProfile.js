@@ -3,7 +3,13 @@ import styled from "styled-components";
 import { useParams, useHistory } from "react-router-dom";
 import { UsersContext } from "./UsersContext";
 import { IoStarSharp } from "react-icons/io5";
-import { FiCheckCircle } from "react-icons/fi";
+import {
+  FiCheckCircle,
+  FiUsers,
+  FiArchive,
+  FiEdit,
+  FiMessageSquare,
+} from "react-icons/fi";
 import { FaRegTimesCircle } from "react-icons/fa";
 import { CurrentUserContext } from "./CurrentUserContext";
 import placeholder from "../assets/placeholder-image2.jpeg";
@@ -124,15 +130,28 @@ const UserProfile = () => {
                 })}
               </ForteDiv>
               <InfoDiv>
-                <Contact>Contact {profile.name}</Contact>
-
-                <AdsButton
-                  onClick={() => {
-                    history.push(`/users/ads/${profile._id}`);
-                  }}
-                >
-                  {profile.name}'s Ads
-                </AdsButton>
+                <AdsDiv>
+                  <AdsButton
+                    onClick={() => {
+                      history.push(`/users/ads/${profileId}`);
+                    }}
+                  >
+                    <AdsIcon />
+                    <Ads>{profile.name}'s ads</Ads>
+                  </AdsButton>
+                </AdsDiv>
+                <SavedDiv>
+                  <SavedButton>
+                    <SavedUsersIcon />
+                    <Saved>Add to saved</Saved>
+                  </SavedButton>
+                </SavedDiv>
+                <SavedDiv>
+                  <ContactButton>
+                    <ContactIcon />
+                    <Contact>Contact {profile.name}</Contact>
+                  </ContactButton>
+                </SavedDiv>
               </InfoDiv>
             </InfoContainer>
           </Div>
@@ -246,11 +265,22 @@ const ForteTitle = styled.p`
 
 const InfoDiv = styled.div`
   display: flex;
-  flex-direction: column;
-  width: 400px;
-  margin-top: 20px;
+  width: 200px;
+  height: 200px;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-left: 25px;
 `;
 
+const AdsDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const SavedDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
 const ReviewsDiv = styled.div`
   background-color: #faf9f0;
   height: max-content;
@@ -303,16 +333,33 @@ const Whitespace = styled.div`
 `;
 
 const AdsButton = styled.button`
-  background-color: #40916c;
-  border: solid 1px #183a1d;
-  border-radius: 5px;
-  color: #e1eedd;
-  padding: 20px;
+  background-color: transparent;
+  padding: 10px;
   font-size: 18px;
-  &:hover {
-    background-color: #f6c453;
-    color: #183a1d;
-  }
+  border-style: none;
+  height: 50px;
+  width: 100px;
+  cursor: pointer;
+`;
+
+const SavedButton = styled.button`
+  background-color: transparent;
+  padding: 10px;
+  font-size: 18px;
+  border-style: none;
+  height: 50px;
+  width: 100px;
+  cursor: pointer;
+`;
+
+const ContactButton = styled.button`
+  background-color: transparent;
+  padding: 10px;
+  font-size: 18px;
+  border-style: none;
+  height: 50px;
+  width: 100px;
+  cursor: pointer;
 `;
 
 const Image = styled.img`
@@ -374,21 +421,6 @@ const ForteDiv = styled.div`
   justify-content: center;
   position: relative;
   top: -100px;
-`;
-
-const Contact = styled.button`
-  background-color: #40916c;
-  border: solid 1px #183a1d;
-  border-radius: 5px;
-  font-size: 18px;
-  color: #e1eedd;
-  padding: 20px;
-  margin-bottom: 10px;
-  margin-top: 40px;
-  &:hover {
-    background-color: #f6c453;
-    color: #183a1d;
-  }
 `;
 
 const Forte = styled.li`
@@ -557,4 +589,49 @@ const LoadDiv = styled.div`
   position: absolute;
   top: 1890px;
   left: 1150px;
+`;
+
+const Saved = styled.p`
+  text-align: center;
+  font-size: 14px;
+  color: #183a1d;
+`;
+
+const Ads = styled.p`
+  text-align: center;
+  font-size: 14px;
+  color: #183a1d;
+`;
+
+const Contact = styled.p`
+  text-align: center;
+  font-size: 14px;
+  color: #183a1d;
+`;
+
+const AdsIcon = styled(FiArchive)`
+  font-size: 40px;
+  color: #40916c;
+  &:hover {
+    color: #f6c453;
+    transition: 0.3s ease-in-out;
+  }
+`;
+
+const SavedUsersIcon = styled(FiUsers)`
+  font-size: 40px;
+  color: #40916c;
+  &:hover {
+    color: #f6c453;
+    transition: 0.3s ease-in-out;
+  }
+`;
+
+const ContactIcon = styled(FiMessageSquare)`
+  font-size: 40px;
+  color: #40916c;
+  &:hover {
+    color: #f6c453;
+    transition: 0.3s ease-in-out;
+  }
 `;

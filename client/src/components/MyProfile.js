@@ -319,15 +319,6 @@ const Check = styled(FiCheckCircle)`
   top: 8px;
 `;
 
-const Skip = styled.p`
-  width: 1000px;
-  text-align: center;
-  position: absolute;
-  top: 120px;
-  text-decoration: underline;
-  color: #40916c;
-`;
-
 const Ex = styled(FaRegTimesCircle)`
   padding: 5px;
   position: relative;
