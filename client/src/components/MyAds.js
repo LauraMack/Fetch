@@ -3,12 +3,11 @@ import { Link, useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { CurrentUserContext } from "./CurrentUserContext";
 import dogWalker from "../assets/dog-walker.jpeg";
+import moment from "moment";
 
 const MyAds = () => {
-  const { currentUser } = useContext(CurrentUserContext);
+  const { currentUser, myAds, setMyAds } = useContext(CurrentUserContext);
   let history = useHistory();
-
-  console.log(currentUser.data.ads);
 
   useEffect(() => {
     window.scrollTo({
@@ -16,11 +15,19 @@ const MyAds = () => {
       behavior: "smooth",
       transition: "all 0.5s ease 0s",
     });
+    fetch(`/my-ads/${currentUser.data._id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data.data);
+        setMyAds(data.data.ads);
+      });
   }, []);
+
+  console.log(myAds);
 
   return (
     <Wrapper>
-      {currentUser.data.ads.length >= 0 ? (
+      {!myAds || myAds.length < 1 ? (
         <Container>
           <NoAdsDiv>
             <Title>No ads yet...</Title>
@@ -39,23 +46,26 @@ const MyAds = () => {
           <div>
             <Title>My ads</Title>
           </div>
-          {currentUser.data.ads.map((ad) => {
-            return (
-              <AdsDiv>
-                <Info>
-                  <Link to={`/my-profile/${currentUser.data._id}`}>
-                    <Image src={ad.avatar} />
-                  </Link>
-                  <Link to={`/my-profile/${currentUser.data._id}`}>
-                    <From>{ad.name}</From>
-                  </Link>
-                  <From>-</From>
-                  <Timestamp>{ad.timestamp}</Timestamp>
-                </Info>
-                <Body>{ad.body}</Body>
-              </AdsDiv>
-            );
-          })}
+          {myAds &&
+            myAds.map((ad) => {
+              return (
+                <AdsDiv>
+                  <Info>
+                    <Link to={`/my-profile/${currentUser.data._id}`}>
+                      <Image src={ad.avatar} />
+                    </Link>
+                    <Link to={`/my-profile/${currentUser.data._id}`}>
+                      <From>{ad.name}</From>
+                    </Link>
+                    <From>-</From>
+                    <Timestamp>
+                      {moment(ad.timestamp).format("MMMM DD, YYYY")}
+                    </Timestamp>
+                  </Info>
+                  <Body>{ad.body}</Body>
+                </AdsDiv>
+              );
+            })}
         </div>
       )}
     </Wrapper>

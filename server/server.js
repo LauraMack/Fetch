@@ -8,6 +8,7 @@ const {
   addReview,
   addAd,
   getUserAdsByUserId,
+  getCurrentUserAdsById,
 } = require("./handlers");
 
 // import the needed node_modules.
@@ -28,6 +29,7 @@ express()
   .get("/users", getAllUsers)
   .get("/profile/:_id", getUserById)
   .get("/users/ads/:_id", getUserAdsByUserId)
+  .get("/my-ads/:_id", getCurrentUserAdsById)
   .post("/users/:email", getExistingUser)
   .post("/users", addNewUser)
   .post("/all-ads", addAd)

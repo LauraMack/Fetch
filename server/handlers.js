@@ -118,7 +118,6 @@ const updateUser = async (req, res) => {
         bio: req.body.bio,
         forte: req.body.forte,
         openToTrading: req.body.openToTrading,
-        ads: [],
       },
     }
   );
@@ -196,6 +195,21 @@ const getUserAdsByUserId = async (req, res) => {
   client.close();
 };
 
+const getCurrentUserAdsById = async (req, res) => {
+  const client = new MongoClient(MONGO_URI, options);
+  await client.connect();
+  const db = client.db("final-project");
+  const _id = req.params._id;
+  const result = await db.collection("users").findOne({ _id });
+  if (result) {
+    res.status(200).json({ status: 200, message: "ok", data: result });
+  } else {
+    res.status(404).json({ status: 404, message: "error", data: result });
+  }
+
+  client.close();
+};
+
 module.exports = {
   getAllUsers,
   getUserById,
@@ -205,4 +219,5 @@ module.exports = {
   addReview,
   addAd,
   getUserAdsByUserId,
+  getCurrentUserAdsById,
 };

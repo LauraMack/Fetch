@@ -79,8 +79,10 @@ const EditProfile = () => {
         name,
         bio,
         forte,
-        ads: [],
         openToTrading,
+        rating: [],
+        ads: [],
+        reviews: [],
       }),
     })
       .then((res) => res.json())

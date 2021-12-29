@@ -43,7 +43,7 @@ const Signup = () => {
         bio: "",
         forte: [],
         rating: [],
-        // ads: [],
+        ads: [],
         reviews: [],
         email,
         password,
