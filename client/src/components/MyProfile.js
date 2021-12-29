@@ -6,6 +6,7 @@ import { CurrentUserContext } from "./CurrentUserContext";
 import { FiCheckCircle } from "react-icons/fi";
 import { IoStarSharp } from "react-icons/io5";
 import { FaRegTimesCircle } from "react-icons/fa";
+import { FiUsers, FiArchive, FiEdit } from "react-icons/fi";
 
 const MyProfile = () => {
   const { currentUser } = useContext(CurrentUserContext);
@@ -25,9 +26,6 @@ const MyProfile = () => {
         <Div>
           <CoverDiv></CoverDiv>
           <Whitespace></Whitespace>
-          <Link to={`/edit-profile/${currentUser.data._id}`}>
-            <Skip>Edit profile</Skip>
-          </Link>
           <Image src={currentUser.data.avatar} />
 
           <Name>{currentUser.data.name}</Name>
@@ -68,13 +66,36 @@ const MyProfile = () => {
               })}
             </ForteDiv>
             <InfoDiv>
-              <AdsButton
-                onClick={() => {
-                  history.push(`/my-ads/${currentUser.data._id}`);
-                }}
-              >
-                My ads
-              </AdsButton>
+              <AdsDiv>
+                <AdsButton
+                  onClick={() => {
+                    history.push(`/my-ads/${currentUser.data._id}`);
+                  }}
+                >
+                  <AdsIcon />
+                  <Ads>My ads</Ads>
+                </AdsButton>
+              </AdsDiv>
+              <SavedDiv>
+                <SavedButton
+                  onClick={() =>
+                    history.push(`/my-profile/${currentUser.data._id}/saved`)
+                  }
+                >
+                  <SavedUsersIcon />
+                  <Saved>Saved users</Saved>
+                </SavedButton>
+              </SavedDiv>
+              <SavedDiv>
+                <EditButton
+                  onClick={() =>
+                    history.push(`/edit-profile/${currentUser.data._id}`)
+                  }
+                >
+                  <EditIcon />
+                  <Edit>Edit profile</Edit>
+                </EditButton>
+              </SavedDiv>
             </InfoDiv>
           </InfoContainer>
         </Div>
@@ -123,9 +144,21 @@ const ForteTitle = styled.p`
 
 const InfoDiv = styled.div`
   display: flex;
+  width: 200px;
+  height: 200px;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-left: 25px;
+`;
+
+const AdsDiv = styled.div`
+  display: flex;
   flex-direction: column;
-  width: 400px;
-  margin-top: 20px;
+`;
+
+const SavedDiv = styled.div`
+  display: flex;
+  flex-direction: column;
 `;
 
 const CoverDiv = styled.div`
@@ -143,17 +176,51 @@ const Whitespace = styled.div`
 `;
 
 const AdsButton = styled.button`
-  margin-top: 75px;
-  background-color: #40916c;
-  border: solid 1px #183a1d;
-  border-radius: 5px;
-  color: #e1eedd;
-  padding: 20px;
+  background-color: transparent;
+  padding: 10px;
   font-size: 18px;
-  &:hover {
-    background-color: #f6c453;
-    color: #183a1d;
-  }
+  border-style: none;
+  height: 50px;
+  width: 100px;
+  cursor: pointer;
+`;
+
+const SavedButton = styled.button`
+  background-color: transparent;
+  padding: 10px;
+  font-size: 18px;
+  border-style: none;
+  height: 50px;
+  width: 100px;
+  cursor: pointer;
+`;
+
+const EditButton = styled.button`
+  background-color: transparent;
+  padding: 10px;
+  font-size: 18px;
+  border-style: none;
+  height: 50px;
+  width: 100px;
+  cursor: pointer;
+`;
+
+const Saved = styled.p`
+  text-align: center;
+  font-size: 14px;
+  color: #183a1d;
+`;
+
+const Ads = styled.p`
+  text-align: center;
+  font-size: 14px;
+  color: #183a1d;
+`;
+
+const Edit = styled.p`
+  text-align: center;
+  font-size: 14px;
+  color: #183a1d;
 `;
 
 const Image = styled.img`
@@ -265,4 +332,31 @@ const Ex = styled(FaRegTimesCircle)`
   padding: 5px;
   position: relative;
   top: 8px;
+`;
+
+const AdsIcon = styled(FiArchive)`
+  font-size: 40px;
+  color: #40916c;
+  &:hover {
+    color: #f6c453;
+    transition: 0.3s ease-in-out;
+  }
+`;
+
+const SavedUsersIcon = styled(FiUsers)`
+  font-size: 40px;
+  color: #40916c;
+  &:hover {
+    color: #f6c453;
+    transition: 0.3s ease-in-out;
+  }
+`;
+
+const EditIcon = styled(FiEdit)`
+  font-size: 40px;
+  color: #40916c;
+  &:hover {
+    color: #f6c453;
+    transition: 0.3s ease-in-out;
+  }
 `;

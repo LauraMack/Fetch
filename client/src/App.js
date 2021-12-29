@@ -15,6 +15,7 @@ import SearchResults from "./components/SearchResults";
 import CategoryPage from "./components/CategoryPage";
 import Map from "./components/Map/Map";
 import UserAds from "./components/UserAds";
+import SavedUsers from "./components/SavedUsers";
 
 const App = ({ profileId }) => {
   const [result, setResult] = useState(null);
@@ -47,6 +48,9 @@ const App = ({ profileId }) => {
           </Route>
           <Route exact path="/my-profile/:id">
             <MyProfile />
+          </Route>
+          <Route exact path="/my-profile/:id/saved">
+            <SavedUsers />
           </Route>
           <Route exact path="/edit-profile/:id">
             <EditProfile />
