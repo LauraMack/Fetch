@@ -14,6 +14,8 @@ const AllAds = () => {
   const [allAds, setAllAds] = useState([]);
   const [newAd, setNewAd] = useState("");
 
+  console.log(currentUser.data.ads);
+
   useEffect(() => {
     let adsArray = [];
     if (allUsers.data) {
@@ -39,8 +41,6 @@ const AllAds = () => {
       });
     }
   }, [allUsers]);
-
-  console.log(currentUser.data.ads);
 
   const handleAdChange = (ev) => {
     setNewAd(ev.target.value);
@@ -69,7 +69,6 @@ const AllAds = () => {
         if (data.message === "ok") {
           setAdsUpdated(!adsUpdated);
           currentUser.data.ads.push(data.data);
-          console.log(data.data, "NEW AD");
           console.log(currentUser.data.ads);
           setStatus("success");
           setNewAd("");

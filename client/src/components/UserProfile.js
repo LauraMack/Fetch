@@ -9,6 +9,7 @@ import {
   FiArchive,
   FiEdit,
   FiMessageSquare,
+  FiUserCheck,
 } from "react-icons/fi";
 import { FaRegTimesCircle } from "react-icons/fa";
 import { CurrentUserContext } from "./CurrentUserContext";
@@ -20,12 +21,19 @@ import { v4 as uuidv4 } from "uuid";
 
 const UserProfile = () => {
   const { profile, setProfile, rating, setRating } = useContext(UsersContext);
-  const { currentUser, error, setError, status, setStatus } =
-    useContext(CurrentUserContext);
+  const {
+    currentUser,
+    error,
+    setError,
+    status,
+    setStatus,
+    favourited,
+    setFavourited,
+  } = useContext(CurrentUserContext);
   const { profileId } = useParams();
   const [newReview, setNewReview] = useState("");
   const [reviewsUpdated, setReviewsUpdated] = useState(false);
-
+  const [message, setMessage] = useState("");
   let history = useHistory();
 
   useEffect(() => {
@@ -82,6 +90,30 @@ const UserProfile = () => {
         }
       });
   };
+
+  const handleAddFavourite = (ev) => {
+    ev.preventDefault();
+    fetch(`/users/${currentUser.data._id}/favourite`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        _id: profileId,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data, "DATA");
+        if (data.message === "ok") {
+          console.log(data);
+          setMessage("Successfully added!");
+          window.sessionStorage.setItem("currentUser", JSON.stringify(data));
+          console.log(message);
+        }
+      });
+  };
+
   let ratingArray = [];
   ratingArray.length = rating;
   return (
@@ -141,9 +173,9 @@ const UserProfile = () => {
                   </AdsButton>
                 </AdsDiv>
                 <SavedDiv>
-                  <SavedButton>
+                  <SavedButton onClick={handleAddFavourite}>
                     <SavedUsersIcon />
-                    <Saved>Add to saved</Saved>
+                    <Saved>Add to favourites</Saved>{" "}
                   </SavedButton>
                 </SavedDiv>
                 <SavedDiv>
@@ -625,6 +657,11 @@ const SavedUsersIcon = styled(FiUsers)`
     color: #f6c453;
     transition: 0.3s ease-in-out;
   }
+`;
+
+const FavouritedIcon = styled(FiUserCheck)`
+  font-size: 40px;
+  color: #40916c;
 `;
 
 const ContactIcon = styled(FiMessageSquare)`

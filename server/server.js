@@ -9,6 +9,7 @@ const {
   addAd,
   getUserAdsByUserId,
   getCurrentUserAdsById,
+  addFavourite,
 } = require("./handlers");
 
 // import the needed node_modules.
@@ -35,6 +36,7 @@ express()
   .post("/all-ads", addAd)
   .post("/profile/:_id", addReview)
   .patch("/users/:_id", updateUser)
+  .patch("/users/:_id/favourite", addFavourite)
 
   // endpoints are added above
 

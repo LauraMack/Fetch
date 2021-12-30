@@ -66,6 +66,8 @@ const EditProfile = () => {
       });
   };
 
+  console.log(currentUser.data.ads);
+
   const handleProfileSubmit = (ev) => {
     ev.preventDefault();
     fetch(`/users/${currentUser.data._id}`, {
@@ -81,8 +83,11 @@ const EditProfile = () => {
         forte,
         openToTrading,
         rating: [],
-        ads: [],
+        ads: currentUser.data.ads ? currentUser.data.ads : [],
         reviews: [],
+        favourites: currentUser.data.favourites
+          ? currentUser.data.favourites
+          : [],
       }),
     })
       .then((res) => res.json())
@@ -130,14 +135,6 @@ const EditProfile = () => {
               ></AvailCheckbox>
               Yes, I'm available to lend my time to others.
             </label>
-            {/* <label>
-              <NoAvailCheckbox
-                type="checkbox"
-                value="No"
-                onChange={handleAvailability}
-              ></NoAvailCheckbox>{" "}
-              I'm not available right now.{" "}
-            </label> */}
           </AvailContainer>
           <ForteTitle>What's your forte?</ForteTitle>
           <ForteTitleTwo>Select all that apply</ForteTitleTwo>

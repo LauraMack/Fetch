@@ -79,11 +79,13 @@ const MyProfile = () => {
               <SavedDiv>
                 <SavedButton
                   onClick={() =>
-                    history.push(`/my-profile/${currentUser.data._id}/saved`)
+                    history.push(
+                      `/my-profile/${currentUser.data._id}/favourites`
+                    )
                   }
                 >
                   <SavedUsersIcon />
-                  <Saved>Saved users</Saved>
+                  <Saved>Favourited users</Saved>
                 </SavedButton>
               </SavedDiv>
               <SavedDiv>

@@ -49,7 +49,7 @@ const App = ({ profileId }) => {
           <Route exact path="/my-profile/:id">
             <MyProfile />
           </Route>
-          <Route exact path="/my-profile/:id/saved">
+          <Route exact path="/my-profile/:id/favourites">
             <SavedUsers />
           </Route>
           <Route exact path="/edit-profile/:id">

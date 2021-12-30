@@ -18,12 +18,10 @@ const MyAds = () => {
     fetch(`/my-ads/${currentUser.data._id}`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data.data);
         setMyAds(data.data.ads);
+        window.sessionStorage.setItem("currentUser", JSON.stringify(data));
       });
   }, []);
-
-  console.log(myAds);
 
   return (
     <Wrapper>
