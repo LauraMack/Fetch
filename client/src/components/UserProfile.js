@@ -7,7 +7,6 @@ import {
   FiCheckCircle,
   FiUsers,
   FiArchive,
-  FiEdit,
   FiMessageSquare,
   FiUserCheck,
 } from "react-icons/fi";
