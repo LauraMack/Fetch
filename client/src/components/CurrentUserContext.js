@@ -8,6 +8,11 @@ export const CurrentUserProvider = ({ children }) => {
     return persistParam !== null ? JSON.parse(persistParam) : null;
   });
 
+  const [favourites, setFavourites] = useState(() => {
+    const param = window.sessionStorage.getItem("favourites");
+    return param !== null ? JSON.parse(param) : null;
+  });
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [signedIn, setSignedIn] = useState(false);
@@ -18,7 +23,6 @@ export const CurrentUserProvider = ({ children }) => {
   const [error, setError] = useState("");
   const [status, setStatus] = useState("idle");
   const [myAds, setMyAds] = useState("");
-  const [favourited, setFavourited] = useState(false);
 
   return (
     <CurrentUserContext.Provider
@@ -45,8 +49,8 @@ export const CurrentUserProvider = ({ children }) => {
         setStatus,
         myAds,
         setMyAds,
-        favourited,
-        setFavourited,
+        favourites,
+        setFavourites,
       }}
     >
       {children}

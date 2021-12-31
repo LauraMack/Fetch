@@ -27,8 +27,8 @@ const UserProfile = () => {
     setError,
     status,
     setStatus,
-    favourited,
-    setFavourited,
+    favourites,
+    setFavourites,
   } = useContext(CurrentUserContext);
   const { profileId } = useParams();
   const [newReview, setNewReview] = useState("");
@@ -104,15 +104,24 @@ const UserProfile = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data, "DATA");
         if (data.message === "ok") {
           console.log(data);
           setMessage("Successfully added!");
           window.sessionStorage.setItem("currentUser", JSON.stringify(data));
           console.log(message);
+          let favouritesArray = data.data.favourites.map((i) => {
+            return i._id;
+          });
+          setFavourites(favouritesArray);
+          window.sessionStorage.setItem(
+            "favourites",
+            JSON.stringify(favouritesArray)
+          );
         }
       });
   };
+
+  console.log(favourites);
 
   let ratingArray = [];
   ratingArray.length = rating;
@@ -173,10 +182,17 @@ const UserProfile = () => {
                   </AdsButton>
                 </AdsDiv>
                 <SavedDiv>
-                  <SavedButton onClick={handleAddFavourite}>
-                    <SavedUsersIcon />
-                    <Saved>Add to favourites</Saved>{" "}
-                  </SavedButton>
+                  {favourites && favourites.includes(profile._id) ? (
+                    <SavedButton>
+                      <FavouritedIcon />
+                      <Saved>Favourited</Saved>
+                    </SavedButton>
+                  ) : (
+                    <SavedButton onClick={handleAddFavourite}>
+                      <SavedUsersIcon />
+                      <Saved>Add to favourites</Saved>{" "}
+                    </SavedButton>
+                  )}
                 </SavedDiv>
                 <SavedDiv>
                   <ContactButton>
