@@ -4,15 +4,13 @@ Fetch
 <div align="center">
 <h4 align="center">An online platform for fostering connections between pet owners and pet lovers, with the goal of making pet care less stressful and more accessible to all.</h4>
 
-<br />
-
 <h5 align="center">One of this project's main aims is to replace money-for-skill trading with skill-for-skill trading. Trade your pet-related skills with other pet lovers near you, and receive the pet care you need in return.</h5>
 
 <h3 align="center"> <strong>Demo:</strong> coming soon!</h3>
 
 <br />
 
- <img align="center" width="500" alt="Fetch main page with logo and tagline" src="https://user-images.githubusercontent.com/90977184/148449068-e6ab76e4-f897-4046-8683-2d47058c76c5.png">
+ <img align="center" width="1426" alt="Fetch main page with logo and tagline" src="https://user-images.githubusercontent.com/90977184/148449068-e6ab76e4-f897-4046-8683-2d47058c76c5.png">
 </div>
 
 <h4 align="center">Frontend: React, Styled-Components, Geolocation API, Google Maps API and Google Places API.</h4>
