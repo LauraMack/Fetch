@@ -3,6 +3,9 @@ Fetch
 </h1>
 <div align="center">
 <h4 align="center">An online platform for fostering connections between pet owners and pet lovers, with the goal of making pet care less stressful and more accessible to all.</h4>
+  
+  
+  
 
 <h4 align="center">One of this project's main aims is to replace money-for-skill trading with skill-for-skill trading. Trade your pet-related skills with other pet lovers near you, and receive the pet care you need in return.</h4>
 
