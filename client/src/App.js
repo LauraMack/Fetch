@@ -50,7 +50,7 @@ const App = ({ profileId }) => {
             <MyProfile />
           </Route>
           <Route exact path="/my-profile/:id/favourites">
-            <SavedUsers />
+            <SavedUsers profileId={profileId} />
           </Route>
           <Route exact path="/edit-profile/:id">
             <EditProfile />

@@ -10,6 +10,7 @@ const {
   getUserAdsByUserId,
   getCurrentUserAdsById,
   addFavourite,
+  deleteFavourite,
 } = require("./handlers");
 
 // import the needed node_modules.
@@ -33,10 +34,11 @@ express()
   .get("/my-ads/:_id", getCurrentUserAdsById)
   .post("/users/:email", getExistingUser)
   .post("/users", addNewUser)
-  .post("/all-ads", addAd)
+  .post("/all-ads/:_id/add", addAd)
   .post("/profile/:_id", addReview)
   .patch("/users/:_id", updateUser)
   .patch("/users/:_id/favourite", addFavourite)
+  .patch("/users/:_id/remove-favourite", deleteFavourite)
 
   // endpoints are added above
 

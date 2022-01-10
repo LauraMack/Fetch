@@ -50,7 +50,7 @@ const AllAds = () => {
   const handleAdSubmit = (ev) => {
     ev.preventDefault();
     setStatus("pending");
-    fetch("/all-ads", {
+    fetch(`/all-ads/${currentUser.data._id}/add`, {
       method: "POST",
       body: JSON.stringify({
         _id: currentUser.data._id,
@@ -68,8 +68,7 @@ const AllAds = () => {
       .then((data) => {
         if (data.message === "ok") {
           setAdsUpdated(!adsUpdated);
-          currentUser.data.ads.push(data.data);
-          console.log(currentUser.data.ads);
+          window.sessionStorage.setItem("currentUser", JSON.stringify(data));
           setStatus("success");
           setNewAd("");
         }

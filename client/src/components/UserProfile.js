@@ -8,7 +8,7 @@ import {
   FiUsers,
   FiArchive,
   FiMessageSquare,
-  FiUserCheck,
+  FiUserX,
 } from "react-icons/fi";
 import { FaRegTimesCircle } from "react-icons/fa";
 import { CurrentUserContext } from "./CurrentUserContext";
@@ -120,6 +120,34 @@ const UserProfile = () => {
       });
   };
 
+  const handleRemoveFavourite = (ev) => {
+    ev.stopPropagation();
+    ev.preventDefault();
+    fetch(`/users/${currentUser.data._id}/remove-favourite`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        _id: profileId,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.message === "ok") {
+          window.sessionStorage.setItem("currentUser", JSON.stringify(data));
+          let favouritesArray = data.data.favourites.map((i) => {
+            return i._id;
+          });
+          setFavourites(favouritesArray);
+          window.sessionStorage.setItem(
+            "favourites",
+            JSON.stringify(favouritesArray)
+          );
+        }
+      });
+  };
+
   console.log(favourites);
 
   let ratingArray = [];
@@ -182,9 +210,9 @@ const UserProfile = () => {
                 </AdsDiv>
                 <SavedDiv>
                   {favourites && favourites.includes(profile._id) ? (
-                    <SavedButton>
+                    <SavedButton onClick={handleRemoveFavourite}>
                       <FavouritedIcon />
-                      <Saved>Favourited</Saved>
+                      <Saved>Remove favourite</Saved>
                     </SavedButton>
                   ) : (
                     <SavedButton onClick={handleAddFavourite}>
@@ -673,8 +701,7 @@ const SavedUsersIcon = styled(FiUsers)`
     transition: 0.3s ease-in-out;
   }
 `;
-
-const FavouritedIcon = styled(FiUserCheck)`
+const FavouritedIcon = styled(FiUserX)`
   font-size: 40px;
   color: #40916c;
 `;

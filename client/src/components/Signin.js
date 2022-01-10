@@ -7,6 +7,7 @@ import { UsersContext } from "./UsersContext";
 
 const Signin = () => {
   const {
+    currentUser,
     setCurrentUser,
     setSignedIn,
     email,
@@ -15,6 +16,8 @@ const Signin = () => {
     setPassword,
     error,
     setError,
+    favourites,
+    setFavourites,
   } = useContext(CurrentUserContext);
 
   const { setCurrentLatitude, setCurrentLongitude } = useContext(UsersContext);
@@ -49,6 +52,16 @@ const Signin = () => {
       .then((data) => {
         if (data.message === "ok") {
           setCurrentUser(data);
+          if (data.data.favourites) {
+            let favouritesArray = data.data.favourites.map((i) => {
+              return i._id;
+            });
+            setFavourites(favouritesArray);
+            window.sessionStorage.setItem(
+              "favourites",
+              JSON.stringify(favouritesArray)
+            );
+          }
           setSignedIn(true);
           setCurrentLatitude(null);
           setCurrentLongitude(null);

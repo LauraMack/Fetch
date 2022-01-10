@@ -162,8 +162,9 @@ const addAd = async (req, res) => {
     const client = new MongoClient(MONGO_URI, options);
     await client.connect();
     const db = client.db("final-project");
-    const result = await db.collection("users").updateOne(
-      { _id: req.body._id },
+    const _id = req.params._id;
+    const result = await db.collection("users").findOneAndUpdate(
+      { _id: _id },
       {
         $push: {
           ads: {
@@ -175,7 +176,8 @@ const addAd = async (req, res) => {
         },
       }
     );
-    res.status(200).json({ status: 200, message: "ok", data: req.body });
+    const user = await db.collection("users").findOne({ _id: _id });
+    res.status(200).json({ status: 200, message: "ok", data: user });
   } catch (error) {
     res.status(404).json({ status: 404, message: "error", data: req.body });
   }
@@ -200,6 +202,25 @@ const addFavourite = async (req, res) => {
     res.status(200).json({ status: 200, message: "ok", data: user });
   } catch (error) {
     res.status(404).json({ status: 404, message: "error", data: req.body });
+  }
+};
+
+const deleteFavourite = async (req, res) => {
+  try {
+    const client = new MongoClient(MONGO_URI, options);
+    await client.connect();
+    const db = client.db("final-project");
+    const _id = req.params._id;
+    const result = await db.collection("users").findOneAndUpdate(
+      { _id: _id },
+      {
+        $pull: { favourites: { _id: req.body._id } },
+      }
+    );
+    const user = await db.collection("users").findOne({ _id: _id });
+    res.status(200).json({ status: 200, message: "ok", data: user });
+  } catch (error) {
+    res.status(404).json({ status: 404, message: "error" });
   }
 };
 
@@ -244,4 +265,5 @@ module.exports = {
   getUserAdsByUserId,
   getCurrentUserAdsById,
   addFavourite,
+  deleteFavourite,
 };

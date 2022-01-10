@@ -4,7 +4,7 @@ import { CurrentUserContext } from "./CurrentUserContext";
 import { UsersContext } from "./UsersContext";
 import User from "./User";
 
-const SavedUsers = () => {
+const SavedUsers = ({ profileId }) => {
   const { favourites, currentUser } = useContext(CurrentUserContext);
   const { allUsers } = useContext(UsersContext);
   const [savedUsers, setSavedUsers] = useState(null);
@@ -28,9 +28,30 @@ const SavedUsers = () => {
     }
   }, [favourites, allUsers.data]);
 
-  console.log(savedUsers);
+  const handleRemoveFavourite = (ev) => {
+    ev.stopPropagation();
+    ev.preventDefault();
+    fetch(`/users/${currentUser.data._id}/remove-favourite`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        _id: profileId, // how to specify that THAT profile is the right one to remove?
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.message === "ok") {
+          window.sessionStorage.setItem("currentUser", JSON.stringify(data));
+        }
+      });
+  };
 
-  return (
+  console.log(savedUsers);
+  // have remove button always appear with user card, but only visible on favourites page and onClick only works on favourites page
+
+  return savedUsers ? (
     <Main>
       <FavouriteDiv>Favourite Users</FavouriteDiv>
       <UserDiv>
@@ -38,6 +59,10 @@ const SavedUsers = () => {
           return <User user={user} profileId={user._id} />;
         })}
       </UserDiv>
+    </Main>
+  ) : (
+    <Main>
+      <FavouriteDiv>No Saved Users</FavouriteDiv>
     </Main>
   );
 };

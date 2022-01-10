@@ -18,8 +18,8 @@ const MyAds = () => {
     fetch(`/my-ads/${currentUser.data._id}`)
       .then((res) => res.json())
       .then((data) => {
-        setMyAds(data.data.ads);
-        window.sessionStorage.setItem("currentUser", JSON.stringify(data));
+        let reversed = data.data.ads.reverse();
+        setMyAds(reversed);
       });
   }, []);
 
