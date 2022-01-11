@@ -80,3 +80,13 @@ Easily access the closest users to you with the click of a button or enter an ad
 - Post an ad on Fetch for others to see, and easily contact users in need.
 
 <img align="center" width="1213" alt="Screen Shot 2022-01-11 at 11 58 28 AM" src="https://user-images.githubusercontent.com/90977184/148987651-7539b926-a85c-4052-9c12-5ee13a68d7a1.png">
+
+### Dependencies
+
+- Frontend
+
+<img align="center" width="1213" alt="Screen Shot 2022-01-11 at 11 58 28 AM" src="https://user-images.githubusercontent.com/90977184/148990648-251131b3-6180-49fb-add5-d35e57f38975.png">
+
+- Backend
+
+<img align="center" width="1213" alt="Screen Shot 2022-01-11 at 11 58 28 AM" src="https://user-images.githubusercontent.com/90977184/148990700-1da6a37a-23db-408c-8c15-68a45ca3e985.png">
