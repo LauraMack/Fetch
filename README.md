@@ -23,14 +23,8 @@ Fetch
 
 ### Home
 
-- A search bar: search by name or by skillset
-- Find users by category:
-  House Sitting
-  Drop-in Visits
-  Dog Walking
-  Last Minute Transport
-  Daycare
-  Overnight Boarding
+- A search bar: search by name or by skillset.
+- Find users by category.
 - Easily set your location and have the users nearest you appear first on the home page.
 - Sign in or sign up for Fetch.
 
@@ -47,21 +41,21 @@ Fetch
 - Stays signed in on page refresh.
 
 <img align="center" width="768" alt="Screenshot of sign in page" src="https://user-images.githubusercontent.com/90977184/148972874-4b188adc-6ac6-4ca2-8cc6-e6005378012c.png">
-<img align="center" width="663" alt="Screenshot of password validation" src="https://user-images.githubusercontent.com/90977184/148972890-261e2042-aa49-4c60-afd1-e9677e7ec583.png">
-<img align="center" width="709" alt="Screenshot of email validation" src="https://user-images.githubusercontent.com/90977184/148972898-1bcdb4f6-b1cf-4459-843f-88f97d619b79.png">
+<img align="center" width="768" alt="Screenshot of password validation" src="https://user-images.githubusercontent.com/90977184/148972890-261e2042-aa49-4c60-afd1-e9677e7ec583.png">
+<img align="center" width="768" alt="Screenshot of email validation" src="https://user-images.githubusercontent.com/90977184/148972898-1bcdb4f6-b1cf-4459-843f-88f97d619b79.png">
 
 ### Map
 
 Easily access the closest users to you with the click of a button or enter an address to see users in that area.
 
-- Location button uses the Gelocation API as well as the Google Maps API to pan into your location
+- Location button uses the Gelocation API as well as the Google Maps API to pan into your location.
 - Address field uses the Google Places API for easy searching with predictive suggestions.
 
 <img align="center" width="1404" alt="Screenshot of map page" src="https://user-images.githubusercontent.com/90977184/148971763-7f5f8d20-6a7a-4f38-96d1-b373c2abdf4c.png" >
 
 ### User Profiles
 
-- Streamlined user profile with name, bio, star rating, and list of skills (fortes).
+- Streamlined user profile with name, bio, star rating, and list of skills (fortes), as well as the open to trading toggle.
 - Add or remove this user from your favourites list with the click of a button on their profile.
 - User profile also contains a reviews section, including a 5 star rating system.
 - Edit your profile and set yourself as available or unavailable to trade your petcare-related skills.
