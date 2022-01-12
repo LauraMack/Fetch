@@ -6,8 +6,6 @@ Fetch
 
 <h5 align="center">One of this project's main aims is to replace money-for-skill trading with skill-for-skill trading. Trade your pet-related skills with other pet lovers near you, and receive the pet care you need in return.</h5>
 
-<h3 align="center"> <strong>Demo:</strong> coming soon!</h3>
-
 <br />
 
  <img align="center" width="1426" alt="Fetch main page with logo and tagline" src="https://user-images.githubusercontent.com/90977184/148449068-e6ab76e4-f897-4046-8683-2d47058c76c5.png">
