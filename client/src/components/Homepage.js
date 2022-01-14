@@ -7,7 +7,9 @@ import { useContext } from "react";
 import { UsersContext } from "./UsersContext";
 import { CurrentUserContext } from "./CurrentUserContext";
 import dogWalker from "../assets/dog-walkers2.png";
+import ball from "../assets/ball-5084273_640.png";
 import atHome from "../assets/at-home.png";
+import mapPin from "../assets/map-pin2.png";
 import Loading from "./Loading";
 
 const Homepage = ({ result, setResult }) => {
@@ -120,9 +122,11 @@ const Homepage = ({ result, setResult }) => {
 
   return (
     <Wrapper>
-      <ImageContainer>
-        <DogWalker src={dogWalker} />
-      </ImageContainer>
+      {/* <ImageContainer><DogWalker src={dogWalker} /></ImageContainer> */}
+      <FetchDiv>
+        <Fetch>Fetch</Fetch>
+        <Ball src={ball} />
+      </FetchDiv>
       <ConnectDiv>
         <Connect>Connect with fellow pet lovers near you.</Connect>
       </ConnectDiv>
@@ -134,7 +138,7 @@ const Homepage = ({ result, setResult }) => {
       </CategoryDiv>
       {currentUser && (
         <LocationDiv>
-          <HomeImage src={atHome} />
+          <HomeImage src={mapPin} />
           <LocationHeader>
             Help us find users near you at the click of a button by setting your
             location below.
@@ -168,7 +172,10 @@ const Homepage = ({ result, setResult }) => {
         })}
       </UserDiv>
       <LoadMoreDiv>
-        <LoadMore disabled={moreUsers.length >= 12} onClick={handleLoadMore}>
+        <LoadMore
+          style={{ display: moreUsers.length >= 12 ? "none" : "block" }}
+          onClick={handleLoadMore}
+        >
           Load More
         </LoadMore>
       </LoadMoreDiv>
@@ -183,6 +190,26 @@ const Wrapper = styled.div`
   height: max-content;
   background-color: #e1eedd;
   width: 100vw;
+`;
+
+const FetchDiv = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 900px;
+  margin: 0 auto;
+  margin-top: 30px;
+`;
+
+const Fetch = styled.h1`
+  font-size: 100px;
+  color: #183a1d;
+  margin-left: 30px;
+`;
+
+const Ball = styled.img`
+  height: 60px;
+  margin-top: 40px;
 `;
 const Searchdiv = styled.div`
   height: 50px;
@@ -202,7 +229,6 @@ const ConnectDiv = styled.div`
   align-items: center;
   justify-content: center;
   margin: 0 auto;
-  margin-top: 370px;
 `;
 
 const Connect = styled.p`
@@ -218,7 +244,7 @@ const CategoryDiv = styled.div`
   flex-direction: row wrap;
   justify-content: center;
   margin: 0 auto;
-  margin-top: 30px;
+  margin-top: 150px;
 `;
 
 const UserDiv = styled.div`
@@ -287,7 +313,7 @@ const LocationDiv = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 250px;
+  margin-top: 200px;
 `;
 
 const LocationButton = styled.button`

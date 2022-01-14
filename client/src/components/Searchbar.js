@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { IoPawSharp } from "react-icons/io5";
+import { FiArrowRight } from "react-icons/fi";
 import { useHistory } from "react-router";
 
 const Searchbar = ({ result, setResult }) => {
@@ -25,7 +26,7 @@ const Searchbar = ({ result, setResult }) => {
       ></Input>
       <Button aria-label="search" onClick={(ev) => handleSearch(ev)}>
         <Paw>
-          <IoPawSharp />
+          <FiArrowRight />
         </Paw>
       </Button>
     </Searchdiv>
@@ -36,16 +37,18 @@ export default Searchbar;
 
 const Searchdiv = styled.div`
   height: 50px;
-  width: 400px;
+  width: 900px;
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  align-items: center;
   margin: 0 auto;
 `;
 
 const Input = styled.input`
   width: 500px;
   height: 25px;
-  margin-left: 10px;
+  margin-left: 70px;
   font-family: "Lora";
   background-color: #faf9f0;
   border: solid 1px #3d405b;
@@ -67,19 +70,22 @@ const Button = styled.button`
   height: 48px;
   width: 80px;
   padding: 10px;
-  background-color: #40916c;
+  background-color: transparent;
   border-style: none;
   border-radius: 5px;
   color: #f4f1de;
   font-size: 20px;
+  position: relative;
+  z-index: 10;
+  right: 70px;
   cursor: pointer;
-  &:hover {
+  /* &:hover {
     background-color: #f6c453;
-  }
+  } */
 `;
 
 const Paw = styled.p`
-  color: #e1eedd;
+  color: #183a1d;
   margin-top: 5px;
   &:hover {
     color: #183a1d;

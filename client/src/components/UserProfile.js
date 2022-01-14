@@ -398,6 +398,58 @@ const CoverDiv = styled.div`
   position: relative;
   background-color: #40916c;
   border-radius: 5px;
+  background-color: #40916c;
+  opacity: 1;
+  background-image: linear-gradient(
+      30deg,
+      #e1eedd 12%,
+      transparent 12.5%,
+      transparent 87%,
+      #e1eedd 87.5%,
+      #e1eedd
+    ),
+    linear-gradient(
+      150deg,
+      #e1eedd 12%,
+      transparent 12.5%,
+      transparent 87%,
+      #e1eedd 87.5%,
+      #e1eedd
+    ),
+    linear-gradient(
+      30deg,
+      #e1eedd 12%,
+      transparent 12.5%,
+      transparent 87%,
+      #e1eedd 87.5%,
+      #e1eedd
+    ),
+    linear-gradient(
+      150deg,
+      #e1eedd 12%,
+      transparent 12.5%,
+      transparent 87%,
+      #e1eedd 87.5%,
+      #e1eedd
+    ),
+    linear-gradient(
+      60deg,
+      #e1eedd77 25%,
+      transparent 25.5%,
+      transparent 75%,
+      #e1eedd77 75%,
+      #e1eedd77
+    ),
+    linear-gradient(
+      60deg,
+      #e1eedd77 25%,
+      transparent 25.5%,
+      transparent 75%,
+      #e1eedd77 75%,
+      #e1eedd77
+    );
+  background-size: 26px 46px;
+  background-position: 0 0, 0 0, 13px 23px, 13px 23px, 0 0, 13px 23px;
 `;
 
 const Whitespace = styled.div`
