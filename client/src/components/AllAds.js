@@ -103,7 +103,7 @@ const AllAds = () => {
         )}
       </Form>
       <TitleDiv>
-        <Dog src={dog} />
+        {/* <Dog src={dog} /> */}
         <Title>Recent ads</Title>
       </TitleDiv>
       {allAds &&

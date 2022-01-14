@@ -16,6 +16,7 @@ import CategoryPage from "./components/CategoryPage";
 import Map from "./components/Map/Map";
 import UserAds from "./components/UserAds";
 import SavedUsers from "./components/SavedUsers";
+import Contact from "./components/Contact";
 
 const App = ({ profileId }) => {
   const [result, setResult] = useState(null);
@@ -63,6 +64,9 @@ const App = ({ profileId }) => {
           </Route>
           <Route exact path="/map">
             <Map />
+          </Route>
+          <Route exact path="/contact">
+            <Contact />
           </Route>
         </Switch>
       </Main>
