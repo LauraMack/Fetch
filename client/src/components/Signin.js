@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import styled from "styled-components";
 import SignInBtn from "./auth0/SignInBtn";
 import { CurrentUserContext } from "./CurrentUserContext";
@@ -23,6 +23,14 @@ const Signin = () => {
   const { setCurrentLatitude, setCurrentLongitude } = useContext(UsersContext);
 
   let history = useHistory();
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+      transition: "all 0.5s ease 0s",
+    });
+  }, []);
 
   const handleEmail = (ev) => {
     setEmail(ev.target.value);

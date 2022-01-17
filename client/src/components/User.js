@@ -1,23 +1,96 @@
-import React from "react";
+import React, { useContext } from "react";
+import { CurrentUserContext } from "./CurrentUserContext";
 import styled from "styled-components";
 import { IoStarSharp } from "react-icons/io5";
+import { FiHeart } from "react-icons/fi";
+import { BsFillSuitHeartFill, BsSuitHeart } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router";
 
 const User = ({ user, profileId }) => {
+  const { currentUser, favourites, setFavourites } =
+    useContext(CurrentUserContext);
   let history = useHistory();
   const starRating = {
     star: IoStarSharp,
   };
+
+  const handleAddFavourite = (ev) => {
+    ev.preventDefault();
+    ev.stopPropagation();
+    fetch(`/users/${currentUser.data._id}/favourite`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        _id: profileId,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.message === "ok") {
+          window.sessionStorage.setItem("currentUser", JSON.stringify(data));
+          let favouritesArray = data.data.favourites.map((i) => {
+            return i._id;
+          });
+          setFavourites(favouritesArray);
+          window.sessionStorage.setItem(
+            "favourites",
+            JSON.stringify(favouritesArray)
+          );
+        }
+      });
+  };
+
+  const handleRemoveFavourite = (ev) => {
+    ev.stopPropagation();
+    ev.preventDefault();
+    fetch(`/users/${currentUser.data._id}/remove-favourite`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        _id: profileId,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.message === "ok") {
+          window.sessionStorage.setItem("currentUser", JSON.stringify(data));
+          let favouritesArray = data.data.favourites.map((i) => {
+            return i._id;
+          });
+          setFavourites(favouritesArray);
+          window.sessionStorage.setItem(
+            "favourites",
+            JSON.stringify(favouritesArray)
+          );
+        }
+      });
+  };
+
   return (
     <div>
       {!user.email && (
         <Div key={`id-${profileId}`}>
-          <UserLink to={`/profile/${profileId}`}>
+          <UserLink to={!currentUser ? "/signin" : `/profile/${profileId}`}>
             <Wrapper>
-              <div>
+              <FavouriteDiv>
+                {favourites && favourites.includes(user._id) ? (
+                  <FavouriteBtn onClick={handleRemoveFavourite}>
+                    <FilledFav />
+                  </FavouriteBtn>
+                ) : (
+                  <FavouriteBtn onClick={handleAddFavourite}>
+                    <EmptyFav />
+                  </FavouriteBtn>
+                )}
+              </FavouriteDiv>
+              <ImageDiv>
                 <Image src={user.avatar} />
-              </div>
+              </ImageDiv>
               <Name>{user.name}</Name>
               <Rating>
                 {user.rating.map((i) => {
@@ -68,8 +141,8 @@ const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  height: 340px;
-  padding: 15px;
+  height: 380px;
+  padding: 10px;
   border-radius: 5px;
   transition: 0.5s ease-in-out;
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
@@ -86,6 +159,9 @@ const UserLink = styled(Link)`
   text-decoration: none;
 `;
 
+const ImageDiv = styled.div`
+  position: relative;
+`;
 const Image = styled.img`
   height: 150px;
   width: 150px;
@@ -110,7 +186,7 @@ const Star = styled.p`
 `;
 
 const ForteContainer = styled.div`
-  height: 200px;
+  height: 360px;
 `;
 
 const Forte = styled.li`
@@ -133,4 +209,41 @@ const ForteIntro = styled.div`
   font-size: 14px;
   text-align: center;
   color: #183a1d;
+`;
+
+const FavouriteDiv = styled.div`
+  position: relative;
+  height: 80px;
+  width: 40px;
+  left: 105px;
+`;
+
+const FilledFav = styled(BsFillSuitHeartFill)`
+  font-size: 16px;
+  color: #40916c;
+  transition: 0.25s;
+  &:active {
+    transform: scale(2);
+  }
+`;
+
+const EmptyFav = styled(BsSuitHeart)`
+  font-size: 16px;
+  color: #40916c;
+  transition: 0.25s;
+  &:active {
+    transform: scale(2);
+    fill: #40916c;
+  }
+  &:active:after {
+    transform: scale(2);
+    fill: #40916c;
+  }
+`;
+
+const FavouriteBtn = styled.button`
+  height: 25px;
+  border-style: none;
+  background-color: transparent;
+  cursor: pointer;
 `;

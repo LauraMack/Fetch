@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 import { useEffect, useContext, useState } from "react";
 import { UsersContext } from "./UsersContext";
 import styled from "styled-components";
-import dog from "../assets/dog-backwards.png";
 import paperPlane from "../assets/paper-airplane.png";
 import User from "./User";
 import Loading from "./Loading";
@@ -18,6 +17,8 @@ const CategoryPage = ({ setResult, profileId }) => {
   const [description, setDescription] = useState("");
 
   console.log(categoryQuery);
+  console.log(allUsers);
+  console.log(matchingCategory);
 
   useEffect(() => {
     window.scrollTo({
@@ -25,37 +26,30 @@ const CategoryPage = ({ setResult, profileId }) => {
       behavior: "smooth",
       transition: "all 0.5s ease 0s",
     });
+    console.log("hello");
     setResult(categoryQuery);
-    switch (categoryQuery) {
-      case "Drop-in Visits":
-        return setDescription(
-          "Find someone to drop-in on your furry friends today."
-        );
-        break;
-      case "House Sitting":
-        return setDescription(
-          "Connect with someone willing to keep your pets AND your home company."
-        );
-        break;
-      case "Dog Walking":
-        return setDescription("Help someone stretch their legs!");
-        break;
-      case "Last Minute Transport":
-        return setDescription(
-          "Need last minute transport for your pet and don't have a car? See who's willing to help. "
-        );
-        break;
-      case "Daycare":
-        return setDescription(
-          "Let's find you someone to look after your pet for the day."
-        );
-        break;
-      case "Overnight Boarding":
-        return setDescription("Like a sleepover with your pets.");
-        break;
-      default:
-        setDescription("");
+    if (categoryQuery === "Drop-in Visits") {
+      setDescription("Find someone to drop-in on your furry friends today.");
+    } else if (categoryQuery === "House Sitting") {
+      setDescription(
+        "Connect with someone willing to keep your pets AND your home company."
+      );
+    } else if (categoryQuery === "Dog Walking") {
+      setDescription("Help someone stretch their legs!");
+    } else if (categoryQuery === "Last Minute Transport") {
+      setDescription(
+        "Need last minute transport for your pet and don't have a car? See who's willing to help. "
+      );
+    } else if (categoryQuery === "Daycare") {
+      setDescription(
+        "Let's find you someone to look after your pet for the day."
+      );
+    } else if (categoryQuery === "Overnight Boarding") {
+      setDescription("Like a sleepover with your pets.");
+    } else {
+      setDescription("");
     }
+    console.log("Hi");
     let matchesArray = [];
     if (allUsers.data) {
       allUsers.data.forEach((i) => {
@@ -67,6 +61,7 @@ const CategoryPage = ({ setResult, profileId }) => {
           });
         }
       });
+      console.log(matchesArray);
       setMatchingCategory(matchesArray);
       window.sessionStorage.setItem(
         "matching-category",

@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import styled from "styled-components";
 import { Link, useHistory } from "react-router-dom";
 import { CurrentUserContext } from "./CurrentUserContext";
+import ball from "../assets/ball-5084273_640.png";
 
 const Header = () => {
   const { currentUser, setCurrentUser, setSignedIn } =
@@ -26,7 +27,13 @@ const Header = () => {
       {currentUser === null ? (
         <Div>
           <HomeLink to={"/"}>
-            <Title>Fetch</Title>
+            {window.location.pathname !== "/" ? (
+              <Title>Fetch</Title>
+            ) : (
+              <Title>
+                <Ball src={ball} />
+              </Title>
+            )}
           </HomeLink>
           <NavDiv>
             <SigninLink to={"/signin"}>
@@ -40,7 +47,13 @@ const Header = () => {
       ) : (
         <Div>
           <HomeLink to={"/"}>
-            <Title>Fetch</Title>
+            {window.location.pathname !== "/" ? (
+              <Title>Fetch</Title>
+            ) : (
+              <Title>
+                <Ball src={ball} />
+              </Title>
+            )}
           </HomeLink>
           <Nav>
             <AdsLink to={"/all-ads"}>
@@ -191,4 +204,8 @@ const Signout = styled.button`
   &:hover {
     color: #f6c453;
   }
+`;
+
+const Ball = styled.img`
+  height: 50px;
 `;
