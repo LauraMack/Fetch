@@ -31,6 +31,8 @@ const Homepage = ({ result, setResult }) => {
     return deg * (Math.PI / 180);
   };
 
+  console.log(moreUsers);
+
   // get distance of users from current users
   const getDistanceFromLatLonInKm = (userId, lat1, lon1, lat2, lon2) => {
     var R = 6371; // Radius of the earth in km

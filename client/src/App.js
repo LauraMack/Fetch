@@ -65,7 +65,7 @@ const App = ({ profileId }) => {
           <Route exact path="/map">
             <Map />
           </Route>
-          <Route exact path="/contact">
+          <Route exact path="/contact/:profileId">
             <Contact />
           </Route>
         </Switch>

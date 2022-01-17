@@ -74,7 +74,7 @@ const MyProfile = () => {
                   }}
                 >
                   <AdsIcon />
-                  <Ads>My ads</Ads>
+                  <Ads>Inbox</Ads>
                 </AdsButton>
               </AdsDiv>
               <SavedDiv>

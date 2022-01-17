@@ -45,6 +45,7 @@ const Signup = () => {
         rating: [],
         ads: [],
         reviews: [],
+        messages: [],
         email,
         password,
       }),

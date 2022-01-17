@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import { CurrentUserContext } from "./CurrentUserContext";
 import styled from "styled-components";
 import { IoStarSharp } from "react-icons/io5";
-import { FiHeart } from "react-icons/fi";
 import { BsFillSuitHeartFill, BsSuitHeart } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router";

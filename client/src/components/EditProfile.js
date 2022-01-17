@@ -85,6 +85,7 @@ const EditProfile = () => {
         rating: [],
         ads: currentUser.data.ads ? currentUser.data.ads : [],
         reviews: [],
+        messages: [],
         favourites: currentUser.data.favourites
           ? currentUser.data.favourites
           : [],

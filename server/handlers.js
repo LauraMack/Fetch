@@ -91,6 +91,7 @@ const addNewUser = async (req, res) => {
       rating: req.body.rating,
       ads: req.body.ads,
       reviews: req.body.reviews,
+      messages: req.body.messages,
       email: email,
       password: req.body.password,
     });
@@ -168,6 +169,32 @@ const addAd = async (req, res) => {
       {
         $push: {
           ads: {
+            avatar: req.body.avatar,
+            name: req.body.name,
+            timestamp: req.body.timestamp,
+            body: req.body.body,
+          },
+        },
+      }
+    );
+    const user = await db.collection("users").findOne({ _id: _id });
+    res.status(200).json({ status: 200, message: "ok", data: user });
+  } catch (error) {
+    res.status(404).json({ status: 404, message: "error", data: req.body });
+  }
+};
+
+const sendMessageToUser = async (req, res) => {
+  try {
+    const client = new MongoClient(MONGO_URI, options);
+    await client.connect();
+    const db = client.db("final-project");
+    const _id = req.params._id;
+    const result = await db.collection("users").findOneAndUpdate(
+      { _id: _id },
+      {
+        $push: {
+          messages: {
             avatar: req.body.avatar,
             name: req.body.name,
             timestamp: req.body.timestamp,
@@ -266,4 +293,5 @@ module.exports = {
   getCurrentUserAdsById,
   addFavourite,
   deleteFavourite,
+  sendMessageToUser,
 };

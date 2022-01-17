@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { Link, useHistory } from "react-router-dom";
 import { CurrentUserContext } from "./CurrentUserContext";
 import ball from "../assets/ball-5084273_640.png";
+import { FiCompass, FiArchive, FiUser } from "react-icons/fi";
+import DropdownMenu from "./DropdownMenu";
 
 const Header = () => {
   const { currentUser, setCurrentUser, setSignedIn } =
@@ -69,8 +71,9 @@ const Header = () => {
                   : `/edit-profile/${currentUser.data._id}`
               }
             >
-              <Profile>My Profile</Profile>
+              <Profile>Profile</Profile>
             </ProfileLink>
+
             <Signout onClick={handleSignOut}>Sign Out</Signout>
           </Nav>
         </Div>
@@ -208,4 +211,33 @@ const Signout = styled.button`
 
 const Ball = styled.img`
   height: 50px;
+`;
+
+const Wrapper = styled.div`
+  margin: 0px;
+  position: relative;
+`;
+
+const DropdownDiv = styled.div`
+  margin-top: -5px;
+  background-color: rgb(255, 255, 255, 100%);
+  border-radius: 25px;
+  width: 100%;
+  position: absolute;
+  left: -255px;
+  display: none;
+  z-index: 1;
+  min-height: 425px;
+  min-width: 300px;
+  padding: 10px 20px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+`;
+
+const Hover = styled.div`
+  &:hover {
+    ${DropdownDiv} {
+      display: block;
+    }
+  }
 `;

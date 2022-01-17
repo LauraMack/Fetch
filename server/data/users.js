@@ -36,17 +36,7 @@ const users = [
         body: "Thanks for taking care of my dog! The communication was excellent and my dog seemed very very comfortable with you. I would use your services anytime.",
       },
     ],
-    myPets: [
-      {
-        name: "Luna",
-        imageSrc: "https://thatcopy.github.io/catAPI/imgs/jpg/71d87f4.jpg",
-      },
-      {
-        name: "Molly",
-        imageSrc:
-          "https://images.dog.ceo/breeds/terrier-yorkshire/n02094433_1824.jpg",
-      },
-    ],
+    messages: [],
   },
   {
     _id: "1001",
@@ -81,13 +71,7 @@ const users = [
         body: "Trustworthy and caring with my dog. Could rest easy knowing he was in great hands!",
       },
     ],
-    myPets: [
-      {
-        name: "Sadie",
-        imageSrc:
-          "https://images.dog.ceo/breeds/mastiff-bull/n02108422_200.jpg",
-      },
-    ],
+    messages: [],
   },
   {
     _id: "1002",
@@ -117,17 +101,7 @@ const users = [
         body: "Marco has looked after my cat on several occasions. I know that when I go away on vacation that I do not need to worry about how my cat is being cared for.",
       },
     ],
-    myPets: [
-      {
-        name: "Buster",
-        imageSrc: "https://thatcopy.github.io/catAPI/imgs/jpg/5fc67d7.jpg",
-      },
-      {
-        name: "Lola",
-        imageSrc:
-          "https://images.dog.ceo/breeds/pointer-german/n02100236_5141.jpg",
-      },
-    ],
+    messages: [],
   },
   {
     _id: "1003",
@@ -157,12 +131,7 @@ const users = [
         body: "Spot had a great time with Robyn! Thanks for a job well done.",
       },
     ],
-    myPets: [
-      {
-        name: "Marlon",
-        imageSrc: "https://thatcopy.github.io/catAPI/imgs/jpg/aea9421.jpg",
-      },
-    ],
+    messages: [],
   },
   {
     _id: "1004",
@@ -197,6 +166,7 @@ const users = [
         body: "Tim is amazing!",
       },
     ],
+    messages: [],
   },
   {
     _id: "1005",
@@ -226,6 +196,7 @@ const users = [
         body: "Louise is very attentive and a great sitter. Would reccomend!",
       },
     ],
+    messages: [],
   },
   {
     _id: "1006",
@@ -255,6 +226,7 @@ const users = [
         body: "Eva is a very loving and responsible person. I would trust my pets with her any time.",
       },
     ],
+    messages: [],
   },
   {
     _id: "1007",
@@ -289,12 +261,7 @@ const users = [
         body: "Great work!",
       },
     ],
-    myPets: [
-      {
-        name: "Oscar",
-        imageSrc: "https://images.dog.ceo/breeds/redbone/n02090379_2335.jpg",
-      },
-    ],
+    messages: [],
   },
   {
     _id: "1008",
@@ -324,6 +291,7 @@ const users = [
         body: "Ben a toujours été la fan numéro 1 des animaux. Il est un person de confiance, responsable et qui sait comment bien s'occuper de nos compagnon.",
       },
     ],
+    messages: [],
   },
   {
     _id: "1009",
@@ -362,12 +330,7 @@ const users = [
         body: "Isabelle was excellent. She is kind and asks good questions. Hiro seemed very happy in her presence and that speaks volumes. Thank you Isabelle for taking great care of our guy!",
       },
     ],
-    myPets: [
-      {
-        name: "Winston",
-        imageSrc: "https://images.dog.ceo/breeds/terrier-welsh/lucy.jpg",
-      },
-    ],
+    messages: [],
   },
   {
     _id: "1010",
@@ -397,12 +360,7 @@ const users = [
         body: "Andy was a dream cat sitter for our little guy Bisou",
       },
     ],
-    myPets: [
-      {
-        name: "Harley",
-        imageSrc: "https://thatcopy.github.io/catAPI/imgs/jpg/695c074.jpg",
-      },
-    ],
+    messages: [],
   },
   {
     _id: "1011",
@@ -437,17 +395,7 @@ const users = [
         body: "Ezra has taken care of our pup more times than I can recall. He's patient, gentle, reliable, and so considerate of the five million instructions he's often left with.",
       },
     ],
-    myPets: [
-      {
-        name: "Clyde",
-        imageSrc:
-          "https://images.dog.ceo/breeds/bulldog-french/n02108915_8696.jpg",
-      },
-      {
-        name: "Rosie",
-        imageSrc: "https://images.dog.ceo/breeds/puggle/IMG_124524.jpg",
-      },
-    ],
+    messages: [],
   },
 ];
 

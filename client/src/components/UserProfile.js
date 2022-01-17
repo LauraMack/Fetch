@@ -1,6 +1,6 @@
 import React, { useEffect, useContext, useState } from "react";
 import styled from "styled-components";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, useHistory, Link } from "react-router-dom";
 import { UsersContext } from "./UsersContext";
 import { IoStarSharp } from "react-icons/io5";
 import {
@@ -47,6 +47,8 @@ const UserProfile = () => {
         setProfile(data.data);
       });
   }, [profileId, reviewsUpdated]);
+
+  console.log(profileId);
 
   const starRating = {
     star: IoStarSharp,
@@ -222,10 +224,12 @@ const UserProfile = () => {
                   )}
                 </SavedDiv>
                 <SavedDiv>
-                  <ContactButton>
-                    <ContactIcon />
-                    <Contact>Contact {profile.name}</Contact>
-                  </ContactButton>
+                  <Link to={`/contact/${profileId}`}>
+                    <ContactButton>
+                      <ContactIcon />
+                      <Contact>Contact {profile.name}</Contact>
+                    </ContactButton>
+                  </Link>
                 </SavedDiv>
               </InfoDiv>
             </InfoContainer>
