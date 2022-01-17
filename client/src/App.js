@@ -17,6 +17,7 @@ import Map from "./components/Map/Map";
 import UserAds from "./components/UserAds";
 import SavedUsers from "./components/SavedUsers";
 import Contact from "./components/Contact";
+import Inbox from "./components/Inbox";
 
 const App = ({ profileId }) => {
   const [result, setResult] = useState(null);
@@ -67,6 +68,9 @@ const App = ({ profileId }) => {
           </Route>
           <Route exact path="/contact/:profileId">
             <Contact />
+          </Route>
+          <Route exact path="/inbox/:id">
+            <Inbox />
           </Route>
         </Switch>
       </Main>

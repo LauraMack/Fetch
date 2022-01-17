@@ -12,6 +12,7 @@ const {
   addFavourite,
   deleteFavourite,
   sendMessageToUser,
+  getInbox,
 } = require("./handlers");
 
 // import the needed node_modules.
@@ -34,6 +35,7 @@ express()
   .get("/contact/:_id", getUserById)
   .get("/users/ads/:_id", getUserAdsByUserId)
   .get("/my-ads/:_id", getCurrentUserAdsById)
+  .get("/users/inbox/:_id", getInbox)
   .post("/users/:email", getExistingUser)
   .post("/users", addNewUser)
   .post("/all-ads/:_id/add", addAd)

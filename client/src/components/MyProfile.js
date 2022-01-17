@@ -70,7 +70,7 @@ const MyProfile = () => {
               <AdsDiv>
                 <AdsButton
                   onClick={() => {
-                    history.push(`/my-ads/${currentUser.data._id}`);
+                    history.push(`/inbox/${currentUser.data._id}`);
                   }}
                 >
                   <AdsIcon />

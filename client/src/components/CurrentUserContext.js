@@ -23,6 +23,7 @@ export const CurrentUserProvider = ({ children }) => {
   const [error, setError] = useState("");
   const [status, setStatus] = useState("idle");
   const [myAds, setMyAds] = useState("");
+  const [inbox, setInbox] = useState("");
 
   return (
     <CurrentUserContext.Provider
@@ -51,6 +52,8 @@ export const CurrentUserProvider = ({ children }) => {
         setMyAds,
         favourites,
         setFavourites,
+        inbox,
+        setInbox,
       }}
     >
       {children}
