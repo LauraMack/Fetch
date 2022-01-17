@@ -29,23 +29,23 @@ const CategoryPage = ({ setResult, profileId }) => {
     console.log("hello");
     setResult(categoryQuery);
     if (categoryQuery === "Drop-in Visits") {
-      setDescription("Find someone to drop-in on your furry friends today.");
+      setDescription(
+        "Find someone to drop-in to say hi to your furry friends."
+      );
     } else if (categoryQuery === "House Sitting") {
       setDescription(
         "Connect with someone willing to keep your pets AND your home company."
       );
     } else if (categoryQuery === "Dog Walking") {
-      setDescription("Help someone stretch their legs!");
+      setDescription("Find someone to take a little jaunt with your dog.");
     } else if (categoryQuery === "Last Minute Transport") {
       setDescription(
         "Need last minute transport for your pet and don't have a car? See who's willing to help. "
       );
     } else if (categoryQuery === "Daycare") {
-      setDescription(
-        "Let's find you someone to look after your pet for the day."
-      );
+      setDescription("Connect with someone for your daycare needs.");
     } else if (categoryQuery === "Overnight Boarding") {
-      setDescription("Like a sleepover with your pets.");
+      setDescription("Let's help your pet find a sleepover buddy.");
     } else {
       setDescription("");
     }
