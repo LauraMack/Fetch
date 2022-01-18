@@ -13,6 +13,7 @@ import "@reach/combobox/styles.css";
 import styled from "styled-components";
 
 const MapSearch = ({ panTo }) => {
+  // initial styling for input
   const inputStyle = {
     padding: "14px",
     width: "300px",

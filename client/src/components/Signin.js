@@ -1,13 +1,11 @@
 import React, { useContext, useEffect } from "react";
 import styled from "styled-components";
-import SignInBtn from "./auth0/SignInBtn";
 import { CurrentUserContext } from "./CurrentUserContext";
 import { useHistory } from "react-router";
 import { UsersContext } from "./UsersContext";
 
 const Signin = () => {
   const {
-    currentUser,
     setCurrentUser,
     setSignedIn,
     email,
@@ -16,7 +14,6 @@ const Signin = () => {
     setPassword,
     error,
     setError,
-    favourites,
     setFavourites,
   } = useContext(CurrentUserContext);
 
@@ -43,6 +40,7 @@ const Signin = () => {
   };
 
   const handleSignIn = (ev) => {
+    // regular signin
     ev.preventDefault();
     window.scrollTo({
       top: 0,
@@ -106,8 +104,6 @@ const Signin = () => {
             placeholder="password"
           ></Input>
           <Button onClick={handleSignIn}>Sign in</Button>
-          {/* <Or>or</Or>
-          <SignInBtn /> */}
           <Member>
             Not yet a member?{" "}
             <SignupButton

@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
-import SignInBtn from "./auth0/SignInBtn";
 import { CurrentUserContext } from "./CurrentUserContext";
 import { UsersContext } from "./UsersContext";
 import { useHistory } from "react-router";
@@ -92,8 +91,6 @@ const Signup = () => {
               required
             ></Input>
             <Button>Sign up</Button>
-            {/* <Or>or</Or>
-            <SignInBtn /> */}
           </form>
           <Member>
             Already a member?{" "}
@@ -187,15 +184,6 @@ const Button = styled.button`
     color: #183a1d;
   }
 `;
-
-const Or = styled.p`
-  font-size: 12px;
-  color: #183a1d;
-  width: 300px;
-  text-align: center;
-  margin-top: 10px;
-`;
-
 const Member = styled.p`
   font-size: 12px;
   width: 300px;

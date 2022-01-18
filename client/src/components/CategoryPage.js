@@ -1,6 +1,5 @@
-import React from "react";
+import React, { useEffect, useContext, useState } from "react";
 import { useParams } from "react-router-dom";
-import { useEffect, useContext, useState } from "react";
 import { UsersContext } from "./UsersContext";
 import styled from "styled-components";
 import paperPlane from "../assets/paper-airplane.png";
@@ -13,12 +12,9 @@ const CategoryPage = ({ setResult }) => {
   const [matchingCategory, setMatchingCategory] = useState(() => {
     const persistParam = window.sessionStorage.getItem("matching-category");
     return persistParam !== null ? JSON.parse(persistParam) : null;
-  });
-  const [description, setDescription] = useState("");
+  }); // page stays populated on refresh
 
-  console.log(categoryQuery);
-  console.log(allUsers);
-  console.log(matchingCategory);
+  const [description, setDescription] = useState("");
 
   useEffect(() => {
     window.scrollTo({
@@ -26,8 +22,8 @@ const CategoryPage = ({ setResult }) => {
       behavior: "smooth",
       transition: "all 0.5s ease 0s",
     });
-    console.log("hello");
     setResult(categoryQuery);
+    // if / else conditionals for rendering the different category tag lines
     if (categoryQuery === "Drop-in Visits") {
       setDescription(
         "Find someone to drop-in to say hi to your furry friends."
@@ -49,8 +45,8 @@ const CategoryPage = ({ setResult }) => {
     } else {
       setDescription("");
     }
-    console.log("Hi");
     let matchesArray = [];
+    // rendering matches from user data based on category
     if (allUsers.data) {
       allUsers.data.forEach((i) => {
         if (i.forte) {
@@ -61,7 +57,7 @@ const CategoryPage = ({ setResult }) => {
           });
         }
       });
-      console.log(matchesArray);
+
       setMatchingCategory(matchesArray);
       window.sessionStorage.setItem(
         "matching-category",
@@ -69,8 +65,6 @@ const CategoryPage = ({ setResult }) => {
       );
     }
   }, [categoryQuery]);
-
-  console.log(description);
 
   return !matchingCategory ? (
     <Loading />

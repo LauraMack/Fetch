@@ -15,6 +15,7 @@ const User = ({ user, profileId }) => {
   };
 
   const handleAddFavourite = (ev) => {
+    // add to favourites array
     ev.preventDefault();
     ev.stopPropagation();
     if (!currentUser) {
@@ -46,6 +47,7 @@ const User = ({ user, profileId }) => {
   };
 
   const handleRemoveFavourite = (ev) => {
+    // remove from favourites array
     ev.stopPropagation();
     ev.preventDefault();
     if (!currentUser) {

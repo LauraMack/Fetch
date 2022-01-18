@@ -80,6 +80,8 @@ const Map = () => {
     mapRef.current = map;
   }, []);
 
+  //pan to specific location when searching
+
   const panTo = useCallback(({ lat, lng }) => {
     mapRef.current.panTo({ lat, lng });
     mapRef.current.setZoom(14);

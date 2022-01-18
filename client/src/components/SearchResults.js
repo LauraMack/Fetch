@@ -1,6 +1,5 @@
-import React from "react";
+import React, { useEffect, useContext, useState } from "react";
 import { useParams } from "react-router-dom";
-import { useEffect, useContext, useState } from "react";
 import { UsersContext } from "./UsersContext";
 import NoResultsFound from "./NoResultsFound";
 import styled from "styled-components";
@@ -28,6 +27,7 @@ const SearchResults = ({ result, setResult }) => {
         if (i.forte) {
           i.forte.forEach((forte) => {
             if (forte.toLowerCase().includes(result.toLowerCase())) {
+              // filter users based on matching search result
               matchesArray.push(i);
             }
           });
@@ -44,7 +44,7 @@ const SearchResults = ({ result, setResult }) => {
       setMatchingResults(matchesArray);
       window.sessionStorage.setItem(
         "matching-results",
-        JSON.stringify(matchesArray)
+        JSON.stringify(matchesArray) // set item in session storage to ensure page is loaded on refresh
       );
     }
   }, [searchResult]);

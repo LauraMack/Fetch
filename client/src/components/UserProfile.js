@@ -6,7 +6,6 @@ import { IoStarSharp } from "react-icons/io5";
 import {
   FiCheckCircle,
   FiUsers,
-  FiArchive,
   FiMessageSquare,
   FiUserX,
 } from "react-icons/fi";
@@ -29,6 +28,7 @@ const UserProfile = () => {
     favourites,
     setFavourites,
   } = useContext(CurrentUserContext);
+
   const { profileId } = useParams();
   const [newReview, setNewReview] = useState("");
   const [reviewsUpdated, setReviewsUpdated] = useState(false);
@@ -48,8 +48,6 @@ const UserProfile = () => {
       });
   }, [profileId, reviewsUpdated]);
 
-  console.log(profileId);
-
   const starRating = {
     star: IoStarSharp,
   };
@@ -60,6 +58,7 @@ const UserProfile = () => {
   };
 
   const handleReviewSubmit = (ev) => {
+    // submit and post review
     ev.preventDefault();
     setStatus("pending");
     const newId = uuidv4();
@@ -93,6 +92,7 @@ const UserProfile = () => {
   };
 
   const handleAddFavourite = (ev) => {
+    // add to favourites array
     ev.preventDefault();
     fetch(`/users/${currentUser.data._id}/favourite`, {
       method: "PATCH",
@@ -106,10 +106,8 @@ const UserProfile = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data.message === "ok") {
-          console.log(data);
           setMessage("Successfully added!");
           window.sessionStorage.setItem("currentUser", JSON.stringify(data));
-          console.log(message);
           let favouritesArray = data.data.favourites.map((i) => {
             return i._id;
           });
@@ -123,6 +121,7 @@ const UserProfile = () => {
   };
 
   const handleRemoveFavourite = (ev) => {
+    // remove from favourites array
     ev.stopPropagation();
     ev.preventDefault();
     fetch(`/users/${currentUser.data._id}/remove-favourite`, {
@@ -150,10 +149,9 @@ const UserProfile = () => {
       });
   };
 
-  console.log(favourites);
-
   let ratingArray = [];
   ratingArray.length = rating;
+
   return (
     <Wrapper>
       {profile ? (
@@ -341,11 +339,6 @@ const InfoDiv = styled.div`
   margin-left: 25px;
 `;
 
-const AdsDiv = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
 const SavedDiv = styled.div`
   display: flex;
   flex-direction: column;
@@ -393,57 +386,6 @@ const CoverDiv = styled.div`
   background-color: #40916c;
   border-radius: 5px;
   background-color: #40916c;
-  opacity: 1;
-  background-image: linear-gradient(
-      30deg,
-      #e1eedd 12%,
-      transparent 12.5%,
-      transparent 87%,
-      #e1eedd 87.5%,
-      #e1eedd
-    ),
-    linear-gradient(
-      150deg,
-      #e1eedd 12%,
-      transparent 12.5%,
-      transparent 87%,
-      #e1eedd 87.5%,
-      #e1eedd
-    ),
-    linear-gradient(
-      30deg,
-      #e1eedd 12%,
-      transparent 12.5%,
-      transparent 87%,
-      #e1eedd 87.5%,
-      #e1eedd
-    ),
-    linear-gradient(
-      150deg,
-      #e1eedd 12%,
-      transparent 12.5%,
-      transparent 87%,
-      #e1eedd 87.5%,
-      #e1eedd
-    ),
-    linear-gradient(
-      60deg,
-      #e1eedd77 25%,
-      transparent 25.5%,
-      transparent 75%,
-      #e1eedd77 75%,
-      #e1eedd77
-    ),
-    linear-gradient(
-      60deg,
-      #e1eedd77 25%,
-      transparent 25.5%,
-      transparent 75%,
-      #e1eedd77 75%,
-      #e1eedd77
-    );
-  background-size: 26px 46px;
-  background-position: 0 0, 0 0, 13px 23px, 13px 23px, 0 0, 13px 23px;
 `;
 
 const Whitespace = styled.div`

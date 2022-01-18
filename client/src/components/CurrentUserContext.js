@@ -6,12 +6,12 @@ export const CurrentUserProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(() => {
     const persistParam = window.sessionStorage.getItem("currentUser");
     return persistParam !== null ? JSON.parse(persistParam) : null;
-  });
+  }); // information stays upon refresh
 
   const [favourites, setFavourites] = useState(() => {
     const param = window.sessionStorage.getItem("favourites");
     return param !== null ? JSON.parse(param) : null;
-  });
+  }); // information stays upon refresh
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

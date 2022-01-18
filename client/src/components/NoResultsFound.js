@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router";
-import dogPark from "../assets/cat-love.png";
 
 const NoResultsFound = ({ searchResult }) => {
   let history = useHistory();
@@ -64,10 +63,4 @@ const TryAgain = styled.button`
     background-color: #f6c453;
     color: #183a1d;
   }
-`;
-
-const Image = styled.img`
-  height: 300px;
-  margin-top: 140px;
-  margin-left: 150px;
 `;

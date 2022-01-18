@@ -44,7 +44,6 @@ const getUserById = async (req, res) => {
 };
 
 // get user when they sign in
-
 const getExistingUser = async (req, res) => {
   const client = new MongoClient(MONGO_URI, options);
   await client.connect();
@@ -131,7 +130,7 @@ const updateUser = async (req, res) => {
   }
   client.close();
 };
-
+// add a review
 const addReview = async (req, res) => {
   try {
     const client = new MongoClient(MONGO_URI, options);
@@ -158,7 +157,7 @@ const addReview = async (req, res) => {
   }
   client.close();
 };
-
+// send msg to user
 const sendMessageToUser = async (req, res) => {
   try {
     const client = new MongoClient(MONGO_URI, options);
@@ -186,7 +185,7 @@ const sendMessageToUser = async (req, res) => {
     res.status(404).json({ status: 404, message: "error", data: req.body });
   }
 };
-
+// add to current user favourites
 const addFavourite = async (req, res) => {
   try {
     const client = new MongoClient(MONGO_URI, options);
@@ -209,7 +208,7 @@ const addFavourite = async (req, res) => {
     res.status(404).json({ status: 404, message: "error", data: req.body });
   }
 };
-
+// remove from current user favourites
 const deleteFavourite = async (req, res) => {
   try {
     const client = new MongoClient(MONGO_URI, options);
@@ -229,6 +228,8 @@ const deleteFavourite = async (req, res) => {
     res.status(404).json({ status: 404, message: "error" });
   }
 };
+
+// get current user messages
 const getInbox = async (req, res) => {
   const client = new MongoClient(MONGO_URI, options);
   await client.connect();

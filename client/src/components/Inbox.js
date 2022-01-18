@@ -14,7 +14,7 @@ const Inbox = () => {
       behavior: "smooth",
       transition: "all 1s ease 0s",
     });
-    fetch(`/users/inbox/${currentUser.data._id}`)
+    fetch(`/users/inbox/${currentUser.data._id}`) // get currentUser messages array
       .then((res) => res.json())
       .then((data) => {
         if (data.message === "ok") {
@@ -23,8 +23,6 @@ const Inbox = () => {
         }
       });
   }, []);
-
-  console.log(inbox);
 
   return (
     <Wrapper>

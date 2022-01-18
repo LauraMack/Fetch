@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { IoPawSharp } from "react-icons/io5";
 import { FiArrowRight } from "react-icons/fi";
 import { useHistory } from "react-router";
 
@@ -79,9 +78,6 @@ const Button = styled.button`
   z-index: 10;
   right: 70px;
   cursor: pointer;
-  /* &:hover {
-    background-color: #f6c453;
-  } */
 `;
 
 const Paw = styled.p`

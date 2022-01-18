@@ -21,7 +21,7 @@ const Contact = () => {
     fetch(`/contact/${profileId}`)
       .then((res) => res.json())
       .then((data) => {
-        setProfile(data.data);
+        setProfile(data.data); //set profile for displaying the contactee
       });
   }, [profileId]);
 
@@ -29,6 +29,7 @@ const Contact = () => {
     setNewMessage(ev.target.value);
   };
 
+  // send msg > is pushed to message array of contactee
   const handleSendMessage = (ev) => {
     ev.preventDefault();
     setStatus("pending");

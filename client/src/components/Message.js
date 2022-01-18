@@ -11,9 +11,9 @@ const Message = ({ message, userId }) => {
   const [replyMessage, setReplyMessage] = useState("");
   const { currentUser, status, setStatus } = useContext(CurrentUserContext);
 
+  //show or hide the reply box
   const handleToggleReply = (ev) => {
     setReplyTo(!replyTo);
-    console.log(ev.currentTarget);
     setStatus("idle");
   };
 
@@ -21,6 +21,7 @@ const Message = ({ message, userId }) => {
     setReplyMessage(ev.target.value);
   };
 
+  // send message to user array of contactee
   const handleSendMessage = (ev) => {
     ev.preventDefault();
     setStatus("pending");
@@ -44,7 +45,6 @@ const Message = ({ message, userId }) => {
           setReplyMessage("");
           setStatus("success");
           setTimeout(() => {
-            console.log("hello");
             setReplyTo(false);
           }, 2000);
         }

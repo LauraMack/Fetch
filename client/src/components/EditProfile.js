@@ -36,15 +36,15 @@ const EditProfile = () => {
       setOpenToTrading(false);
     }
   };
-  console.log(openToTrading);
 
   const handleForte = (ev) => {
+    // add fortes to array in current user data
     let forteArray = [...forte];
     if (ev.target.checked && !forteArray.includes(ev.target.value)) {
       forteArray = [...forte, ev.target.value];
     } else if (!ev.target.checked && forteArray.includes(ev.target.value)) {
       forteArray = forteArray.filter((value) => {
-        return value !== ev.target.value;
+        return value !== ev.target.value; // filtering duplicates
       });
     }
     setForte(forteArray);
@@ -66,8 +66,7 @@ const EditProfile = () => {
       });
   };
 
-  console.log(currentUser.data.ads);
-
+  //updates currentuser information
   const handleProfileSubmit = (ev) => {
     ev.preventDefault();
     fetch(`/users/${currentUser.data._id}`, {
@@ -323,8 +322,6 @@ const AvailCheckbox = styled.input`
   margin-right: 10px;
   margin-left: 15px;
 `;
-
-const NoAvailCheckbox = styled.input``;
 
 const ForteDiv = styled.div`
   height: 200px;

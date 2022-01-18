@@ -1,14 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import styled from "styled-components";
 import Searchbar from "./Searchbar";
 import Categories from "./Categories";
 import User from "./User";
-import { useContext } from "react";
 import { UsersContext } from "./UsersContext";
 import { CurrentUserContext } from "./CurrentUserContext";
-import dogWalker from "../assets/dog-walkers2.png";
 import ball from "../assets/ball-5084273_640.png";
-import atHome from "../assets/at-home.png";
 import mapPin from "../assets/map-pin2.png";
 import Loading from "./Loading";
 
@@ -30,8 +27,6 @@ const Homepage = ({ result, setResult }) => {
   const deg2rad = (deg) => {
     return deg * (Math.PI / 180);
   };
-
-  console.log(moreUsers);
 
   // get distance of users from current users
   const getDistanceFromLatLonInKm = (userId, lat1, lon1, lat2, lon2) => {
@@ -124,7 +119,6 @@ const Homepage = ({ result, setResult }) => {
 
   return (
     <Wrapper>
-      {/* <ImageContainer><DogWalker src={dogWalker} /></ImageContainer> */}
       <FetchDiv>
         <Fetch>Fetch</Fetch>
         <Ball src={ball} />
@@ -331,21 +325,6 @@ const LocationButton = styled.button`
     background-color: #f6c453;
     color: #183a1d;
   }
-`;
-
-const DogWalker = styled.img`
-  height: 400px;
-  border-radius: 180px;
-`;
-
-const ImageContainer = styled.div`
-  height: 50px;
-  width: 600px;
-  display: flex;
-  flex-direction: row wrap;
-  justify-content: center;
-  margin: 0 auto;
-  margin-top: 30px;
 `;
 
 const HomeImage = styled.img`

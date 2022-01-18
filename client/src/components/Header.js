@@ -2,9 +2,8 @@ import React, { useContext } from "react";
 import styled from "styled-components";
 import { Link, useHistory } from "react-router-dom";
 import { CurrentUserContext } from "./CurrentUserContext";
-import ball from "../assets/ball-5084273_640.png";
+import { IoTennisballOutline } from "react-icons/io5";
 import { FiCompass, FiArchive, FiUser } from "react-icons/fi";
-import DropdownMenu from "./DropdownMenu";
 
 const Header = () => {
   const { currentUser, setCurrentUser, setSignedIn } =
@@ -28,15 +27,14 @@ const Header = () => {
     <div>
       {currentUser === null ? (
         <Div>
-          <HomeLink to={"/"}>
-            {window.location.pathname !== "/" ? (
-              <Title>Fetch</Title>
-            ) : (
+          <TitleDiv>
+            <HomeLink to={"/"}>
               <Title>
-                <Ball src={ball} />
+                <TennisBall />
+                Fetch
               </Title>
-            )}
-          </HomeLink>
+            </HomeLink>
+          </TitleDiv>
           <NavDiv>
             <SigninLink to={"/signin"}>
               <Signin>Sign in</Signin>
@@ -48,15 +46,14 @@ const Header = () => {
         </Div>
       ) : (
         <Div>
-          <HomeLink to={"/"}>
-            {window.location.pathname !== "/" ? (
-              <Title>Fetch</Title>
-            ) : (
+          <TitleDiv>
+            <HomeLink to={"/"}>
               <Title>
-                <Ball src={ball} />
+                <TennisBall />
+                Fetch
               </Title>
-            )}
-          </HomeLink>
+            </HomeLink>
+          </TitleDiv>
           <Nav>
             <MapLink to={"/map"}>
               <Map>Map</Map>
@@ -110,7 +107,7 @@ const Title = styled.h1`
   margin-left: 30px;
   color: #183a1d;
   font-family: "Lora";
-  font-size: 50px;
+  font-size: 40px;
   text-align: center;
   &:hover {
     color: #f6c453;
@@ -147,17 +144,6 @@ const HomeLink = styled(Link)`
   text-decoration: none;
 `;
 
-const Ads = styled.p`
-  color: #183a1d;
-  font-family: "Lora";
-  font-size: 16px;
-  margin-right: 15px;
-  font-weight: bold;
-  &:hover {
-    color: #f6c453;
-  }
-`;
-
 const Map = styled.p`
   color: #183a1d;
   font-family: "Lora";
@@ -178,10 +164,6 @@ const Profile = styled.p`
   &:hover {
     color: #f6c453;
   }
-`;
-
-const AdsLink = styled(Link)`
-  text-decoration: none;
 `;
 
 const MapLink = styled(Link)`
@@ -206,35 +188,14 @@ const Signout = styled.button`
   }
 `;
 
-const Ball = styled.img`
-  height: 50px;
-`;
-
-const Wrapper = styled.div`
-  margin: 0px;
+const TennisBall = styled(IoTennisballOutline)`
+  margin-right: 10px;
   position: relative;
+  top: 5px;
 `;
 
-const DropdownDiv = styled.div`
-  margin-top: -5px;
-  background-color: rgb(255, 255, 255, 100%);
-  border-radius: 25px;
-  width: 100%;
-  position: absolute;
-  left: -255px;
-  display: none;
-  z-index: 1;
-  min-height: 425px;
-  min-width: 300px;
-  padding: 10px 20px;
-  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
-    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
-`;
-
-const Hover = styled.div`
-  &:hover {
-    ${DropdownDiv} {
-      display: block;
-    }
-  }
+const TitleDiv = styled.div`
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
 `;

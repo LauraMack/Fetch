@@ -4,8 +4,8 @@ import { CurrentUserContext } from "./CurrentUserContext";
 import { UsersContext } from "./UsersContext";
 import User from "./User";
 
-const SavedUsers = ({ profileId }) => {
-  const { favourites, currentUser } = useContext(CurrentUserContext);
+const SavedUsers = () => {
+  const { favourites } = useContext(CurrentUserContext);
   const { allUsers } = useContext(UsersContext);
   const [savedUsers, setSavedUsers] = useState(null);
 
@@ -18,6 +18,7 @@ const SavedUsers = ({ profileId }) => {
     let favouritesArray = [];
     if (allUsers.data) {
       allUsers.data.forEach((user) => {
+        //compare favourites array to user data to filter the correct users
         favourites.forEach((i) => {
           if (i === user._id) {
             favouritesArray.push(user);
