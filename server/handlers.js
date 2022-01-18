@@ -197,6 +197,7 @@ const sendMessageToUser = async (req, res) => {
       {
         $push: {
           messages: {
+            _id: req.body._id,
             avatar: req.body.avatar,
             name: req.body.name,
             timestamp: req.body.timestamp,

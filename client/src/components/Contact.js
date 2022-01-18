@@ -2,7 +2,7 @@ import React, { useEffect, useContext, useState } from "react";
 import styled from "styled-components";
 import { useParams } from "react-router-dom";
 import { UsersContext } from "./UsersContext";
-import { FiMail, FiCheck } from "react-icons/fi";
+import { FiMail, FiCheck, FiSend } from "react-icons/fi";
 import { CurrentUserContext } from "./CurrentUserContext";
 import moment from "moment";
 
@@ -35,6 +35,7 @@ const Contact = () => {
     fetch(`/contact/${profileId}`, {
       method: "POST",
       body: JSON.stringify({
+        _id: currentUser.data._id,
         avatar: currentUser.data.avatar,
         name: currentUser.data.name,
         timestamp: moment(new Date()).format("MMMM DD, YYYY"),
@@ -209,7 +210,7 @@ const Cancel = styled.button`
   }
 `;
 
-const Envelope = styled(FiMail)`
+const Envelope = styled(FiSend)`
   font-size: 30px;
   color: #183a1d;
 `;
