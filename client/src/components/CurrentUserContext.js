@@ -22,7 +22,6 @@ export const CurrentUserProvider = ({ children }) => {
   const [openToTrading, setOpenToTrading] = useState(false);
   const [error, setError] = useState("");
   const [status, setStatus] = useState("idle");
-  const [myAds, setMyAds] = useState("");
   const [inbox, setInbox] = useState("");
 
   return (
@@ -48,8 +47,6 @@ export const CurrentUserProvider = ({ children }) => {
         setOpenToTrading,
         status,
         setStatus,
-        myAds,
-        setMyAds,
         favourites,
         setFavourites,
         inbox,

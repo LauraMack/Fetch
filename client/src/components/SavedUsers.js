@@ -28,29 +28,6 @@ const SavedUsers = ({ profileId }) => {
     }
   }, [favourites, allUsers.data]);
 
-  const handleRemoveFavourite = (ev) => {
-    ev.stopPropagation();
-    ev.preventDefault();
-    fetch(`/users/${currentUser.data._id}/remove-favourite`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        _id: profileId, // how to specify that THAT profile is the right one to remove?
-      }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.message === "ok") {
-          window.sessionStorage.setItem("currentUser", JSON.stringify(data));
-        }
-      });
-  };
-
-  console.log(savedUsers);
-  // have remove button always appear with user card, but only visible on favourites page and onClick only works on favourites page
-
   return savedUsers ? (
     <Main>
       <FavouriteDiv>Favourite Users</FavouriteDiv>
@@ -62,7 +39,7 @@ const SavedUsers = ({ profileId }) => {
     </Main>
   ) : (
     <Main>
-      <FavouriteDiv>No Saved Users</FavouriteDiv>
+      <FavouriteDiv>No Favourite Users</FavouriteDiv>
     </Main>
   );
 };

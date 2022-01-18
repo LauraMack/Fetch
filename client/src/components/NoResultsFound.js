@@ -18,7 +18,6 @@ const NoResultsFound = ({ searchResult }) => {
           </NoMatching>
           <TryAgain onClick={handleHomeClick}>Try again</TryAgain>
         </div>
-        {/* <Image src={dogPark} /> */}
       </Div>
     </Wrapper>
   );

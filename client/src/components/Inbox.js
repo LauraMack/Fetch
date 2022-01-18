@@ -60,8 +60,9 @@ const Wrapper = styled.div`
 
 const Div = styled.div`
   background-color: #faf9f0;
-  height: 1150px;
+  height: max-content;
   width: 1000px;
+  padding-bottom: 50px;
   margin: 0 auto;
   margin-top: 100px;
   border-radius: 5px;

@@ -3,8 +3,6 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import GlobalStyles from "./components/GlobalStyles";
 import styled from "styled-components";
 import Homepage from "./components/Homepage";
-import MyAds from "./components/MyAds";
-import AllAds from "./components/AllAds";
 import UserProfile from "./components/UserProfile";
 import MyProfile from "./components/MyProfile";
 import EditProfile from "./components/EditProfile";
@@ -14,7 +12,6 @@ import Header from "./components/Header";
 import SearchResults from "./components/SearchResults";
 import CategoryPage from "./components/CategoryPage";
 import Map from "./components/Map/Map";
-import UserAds from "./components/UserAds";
 import SavedUsers from "./components/SavedUsers";
 import Contact from "./components/Contact";
 import Inbox from "./components/Inbox";
@@ -29,15 +26,6 @@ const App = ({ profileId }) => {
         <Switch>
           <Route exact path="/">
             <Homepage result={result} setResult={setResult} />
-          </Route>
-          <Route exact path="/my-ads/:_id">
-            <MyAds />
-          </Route>
-          <Route exact path="/all-ads">
-            <AllAds profileId={profileId} />
-          </Route>
-          <Route exact path="/users/ads/:id">
-            <UserAds />
           </Route>
           <Route exact path="/signin">
             <Signin />

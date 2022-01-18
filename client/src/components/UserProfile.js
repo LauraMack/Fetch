@@ -200,16 +200,6 @@ const UserProfile = () => {
                 })}
               </ForteDiv>
               <InfoDiv>
-                <AdsDiv>
-                  <AdsButton
-                    onClick={() => {
-                      history.push(`/users/ads/${profileId}`);
-                    }}
-                  >
-                    <AdsIcon />
-                    <Ads>{profile.name}'s ads</Ads>
-                  </AdsButton>
-                </AdsDiv>
                 <SavedDiv>
                   {favourites && favourites.includes(profile._id) ? (
                     <SavedButton onClick={handleRemoveFavourite}>
@@ -344,9 +334,9 @@ const ForteTitle = styled.p`
 
 const InfoDiv = styled.div`
   display: flex;
-  width: 200px;
+  width: 300px;
   height: 200px;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
   margin-left: 25px;
 `;

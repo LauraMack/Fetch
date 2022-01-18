@@ -7,7 +7,7 @@ import paperPlane from "../assets/paper-airplane.png";
 import User from "./User";
 import Loading from "./Loading";
 
-const CategoryPage = ({ setResult, profileId }) => {
+const CategoryPage = ({ setResult }) => {
   const { allUsers } = useContext(UsersContext);
   let { categoryQuery } = useParams();
   const [matchingCategory, setMatchingCategory] = useState(() => {

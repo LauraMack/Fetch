@@ -57,7 +57,7 @@ Easily access the closest users to you with the click of a button or enter an ad
 - Add or remove this user from your favourites list with the click of a button on their profile.
 - User profile also contains a reviews section, including a 5 star rating system.
 - Edit your profile and set yourself as available or unavailable to trade your petcare-related skills.
-- Access your favourited users from your profile, as well as your posted ads.
+- Access your favourited users from your profile, as well as your inbox.
 
 <img align="center" width="1147" alt="Screenshot of user profile" src="https://user-images.githubusercontent.com/90977184/148985209-7df5073b-620c-4d03-b67b-96e2dee27275.png">
 
@@ -72,12 +72,6 @@ Easily access the closest users to you with the click of a button or enter an ad
 - Favourite users you've had good petcare experiences with for easy access to their profile.
 
 <img align="center" width="1109" alt="Screenshot of favourited users page" src="https://user-images.githubusercontent.com/90977184/148986472-9c41dc00-8ed6-40ca-9185-26f7ab19caff.png">
-
-### User Ads
-
-- Post an ad on Fetch for others to see, and easily contact users in need.
-
-<img align="center" width="1213" alt="Screen Shot 2022-01-11 at 11 58 28 AM" src="https://user-images.githubusercontent.com/90977184/148987651-7539b926-a85c-4052-9c12-5ee13a68d7a1.png">
 
 ### Dependencies
 

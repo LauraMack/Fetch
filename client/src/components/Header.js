@@ -58,9 +58,6 @@ const Header = () => {
             )}
           </HomeLink>
           <Nav>
-            <AdsLink to={"/all-ads"}>
-              <Ads>Ads</Ads>
-            </AdsLink>
             <MapLink to={"/map"}>
               <Map>Map</Map>
             </MapLink>

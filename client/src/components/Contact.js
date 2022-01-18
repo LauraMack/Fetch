@@ -2,7 +2,7 @@ import React, { useEffect, useContext, useState } from "react";
 import styled from "styled-components";
 import { useParams } from "react-router-dom";
 import { UsersContext } from "./UsersContext";
-import { FiMail, FiCheck, FiSend } from "react-icons/fi";
+import { FiCheck, FiSend } from "react-icons/fi";
 import { CurrentUserContext } from "./CurrentUserContext";
 import moment from "moment";
 
