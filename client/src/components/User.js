@@ -17,6 +17,9 @@ const User = ({ user, profileId }) => {
   const handleAddFavourite = (ev) => {
     ev.preventDefault();
     ev.stopPropagation();
+    if (!currentUser) {
+      return history.push("/signin");
+    }
     fetch(`/users/${currentUser.data._id}/favourite`, {
       method: "PATCH",
       headers: {
@@ -45,6 +48,9 @@ const User = ({ user, profileId }) => {
   const handleRemoveFavourite = (ev) => {
     ev.stopPropagation();
     ev.preventDefault();
+    if (!currentUser) {
+      return history.push("/signin");
+    }
     fetch(`/users/${currentUser.data._id}/remove-favourite`, {
       method: "PATCH",
       headers: {

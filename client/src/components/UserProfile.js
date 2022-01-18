@@ -453,34 +453,40 @@ const Whitespace = styled.div`
   top: -25px;
 `;
 
-const AdsButton = styled.button`
-  background-color: transparent;
-  padding: 10px;
-  font-size: 18px;
-  border-style: none;
-  height: 50px;
-  width: 100px;
-  cursor: pointer;
-`;
-
 const SavedButton = styled.button`
-  background-color: transparent;
-  padding: 10px;
-  font-size: 18px;
-  border-style: none;
-  height: 50px;
-  width: 100px;
+  margin: 10px;
+  margin-top: 70px;
   cursor: pointer;
+  background-color: #40916c;
+  font-weight: bold;
+  width: 145px;
+  border-style: none;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  height: 100px;
+  &:hover {
+    color: #183a1d;
+    background-color: #f6c453;
+  }
 `;
 
 const ContactButton = styled.button`
-  background-color: transparent;
-  padding: 10px;
-  font-size: 18px;
-  border-style: none;
-  height: 50px;
-  width: 100px;
+  margin: 10px;
+  margin-top: 70px;
   cursor: pointer;
+  background-color: #40916c;
+  font-weight: bold;
+  width: 145px;
+  border-style: none;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  height: 100px;
+  &:hover {
+    color: #183a1d;
+    background-color: #f6c453;
+  }
 `;
 
 const Image = styled.img`
@@ -715,48 +721,50 @@ const LoadDiv = styled.div`
 const Saved = styled.p`
   text-align: center;
   font-size: 14px;
-  color: #183a1d;
-`;
-
-const Ads = styled.p`
-  text-align: center;
-  font-size: 14px;
-  color: #183a1d;
+  color: #e1eedd;
+  margin-top: 5px;
+  &:hover {
+    color: #183a1d;
+    transition: 0.3s ease-in-out;
+  }
 `;
 
 const Contact = styled.p`
   text-align: center;
   font-size: 14px;
-  color: #183a1d;
-`;
-
-const AdsIcon = styled(FiArchive)`
-  font-size: 40px;
-  color: #40916c;
+  color: #e1eedd;
+  margin-top: 5px;
   &:hover {
-    color: #f6c453;
+    color: #183a1d;
     transition: 0.3s ease-in-out;
   }
 `;
 
 const SavedUsersIcon = styled(FiUsers)`
+  margin-top: 20px;
   font-size: 40px;
-  color: #40916c;
+  color: #e1eedd;
   &:hover {
-    color: #f6c453;
+    color: #183a1d;
     transition: 0.3s ease-in-out;
   }
 `;
 const FavouritedIcon = styled(FiUserX)`
+  margin-top: 20px;
   font-size: 40px;
-  color: #40916c;
+  color: #e1eedd;
+  &:hover {
+    color: #183a1d;
+    transition: 0.3s ease-in-out;
+  }
 `;
 
 const ContactIcon = styled(FiMessageSquare)`
+  margin-top: 20px;
   font-size: 40px;
-  color: #40916c;
+  color: #e1eedd;
   &:hover {
-    color: #f6c453;
+    color: #183a1d;
     transition: 0.3s ease-in-out;
   }
 `;
