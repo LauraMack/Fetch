@@ -24,7 +24,7 @@ const NoResultsFound = ({ searchResult }) => {
 export default NoResultsFound;
 
 const Wrapper = styled.div`
-  font-family: "Lora";
+  font-family: "Montserrat";
   background-color: #e1eedd;
   height: max-content;
   width: 100vw;

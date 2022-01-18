@@ -3,7 +3,8 @@ import styled from "styled-components";
 import { Link, useHistory } from "react-router-dom";
 import { CurrentUserContext } from "./CurrentUserContext";
 import { IoTennisballOutline } from "react-icons/io5";
-import { FiCompass, FiArchive, FiUser } from "react-icons/fi";
+import { FiHome } from "react-icons/fi";
+import smallLogo from "../assets/fetch small logo 1.jpg";
 
 const Header = () => {
   const { currentUser, setCurrentUser, setSignedIn } =
@@ -30,8 +31,9 @@ const Header = () => {
           <TitleDiv>
             <HomeLink to={"/"}>
               <Title>
-                <TennisBall />
-                Fetch
+                {/* <TennisBall /> */}
+                <Logo src={smallLogo} />
+                {/* <FiHome /> */}
               </Title>
             </HomeLink>
           </TitleDiv>
@@ -49,8 +51,9 @@ const Header = () => {
           <TitleDiv>
             <HomeLink to={"/"}>
               <Title>
-                <TennisBall />
-                Fetch
+                <Logo src={smallLogo} />
+                {/* <TennisBall /> */}
+                {/* <FiHome /> */}
               </Title>
             </HomeLink>
           </TitleDiv>
@@ -89,6 +92,10 @@ const Div = styled.div`
   justify-content: space-between;
 `;
 
+const Logo = styled.img`
+  height: 45px;
+`;
+
 const Nav = styled.div`
   display: flex;
   margin-right: 30px;
@@ -106,9 +113,10 @@ const NavDiv = styled.div`
 const Title = styled.h1`
   margin-left: 30px;
   color: #183a1d;
-  font-family: "Lora";
-  font-size: 40px;
+  font-family: "Montserrat";
+  font-size: 35px;
   text-align: center;
+  margin-top: 30px;
   &:hover {
     color: #f6c453;
   }
@@ -116,7 +124,7 @@ const Title = styled.h1`
 
 const Signin = styled.p`
   color: #183a1d;
-  font-family: "Lora";
+  font-family: "Montserrat";
   padding: 5px 10px;
   &:hover {
     color: #f6c453;
@@ -128,7 +136,7 @@ const SigninLink = styled(Link)`
 
 const Signup = styled.p`
   color: #183a1d;
-  font-family: "Lora";
+  font-family: "Montserrat";
   padding: 5px 10px;
   border-radius: 6px;
   &:hover {
@@ -146,7 +154,7 @@ const HomeLink = styled(Link)`
 
 const Map = styled.p`
   color: #183a1d;
-  font-family: "Lora";
+  font-family: "Montserrat";
   font-size: 16px;
   margin-right: 15px;
   font-weight: bold;
@@ -157,7 +165,7 @@ const Map = styled.p`
 
 const Profile = styled.p`
   color: #183a1d;
-  font-family: "Lora";
+  font-family: "Montserrat";
   font-size: 16px;
   margin-right: 15px;
   font-weight: bold;
@@ -178,7 +186,7 @@ const Signout = styled.button`
   color: #183a1d;
   background-color: transparent;
   border-style: none;
-  font-family: "Lora";
+  font-family: "Montserrat";
   font-size: 16px;
   font-weight: bold;
   margin-right: 5px;

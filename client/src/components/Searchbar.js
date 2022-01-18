@@ -47,8 +47,8 @@ const Searchdiv = styled.div`
 const Input = styled.input`
   width: 500px;
   height: 25px;
-  margin-left: 70px;
-  font-family: "Lora";
+  margin-left: 90px;
+  font-family: "Montserrat";
   background-color: #faf9f0;
   border: solid 1px #3d405b;
   border-radius: 5px;

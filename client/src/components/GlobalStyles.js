@@ -2,8 +2,8 @@ import { createGlobalStyle } from "styled-components";
 
 const GlobalStyles = createGlobalStyle`
   :root {
-    --font-heading: "Lora"
-    --font-body: "Lora"
+    --font-heading: "Montserrat"
+    --font-body: "Montserrat"
   }
 
   *,
@@ -18,23 +18,23 @@ const GlobalStyles = createGlobalStyle`
     border: 0;
     box-sizing: border-box;
     background: #faf9f0; 
-    font-family: "Lora";
+    font-family: "Montserrat";
   }
 
 
   h1, h2, h3, h4, h5, h6, button {
-    font-family: "Lora";
+    font-family: "Montserrat";
     transition: 0.3s ease-in-out;
   }
 
   p, textarea {
-    font-family: "Lora";
+    font-family: "Montserrat";
     color: #3d405b;
     transition: 0.3s ease-in-out;
   }
 
   input {
-    font-family: "Lora";
+    font-family: "Montserrat";
   }
 
   ul {

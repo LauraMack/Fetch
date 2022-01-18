@@ -493,7 +493,7 @@ const ForteDiv = styled.div`
 `;
 
 const Forte = styled.li`
-  font-family: "Lora";
+  font-family: "Montserrat";
   list-style-type: none;
   font-size: 14px;
   background-color: #40916c;

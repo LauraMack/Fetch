@@ -110,7 +110,7 @@ const MyProfile = () => {
 export default MyProfile;
 
 const Wrapper = styled.div`
-  font-family: "Lora";
+  font-family: "Montserrat";
   background-color: #e1eedd;
   height: max-content;
   width: 100vw;
@@ -296,7 +296,7 @@ const Forte = styled.li`
   text-align: center;
   cursor: pointer;
   color: #e5ebea;
-  font-family: "Lora";
+  font-family: "Montserrat";
   &:hover {
     color: #183a1d;
     background-color: #f6c453;

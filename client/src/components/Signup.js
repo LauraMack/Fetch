@@ -140,7 +140,7 @@ const SignUpDiv = styled.div`
 `;
 
 const Input = styled.input`
-  font-family: "Lora";
+  font-family: "Montserrat";
   padding: 5px;
   width: 300px;
   border-radius: 4px;
@@ -170,7 +170,7 @@ const Label = styled.p`
 `;
 
 const Button = styled.button`
-  font-family: "Lora";
+  font-family: "Montserrat";
   width: 312px;
   margin-top: 10px;
   border-radius: 4px;

@@ -20,7 +20,7 @@ const SignInBtn = () => {
 export default SignInBtn;
 
 const GoogleButton = styled.button`
-  font-family: "Lora";
+  font-family: "Montserrat";
   width: 312px;
   border-radius: 4px;
   border: solid 1px #183a1d;

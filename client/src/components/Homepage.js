@@ -5,7 +5,7 @@ import Categories from "./Categories";
 import User from "./User";
 import { UsersContext } from "./UsersContext";
 import { CurrentUserContext } from "./CurrentUserContext";
-import ball from "../assets/ball-5084273_640.png";
+import logo from "../assets/fetch logo 1.1.jpg";
 import mapPin from "../assets/map-pin2.png";
 import Loading from "./Loading";
 
@@ -120,12 +120,13 @@ const Homepage = ({ result, setResult }) => {
   return (
     <Wrapper>
       <FetchDiv>
-        <Fetch>Fetch</Fetch>
-        <Ball src={ball} />
+        <Logo src={logo} />
+
+        {/* <Ball src={ball} /> */}
       </FetchDiv>
-      <ConnectDiv>
+      {/* <ConnectDiv>
         <Connect>Connect with fellow pet lovers near you.</Connect>
-      </ConnectDiv>
+      </ConnectDiv> */}
       <Searchdiv>
         <Searchbar result={result} setResult={setResult} />
       </Searchdiv>
@@ -182,7 +183,7 @@ const Homepage = ({ result, setResult }) => {
 export default Homepage;
 
 const Wrapper = styled.div`
-  font-family: "Lora";
+  font-family: "Montserrat";
   height: max-content;
   background-color: #e1eedd;
   width: 100vw;
@@ -197,14 +198,8 @@ const FetchDiv = styled.div`
   margin-top: 30px;
 `;
 
-const Fetch = styled.h1`
-  font-size: 100px;
-  color: #183a1d;
-  margin-left: 30px;
-`;
-
-const Ball = styled.img`
-  height: 60px;
+const Logo = styled.img`
+  height: 300px;
   margin-top: 40px;
 `;
 const Searchdiv = styled.div`
@@ -215,7 +210,7 @@ const Searchdiv = styled.div`
   align-items: center;
   justify-content: center;
   margin: 0 auto;
-  margin-top: 40px;
+  margin-top: 80px;
 `;
 
 const ConnectDiv = styled.div`
@@ -240,7 +235,7 @@ const CategoryDiv = styled.div`
   flex-direction: row wrap;
   justify-content: center;
   margin: 0 auto;
-  margin-top: 150px;
+  margin-top: 130px;
 `;
 
 const UserDiv = styled.div`
@@ -287,7 +282,7 @@ const LoadMoreDiv = styled.div`
 const LoadMore = styled.button`
   height: 40px;
   width: 150px;
-  font-family: "Lora";
+  font-family: "Montserrat";
   background-color: transparent;
   border: solid 2px #183a1d;
   border-radius: 5px;
