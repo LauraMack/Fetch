@@ -17,7 +17,7 @@ import { UsersContext } from "../UsersContext";
 import LocateMe from "./LocateMe";
 import MapSearch from "./MapSearch";
 import mapStyles from "./mapStyles";
-import dogWalker from "../../assets/dog-walking.png";
+import dogWalker from "../../assets/dog-walking (1).png";
 import { IoStarSharp } from "react-icons/io5";
 import Loading from "../Loading";
 

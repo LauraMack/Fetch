@@ -2,7 +2,7 @@ import React, { useEffect, useContext, useState } from "react";
 import { useParams } from "react-router-dom";
 import { UsersContext } from "./UsersContext";
 import styled from "styled-components";
-import paperPlane from "../assets/paper-airplane.png";
+import paperPlane from "../assets/paper airplane 1.png";
 import User from "./User";
 import Loading from "./Loading";
 

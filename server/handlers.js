@@ -152,10 +152,10 @@ const addReview = async (req, res) => {
       }
     );
     res.status(200).json({ status: 200, message: "ok", data: req.body });
+    client.close();
   } catch (error) {
     res.status(404).json({ status: 404, message: "error", data: req.body });
   }
-  client.close();
 };
 // send msg to user
 const sendMessageToUser = async (req, res) => {

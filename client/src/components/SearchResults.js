@@ -4,7 +4,6 @@ import { UsersContext } from "./UsersContext";
 import NoResultsFound from "./NoResultsFound";
 import styled from "styled-components";
 import User from "./User";
-import dog from "../assets/dog3.png";
 
 const SearchResults = ({ result, setResult }) => {
   const { allUsers } = useContext(UsersContext);
