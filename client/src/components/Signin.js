@@ -198,13 +198,6 @@ const Button = styled.button`
   }
 `;
 
-const Or = styled.p`
-  font-size: 12px;
-  color: #183a1d;
-  width: 300px;
-  text-align: center;
-`;
-
 const Member = styled.p`
   font-family: "Montserrat";
   font-size: 12px;
@@ -216,7 +209,7 @@ const Member = styled.p`
 
 const SignupButton = styled.button`
   font-size: 12px;
-  width: 110px;
+  width: 120px;
   text-align: center;
   border-style: none;
   background-color: transparent;

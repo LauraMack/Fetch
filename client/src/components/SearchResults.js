@@ -56,10 +56,7 @@ const SearchResults = ({ result, setResult }) => {
       <Main>
         {matchingResults && (
           <div>
-            <SearchDiv>
-              <Dog src={dog} />
-              Search results for "{searchResult}"
-            </SearchDiv>
+            <SearchDiv>Search results for "{searchResult}"</SearchDiv>
             <UserDiv>
               {matchingResults.map((user) => {
                 return <User user={user} profileId={user._id} />;

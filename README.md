@@ -8,7 +8,7 @@ Fetch
 
 <br />
 
- <img align="center" width="1426" alt="Fetch main page with logo and tagline" src="https://user-images.githubusercontent.com/90977184/148449068-e6ab76e4-f897-4046-8683-2d47058c76c5.png">
+ <img align="center" width="1409" alt="Screenshot of Fetch pre-sign in" src="https://user-images.githubusercontent.com/90977184/150156507-54e066dd-be04-4dd5-88ae-1d5f00c73dae.png">
 </div>
 
 <h4 align="center">Frontend: React, Styled-Components, Geolocation API, Google Maps API and Google Places API.</h4>
@@ -24,23 +24,22 @@ Fetch
 - A search bar: search by name or by skillset.
 - Find users by category.
 - Easily set your location and have the users nearest you appear first on the home page.
+- Save users to your favourites at the click of a button.
 - Sign in or sign up for Fetch.
 
-<img align="center" width="1426" alt="Screenshot of homepage after signing in" src="https://user-images.githubusercontent.com/90977184/148454994-7a1fdada-0421-416a-9ee1-7c2f8be5c887.png">
-<img align="center" width="1390" alt="Screenshot of categories section on homepage" src="https://user-images.githubusercontent.com/90977184/148455197-5fe7f829-5fb3-4663-862a-bd07d379e939.png" >
-<img align="center" width="1385" alt="Screenshot of 'set my location' button on homepage" src="https://user-images.githubusercontent.com/90977184/148456269-f3eff2c0-b3fc-4289-8c89-b539e36abcf6.png" >
-<img align="center" width="1390" alt="Screenshot of users near you section on homepage" src="https://user-images.githubusercontent.com/90977184/148456461-57496ac5-e071-4084-8c09-fd645331b044.png">
-<img align="center" width="1064" alt="Screen Shot 2022-01-11 at 12 03 27 PM" src="https://user-images.githubusercontent.com/90977184/148988123-768eecae-801f-42e4-9791-c9c1bb434e6c.png">
-<img align="center" width="1379" alt="Screen Shot 2022-01-11 at 12 03 44 PM" src="https://user-images.githubusercontent.com/90977184/148988149-f6061338-1dab-4207-9159-7ccc5290deea.png">
+<img align="center" width="1412" alt="Screenshot of Fetch main screen after sign in" src="https://user-images.githubusercontent.com/90977184/150157102-b7125d61-be5d-4b52-8e5a-5355dc9ba3e0.png">
+<img align="center" width="1368" alt="Screenshot of categories section" src="https://user-images.githubusercontent.com/90977184/150158808-db5d619c-6f58-493f-a408-efcd326a42a9.png">
+<img align="center" width="1339" alt="Screenshot of 'set my location' function" src="https://user-images.githubusercontent.com/90977184/150157352-8137f059-f6eb-45a9-9e01-2629fa3896f6.png">
+<img width="1401" alt="Screenshot of 'users near you' homepage section" src="https://user-images.githubusercontent.com/90977184/150157566-3523110c-bf1b-4158-bb5e-3de0b20eed6f.png">
+<img align="center" width="1394" alt="Screenshot of search results page" src="https://user-images.githubusercontent.com/90977184/150158117-2f8e0dca-e46b-45fd-883d-0dca01d66c01.png">
+<img align="center" width="1244" alt="Screenshot of no results found page" src="https://user-images.githubusercontent.com/90977184/150158136-356e0115-8ac2-4805-81ce-ae8bac124bc3.png">
 
 ### Sign in and Sign up
 
 - Sign in and sign up locally with email and password validation.
 - Stays signed in on page refresh.
 
-<img align="center" width="768" alt="Screenshot of sign in page" src="https://user-images.githubusercontent.com/90977184/148972874-4b188adc-6ac6-4ca2-8cc6-e6005378012c.png">
-<img align="center" width="768" alt="Screenshot of password validation" src="https://user-images.githubusercontent.com/90977184/148972890-261e2042-aa49-4c60-afd1-e9677e7ec583.png">
-<img align="center" width="768" alt="Screenshot of email validation" src="https://user-images.githubusercontent.com/90977184/148972898-1bcdb4f6-b1cf-4459-843f-88f97d619b79.png">
+<img align="center" width="1042" alt="Screenshot of signin page" src="https://user-images.githubusercontent.com/90977184/150159039-baac2f36-a105-4e3e-bdbf-55835af0ad53.png">
 
 ### Map
 
@@ -49,7 +48,7 @@ Easily access the closest users to you with the click of a button or enter an ad
 - Location button uses the Gelocation API as well as the Google Maps API to pan into your location.
 - Address field uses the Google Places API for easy searching with predictive suggestions.
 
-<img align="center" width="1404" alt="Screenshot of map page" src="https://user-images.githubusercontent.com/90977184/148971763-7f5f8d20-6a7a-4f38-96d1-b373c2abdf4c.png" >
+<img align="center" width="1404" alt="Screenshot of map page" src="https://user-images.githubusercontent.com/90977184/150159664-c42b1468-9222-477c-8853-2363f22a7d87.png">
 
 ### User Profiles
 
@@ -59,19 +58,29 @@ Easily access the closest users to you with the click of a button or enter an ad
 - Edit your profile and set yourself as available or unavailable to trade your petcare-related skills.
 - Access your favourited users from your profile, as well as your inbox.
 
-<img align="center" width="1147" alt="Screenshot of user profile" src="https://user-images.githubusercontent.com/90977184/148985209-7df5073b-620c-4d03-b67b-96e2dee27275.png">
+<img align="center" width="1147" alt="Screenshot of user profile" src="https://user-images.githubusercontent.com/90977184/150160744-f0c03dd9-01ec-4ad1-b4f0-f1ee28c19407.png">
 
-<img align="center" width="1127" alt="Screenshot of reviews section on user profile" src="https://user-images.githubusercontent.com/90977184/148985226-5c03e35f-b827-4d28-a3e2-daf20caf6ed4.png">
+<img align="center" width="1342" alt="Screenshot of reviews section on user profile" src="https://user-images.githubusercontent.com/90977184/150160875-141683a7-021a-4fe4-abb1-bf7a272b0f87.png">
 
-<img align="center" width="1166" alt="Screenshot of current user profile" src="https://user-images.githubusercontent.com/90977184/148985246-680100e7-5a50-405f-9b72-2f68aadfd01a.png">
+<img align="center" width="1166" alt="Screenshot of current user profile" src="https://user-images.githubusercontent.com/90977184/150161027-735fe102-375e-40c3-92ef-ca50f3c62e53.png">
 
-<img align="center" width="1075" alt="Screenshot of edit profile page" src="https://user-images.githubusercontent.com/90977184/148985275-c35cb2d3-84cc-49ab-b470-c6d91d985017.png">
+<img align="center" width="1075" alt="Screenshot of edit profile page" src="https://user-images.githubusercontent.com/90977184/150161128-1d12aa95-dc1a-4c33-9c2e-60ac7518f27b.png">
 
 ### Favourited Users
 
 - Favourite users you've had good petcare experiences with for easy access to their profile.
 
-<img align="center" width="1109" alt="Screenshot of favourited users page" src="https://user-images.githubusercontent.com/90977184/148986472-9c41dc00-8ed6-40ca-9185-26f7ab19caff.png">
+<img align="center" width="1109" alt="Screenshot of favourited users page" src="https://user-images.githubusercontent.com/90977184/150161265-6414a22a-7912-42c3-a283-94e35106e017.png">
+
+## Contact Users
+
+- Contact users and reply to messages in your inbox.
+
+<img align="center" width="1109" alt="Screenshot of contact page" src="https://user-images.githubusercontent.com/90977184/150161758-cfa8c512-14e2-4e69-ad9f-9d1fc44f0b39.png">
+
+<img align="center" width="1109" alt="Screenshot of inbox" src="https://user-images.githubusercontent.com/90977184/150161955-1b406bd3-dabf-496d-8073-f95ce82255cb.png">
+
+<img align="center" width="1109" alt="Screenshot of inbox with reply" src="https://user-images.githubusercontent.com/90977184/150162164-50ea58aa-032a-44d0-ab83-6cc639316132.png">
 
 ### Dependencies
 
