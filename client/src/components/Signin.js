@@ -1,8 +1,8 @@
 import React, { useContext, useEffect } from "react";
 import styled from "styled-components";
-import { CurrentUserContext } from "./CurrentUserContext";
+import { CurrentUserContext } from "./Context/CurrentUserContext";
+import { UsersContext } from "./Context/UsersContext";
 import { useHistory } from "react-router";
-import { UsersContext } from "./UsersContext";
 
 const Signin = () => {
   const {

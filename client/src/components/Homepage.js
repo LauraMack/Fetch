@@ -3,8 +3,8 @@ import styled from "styled-components";
 import Searchbar from "./Searchbar";
 import Categories from "./Categories";
 import User from "./User";
-import { UsersContext } from "./UsersContext";
-import { CurrentUserContext } from "./CurrentUserContext";
+import { UsersContext } from "./Context/UsersContext";
+import { CurrentUserContext } from "./Context/CurrentUserContext";
 import logo from "../assets/fetch logo 1.1.jpg";
 import mapPin from "../assets/map-pin2.png";
 import Loading from "./Loading";
@@ -121,12 +121,7 @@ const Homepage = ({ result, setResult }) => {
     <Wrapper>
       <FetchDiv>
         <Logo src={logo} />
-
-        {/* <Ball src={ball} /> */}
       </FetchDiv>
-      {/* <ConnectDiv>
-        <Connect>Connect with fellow pet lovers near you.</Connect>
-      </ConnectDiv> */}
       <Searchdiv>
         <Searchbar result={result} setResult={setResult} />
       </Searchdiv>

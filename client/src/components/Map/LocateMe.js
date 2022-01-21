@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
-import { CurrentUserContext } from "../CurrentUserContext";
-import { UsersContext } from "../UsersContext";
+import { CurrentUserContext } from "../Context/CurrentUserContext";
+import { UsersContext } from "../Context/UsersContext";
 import styled from "styled-components";
 
 const LocateMe = ({ panTo }) => {

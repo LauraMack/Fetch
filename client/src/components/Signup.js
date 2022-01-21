@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
-import { CurrentUserContext } from "./CurrentUserContext";
-import { UsersContext } from "./UsersContext";
+import { CurrentUserContext } from "./Context/CurrentUserContext";
+import { UsersContext } from "./Context/UsersContext";
 import { useHistory } from "react-router";
 import { v4 as uuidv4 } from "uuid";
 const Signup = () => {

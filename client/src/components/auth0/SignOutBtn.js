@@ -1,8 +1,7 @@
 import React, { useContext } from "react";
-import { useHistory } from "react-router";
 import { useAuth0 } from "@auth0/auth0-react";
 import styled from "styled-components";
-import { CurrentUserContext } from "../CurrentUserContext";
+import { CurrentUserContext } from "../Context/CurrentUserContext";
 
 const SignOutBtn = () => {
   const { setCurrentUser, setSignedIn } = useContext(CurrentUserContext);

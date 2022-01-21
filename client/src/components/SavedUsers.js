@@ -1,7 +1,7 @@
 import React, { useEffect, useContext, useState } from "react";
 import styled from "styled-components";
-import { CurrentUserContext } from "./CurrentUserContext";
-import { UsersContext } from "./UsersContext";
+import { CurrentUserContext } from "./Context/CurrentUserContext";
+import { UsersContext } from "./Context/UsersContext";
 import User from "./User";
 
 const SavedUsers = () => {

@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { CurrentUserContext } from "./CurrentUserContext";
+import { CurrentUserContext } from "./Context/CurrentUserContext";
 import styled from "styled-components";
 import { IoStarSharp } from "react-icons/io5";
 import { BsFillSuitHeartFill, BsSuitHeart } from "react-icons/bs";

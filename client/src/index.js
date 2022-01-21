@@ -1,10 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
-import { UsersProvider } from "./components/UsersContext";
-import { CurrentUserProvider } from "./components/CurrentUserContext";
+import { UsersProvider } from "./components/Context/UsersContext";
+import { CurrentUserProvider } from "./components/Context/CurrentUserContext";
 import { Auth0Provider } from "@auth0/auth0-react";
-import Auth0ProviderWithHistory from "./components/auth0/Auth0ProviderWithHistory";
 const domain = process.env.REACT_APP_AUTH0_DOMAIN;
 const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
 

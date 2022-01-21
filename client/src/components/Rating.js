@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
 import { IoStarSharp } from "react-icons/io5";
-import { UsersContext } from "./UsersContext";
+import { UsersContext } from "./Context/UsersContext";
 
 const Rating = () => {
   const { rating, setRating } = useContext(UsersContext);

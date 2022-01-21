@@ -1,9 +1,8 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
 import { Link, useHistory } from "react-router-dom";
-import { CurrentUserContext } from "./CurrentUserContext";
+import { CurrentUserContext } from "./Context/CurrentUserContext";
 import { IoTennisballOutline } from "react-icons/io5";
-import { FiHome } from "react-icons/fi";
 import smallLogo from "../assets/fetch small logo 1.jpg";
 
 const Header = () => {
@@ -31,9 +30,7 @@ const Header = () => {
           <TitleDiv>
             <HomeLink to={"/"}>
               <Title>
-                {/* <TennisBall /> */}
                 <Logo src={smallLogo} />
-                {/* <FiHome /> */}
               </Title>
             </HomeLink>
           </TitleDiv>
@@ -52,8 +49,6 @@ const Header = () => {
             <HomeLink to={"/"}>
               <Title>
                 <Logo src={smallLogo} />
-                {/* <TennisBall /> */}
-                {/* <FiHome /> */}
               </Title>
             </HomeLink>
           </TitleDiv>

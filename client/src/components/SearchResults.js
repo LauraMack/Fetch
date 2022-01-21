@@ -1,6 +1,6 @@
 import React, { useEffect, useContext, useState } from "react";
 import { useParams } from "react-router-dom";
-import { UsersContext } from "./UsersContext";
+import { UsersContext } from "./Context/UsersContext";
 import NoResultsFound from "./NoResultsFound";
 import styled from "styled-components";
 import User from "./User";

@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { FaReply } from "react-icons/fa";
 import { FiCheck } from "react-icons/fi";
 import { Link } from "react-router-dom";
-import { CurrentUserContext } from "./CurrentUserContext";
+import { CurrentUserContext } from "./Context/CurrentUserContext";
 import moment from "moment";
 
 const Message = ({ message, userId }) => {

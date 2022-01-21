@@ -1,12 +1,10 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import styled from "styled-components";
-import { useContext, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import { CurrentUserContext } from "./CurrentUserContext";
-import { FiCheckCircle } from "react-icons/fi";
+import { CurrentUserContext } from "./Context/CurrentUserContext";
 import { IoStarSharp } from "react-icons/io5";
 import { FaRegTimesCircle } from "react-icons/fa";
-import { FiUsers, FiArchive, FiEdit } from "react-icons/fi";
+import { FiUsers, FiArchive, FiEdit, FiCheckCircle } from "react-icons/fi";
 
 const MyProfile = () => {
   const { currentUser } = useContext(CurrentUserContext);

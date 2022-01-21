@@ -1,7 +1,7 @@
 import React, { useEffect, useContext, useState } from "react";
 import styled from "styled-components";
 import { useParams, useHistory, Link } from "react-router-dom";
-import { UsersContext } from "./UsersContext";
+import { UsersContext } from "./Context/UsersContext";
 import { IoStarSharp } from "react-icons/io5";
 import {
   FiCheckCircle,
@@ -10,7 +10,7 @@ import {
   FiUserX,
 } from "react-icons/fi";
 import { FaRegTimesCircle } from "react-icons/fa";
-import { CurrentUserContext } from "./CurrentUserContext";
+import { CurrentUserContext } from "./Context/CurrentUserContext";
 import placeholder from "../assets/placeholder-image2.jpeg";
 import Rating from "./Rating";
 import moment from "moment";
